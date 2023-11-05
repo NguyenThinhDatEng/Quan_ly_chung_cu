@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
     "baseUrl": "./",
-    "moduleResolution": "node",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
+    "module": "CommonJS", // "esnext",
+    "target": "es6",
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
     "lib": [
       "esnext",
       "dom",
