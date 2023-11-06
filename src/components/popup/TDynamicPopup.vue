@@ -37,7 +37,7 @@
     <div v-if="isShowTitle" class="modal_title">
       <div class="title_left">
         <div class="title">{{ title }}</div>
-        <slot name="content-title"> </slot>
+        <slot name="content-title" />
       </div>
       <!-- right of title -->
       <div class="title_right">
@@ -45,7 +45,10 @@
       </div>
     </div>
     <div class="modal_content">
-      {{ styles }}
+      <slot name="content" />
+    </div>
+    <div class="modal_footer">
+      <slot name="footer" />
     </div>
   </vue-final-modal>
 </template>
@@ -107,12 +110,20 @@ export default {
 
 :deep(.modal-content) {
   background-color: white;
+  padding: 20px;
 }
+
 .modal_title {
   display: flex;
   justify-content: space-between;
 }
 
+.modal_title .title {
+  font-size: 24px;
+}
+
 .modal_content {
+  display: flex;
+  flex-direction: column;
 }
 </style>

@@ -1,13 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: MISA Regular;
   font-size: 13px
-}
-
-:root {
-  --input--hover: #1AA4C8;
-  --combobox__first-data: #96C6EE;
-  --combobox__data: #C7E0F4;
 }
 
 body {

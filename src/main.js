@@ -2,7 +2,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 // global style
-import "./assets/styles/global.css";
+import "@/assets/styles/global.css";
 import "@/assets/styles/icon.css";
 // vue router
 import router from "@/routers/router";
