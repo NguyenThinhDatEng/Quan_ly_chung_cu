@@ -33,6 +33,10 @@ export default {
             name: "PopupDemo",
             linkTo: { name: "PopupDemo" },
           },
+          {
+            name: "InputDemo",
+            linkTo: { name: "InputDemo" },
+          },
         ],
       },
     ]);

@@ -5,6 +5,7 @@ import NotFound from "@/pages/NotFound.vue";
 import Main from "@/components/layout/main/Main.vue";
 // Demo
 import PopupDemo from "@/views/demo/PopupDemo.vue";
+import InputDemo from "@/views/demo/InputDemo.vue";
 
 // init routes
 const routes = [
@@ -16,6 +17,11 @@ const routes = [
         path: "popupDemo",
         name: "PopupDemo",
         component: PopupDemo,
+      },
+      {
+        path: "inputDemo",
+        name: "InputDemo",
+        component: InputDemo,
       },
     ],
   },
