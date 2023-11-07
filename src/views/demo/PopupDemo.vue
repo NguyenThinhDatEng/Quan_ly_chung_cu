@@ -5,6 +5,7 @@
     >
   </div>
   <t-dynamic-popup v-model="showModal" :title="'Demo popup'" :width="800">
+    <!-- Nội dung popup -->
     <template #content>
       <div class="flex-column">
         <label for="name">Họ và tên</label>
@@ -26,6 +27,7 @@
         />
       </div>
     </template>
+    <!-- Chân popup -->
     <template #footer>
       <div class="flex footer">
         <el-button>Cancel</el-button>

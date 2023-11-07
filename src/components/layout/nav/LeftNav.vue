@@ -44,7 +44,7 @@ export default {
     /**
      * @description Hiển thị sub menu
      * @param {Number} index
-     * @author nvthinh 17.9.2023
+     * @author nvthinh 7.11.2023
      */
     const showSubMenu = (index) => {
       // const me = proxy;
