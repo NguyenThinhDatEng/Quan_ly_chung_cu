@@ -27,7 +27,7 @@ export default {
 
     const menu = reactive([
       {
-        path: "demo",
+        path: "Demo",
         name: "Demo",
         isShowSubMenu: false,
         subMenu: [
@@ -45,7 +45,7 @@ export default {
      * @author nvthinh 17.9.2023
      */
     const showSubMenu = (index) => {
-      const me = proxy;
+      // const me = proxy;
       // Cập nhật ẩn hiện sub menu cho toàn bộ menu
       menu.forEach((item, i) => {
         if (i === index) {
@@ -55,7 +55,7 @@ export default {
         }
       });
       // Cập nhật router
-      me.$router.push({ name: menu[index].path });
+      // me.$router.push({ name: menu[index].path });
     };
 
     onMounted(() => {

@@ -111,6 +111,7 @@ export default {
 :deep(.modal-content) {
   background-color: white;
   padding: 20px;
+  border-radius: 4px;
 }
 
 .modal_title {
@@ -125,5 +126,6 @@ export default {
 .modal_content {
   display: flex;
   flex-direction: column;
+  padding: 20px 0;
 }
 </style>

@@ -8,16 +8,10 @@ import PopupDemo from "@/views/demo/PopupDemo.vue";
 
 // init routes
 const routes = [
-  { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   {
     path: "/",
     component: Main,
     children: [
-      {
-        path: "demo",
-        name: "Demo",
-        component: PopupDemo,
-      },
       {
         path: "popupDemo",
         name: "PopupDemo",
@@ -25,6 +19,7 @@ const routes = [
       },
     ],
   },
+  { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
 ];
 
 const router = createRouter({
