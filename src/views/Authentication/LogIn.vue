@@ -1,29 +1,24 @@
 <template>
-  </form>
-    <h3>Login</h3>
+  <div>
+    <h1 class="heading">Login</h1>
+    <form @submit.prevent="submitForm" class="login-form">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" v-model="username" required>
+      </div>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-control" placeholder="Email"/>
-    </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="password" required>
+      </div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" placeholder="Password"/>
-    <div>
-
-    <button class="btn btn-primary btn-block">Login</button>
-  </form>
+      <button type="submit" class="btn-login">Log In</button>
+    </form>
+  </div>
 </template>
-
-
-<script>
-// Libraries
-</script>
 
 <style scoped>
 .heading {
-  font-size: 24px;
   color: #333;
   text-align: center;
 }
@@ -61,11 +56,5 @@ input[type="password"] {
 
 .btn-login:hover {
   background-color: #0056b3;
-}
-.square {
-  width: 200px;
-  height: 200px;
-  background-color: #007bff;
-  margin: 20px auto;
 }
 </style>

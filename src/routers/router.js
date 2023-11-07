@@ -5,6 +5,8 @@ import NotFound from "@/pages/NotFound.vue";
 import Main from "@/components/layout/main/Main.vue";
 // Demo
 import PopupDemo from "@/views/demo/PopupDemo.vue";
+// Authentication
+import LogIn from "@/views/Authentication/LogIn.vue";
 
 // init routes
 const routes = [
@@ -20,6 +22,10 @@ const routes = [
     ],
   },
   { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
+  {
+    path: "/Login",
+    component: LogIn
+  }
 ];
 
 const router = createRouter({
