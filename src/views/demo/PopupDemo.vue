@@ -1,10 +1,11 @@
 <template>
   <div class="popup-demo-container">
     <el-button class="center" type="success" @click="showModal = true"
-      >Success</el-button
+      >Show popup</el-button
     >
   </div>
-  <t-dynamic-popup v-model="showModal" :title="'Demo'" :width="800">
+  <t-dynamic-popup v-model="showModal" :title="'Demo popup'" :width="800">
+    <!-- Nội dung popup -->
     <template #content>
       <div class="flex-column">
         <label for="name">Họ và tên</label>
@@ -12,9 +13,21 @@
           id="name"
           v-model="model.name"
           placeholder="Please enter your full name"
+          class="input-custom"
+        />
+      </div>
+      <div class="flex-column">
+        <label for="bod">Ngày sinh</label>
+        <el-date-picker
+          id="bod"
+          v-model="model.bod"
+          type="date"
+          placeholder="Pick a day"
+          :size="size"
         />
       </div>
     </template>
+    <!-- Chân popup -->
     <template #footer>
       <div class="flex footer">
         <el-button>Cancel</el-button>
@@ -51,6 +64,10 @@ export default {
 .popup-demo-container {
   width: 100%;
   position: relative;
+}
+
+.popup-demo-container .input-custom {
+  border: 1px solid #afafaf;
 }
 
 .footer {

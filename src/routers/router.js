@@ -5,6 +5,7 @@ import NotFound from "@/pages/NotFound.vue";
 import Main from "@/components/layout/main/Main.vue";
 // Demo
 import PopupDemo from "@/views/demo/PopupDemo.vue";
+import InputDemo from "@/views/demo/InputDemo.vue";
 // Authentication
 import LogIn from "@/views/Authentication/LogIn.vue";
 
@@ -18,6 +19,11 @@ const routes = [
         path: "popupDemo",
         name: "PopupDemo",
         component: PopupDemo,
+      },
+      {
+        path: "inputDemo",
+        name: "InputDemo",
+        component: InputDemo,
       },
     ],
   },
