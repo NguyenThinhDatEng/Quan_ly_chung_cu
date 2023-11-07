@@ -17,8 +17,6 @@
 
 <script>
 import { getCurrentInstance, onMounted, reactive } from "vue";
-// Resources
-import i18nLayout from "@/i18n/components/i18nLayout";
 
 export default {
   name: "LeftNav",
@@ -76,7 +74,7 @@ export default {
       });
     };
 
-    return { showSubMenu, menu, i18nLayout };
+    return { showSubMenu, menu };
   },
 };
 </script>

@@ -14,6 +14,16 @@
           placeholder="Please enter your full name"
         />
       </div>
+      <div class="flex-column">
+        <label for="bod">Ngày sinh</label>
+        <el-date-picker
+          id="bod"
+          v-model="model.bod"
+          type="date"
+          placeholder="Pick a day"
+          :size="size"
+        />
+      </div>
     </template>
     <template #footer>
       <div class="flex footer">
