@@ -8,9 +8,9 @@
           /></el-icon>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>View</el-dropdown-item>
-              <el-dropdown-item>Add</el-dropdown-item>
-              <el-dropdown-item>Delete</el-dropdown-item>
+              <el-dropdown-item>Thông tin cá nhân</el-dropdown-item>
+              <el-dropdown-item>Thay đổi mật khẩu</el-dropdown-item>
+              <el-dropdown-item>Đăng xuất</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -27,27 +27,27 @@
             :router="true"
             @select="handleSelect"
           >
-            <el-sub-menu
-              v-for="(item, i) in elSubMenus"
-              :key="i"
-              :index="i + 1"
-              :class="{
-                'hide-collapse-icon': item.isHideCollapseIcon,
-              }"
-            >
-              <template #title>
-                <el-icon><component :is="item.iconName" /></el-icon
-                >{{ item.elSubMenuName }}
-              </template>
-              <el-menu-item-group
-                v-for="(menuItem, a) in item.elMenuItemGroups"
-                :key="a"
-              >
-                <el-menu-item :index="menuItem.path" :route="menuItem.route">{{
-                  menuItem.elMenuItemName
-                }}</el-menu-item>
-              </el-menu-item-group>
-            </el-sub-menu>
+            <template v-for="(item, i) in elSubMenus" :key="i">
+              <!-- Nếu mục có mục con -->
+              <el-sub-menu v-if="item?.elMenuItemGroups?.length > 0">
+                <template #title>
+                  <el-icon><component :is="item.iconName" /></el-icon
+                  >{{ item.elSubMenuName }}
+                </template>
+                <el-menu-item-group
+                  v-for="(menuItem, a) in item.elMenuItemGroups"
+                  :key="a"
+                >
+                  <el-menu-item :index="menuItem.path">{{
+                    menuItem.elMenuItemName
+                  }}</el-menu-item>
+                </el-menu-item-group>
+              </el-sub-menu>
+              <!-- Nếu mục không có mục con -->
+              <el-menu-item v-else :index="item.path">{{
+                item.elSubMenuName
+              }}</el-menu-item>
+            </template>
           </el-menu>
         </el-scrollbar>
       </el-aside>
@@ -77,7 +77,6 @@ export default {
       {
         elSubMenuName: "Tổng quan",
         iconName: "message",
-        isHideCollapseIcon: true,
         path: "/",
       },
       {
