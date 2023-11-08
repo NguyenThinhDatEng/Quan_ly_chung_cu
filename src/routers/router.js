@@ -8,6 +8,8 @@ import PopupDemo from "@/views/demo/PopupDemo.vue";
 import InputDemo from "@/views/demo/InputDemo.vue";
 // Authentication
 import LogIn from "@/views/Authentication/LogIn.vue";
+// Contents
+import Overview from "@/views/overview/Overview.vue";
 
 // init routes
 const routes = [
@@ -15,6 +17,11 @@ const routes = [
     path: "/",
     component: Main,
     children: [
+      {
+        path: "",
+        name: "Overview",
+        component: Overview,
+      },
       {
         path: "popupDemo",
         name: "PopupDemo",
@@ -30,8 +37,8 @@ const routes = [
   { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   {
     path: "/Login",
-    component: LogIn
-  }
+    component: LogIn,
+  },
 ];
 
 const router = createRouter({

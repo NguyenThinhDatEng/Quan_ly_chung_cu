@@ -5,7 +5,7 @@
         <span>{{ headerTitle }}</span>
         <div class="toolbar">
           <el-dropdown>
-            <el-icon :size="iconSize"><UserFilled /></el-icon>
+            <el-icon class="pointer" :size="iconSize"><UserFilled /></el-icon>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item
