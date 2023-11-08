@@ -1,20 +1,23 @@
 <template>
   <el-container class="layout-container-demo">
-    <el-header style="text-align: right; font-size: 12px">
-      <div class="toolbar">
-        <el-dropdown>
-          <el-icon style="margin-right: 8px; margin-top: 1px"
-            ><setting
-          /></el-icon>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item>Thông tin cá nhân</el-dropdown-item>
-              <el-dropdown-item>Thay đổi mật khẩu</el-dropdown-item>
-              <el-dropdown-item>Đăng xuất</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-        <span>NVThinh</span>
+    <el-header style="font-size: 24px">
+      <div class="header-content">
+        <span>{{ headerTitle }}</span>
+        <div class="toolbar">
+          <el-dropdown>
+            <el-icon :size="iconSize"><UserFilled /></el-icon>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item
+                  v-for="feature in personalFeature"
+                  :key="feature"
+                  >{{ feature }}</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <span>NVThinh</span>
+        </div>
       </div>
     </el-header>
     <el-container direction="horizontal">
@@ -29,9 +32,10 @@
           >
             <template v-for="(item, i) in elSubMenus" :key="i">
               <!-- Nếu mục có mục con -->
-              <el-sub-menu v-if="item?.elMenuItemGroups?.length > 0">
+              <el-sub-menu v-if="item.elMenuItemGroups?.length > 0">
                 <template #title>
-                  <el-icon><component :is="item.iconName" /></el-icon
+                  <el-icon :size="iconSize"
+                    ><component :is="item.iconName" /></el-icon
                   >{{ item.elSubMenuName }}
                 </template>
                 <el-menu-item-group
@@ -44,9 +48,11 @@
                 </el-menu-item-group>
               </el-sub-menu>
               <!-- Nếu mục không có mục con -->
-              <el-menu-item v-else :index="item.path">{{
-                item.elSubMenuName
-              }}</el-menu-item>
+              <el-menu-item v-else :index="item.path"
+                ><el-icon :size="iconSize"
+                  ><component :is="item.iconName" /></el-icon
+                >{{ item.elSubMenuName }}</el-menu-item
+              >
             </template>
           </el-menu>
         </el-scrollbar>
@@ -61,27 +67,51 @@
 
 <script>
 import { getCurrentInstance, ref } from "vue";
-import { Menu as Message, Setting, ElementPlus } from "@element-plus/icons-vue";
+import {
+  Menu as HomeFilled,
+  Setting,
+  ElementPlus,
+  Histogram,
+  User,
+  UserFilled,
+} from "@element-plus/icons-vue";
 
 export default {
   name: "MainView",
   components: {
-    Message,
+    HomeFilled,
     Setting,
     ElementPlus,
+    Histogram,
+    User,
+    UserFilled,
   },
   setup() {
     const { proxy } = getCurrentInstance();
 
+    //#region General
+    const iconSize = 32;
+    //#endregion
+
+    //#region Header
+    const headerTitle = "Phần mềm quản lý chung cư";
+    const personalFeature = [
+      "Thông tin cá nhân",
+      "Thay đổi mật khẩu",
+      "Đăng xuất",
+    ];
+    //#endregion
+
+    //#region Nav
     const elSubMenus = [
       {
         elSubMenuName: "Tổng quan",
-        iconName: "message",
+        iconName: "Histogram",
         path: "/",
       },
       {
         elSubMenuName: "Demo",
-        iconName: "elementPlus",
+        iconName: "ElementPlus",
         elMenuItemGroups: [
           {
             elMenuItemName: "PopupDemo",
@@ -101,7 +131,17 @@ export default {
     const handleSelect = (key, keyPath) => {
       console.log(key, keyPath);
     };
-    return { elSubMenus, activeIndex, activeTextColor, handleSelect };
+    //#endregion
+
+    return {
+      elSubMenus,
+      activeIndex,
+      activeTextColor,
+      handleSelect,
+      headerTitle,
+      personalFeature,
+      iconSize,
+    };
   },
 };
 </script>
@@ -110,14 +150,22 @@ export default {
 .layout-container-demo {
   height: 100vh;
 
-  .el-container {
-    height: 100%;
+  .el-header {
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
 
-    .hide-collapse-icon {
-      .el-sub-menu__icon-arrow {
-        display: none;
+      span:first-child {
+        font-size: 20px;
+        font-weight: 700;
       }
     }
+  }
+
+  .el-container {
+    height: 100%;
 
     .el-main {
       height: 100%;

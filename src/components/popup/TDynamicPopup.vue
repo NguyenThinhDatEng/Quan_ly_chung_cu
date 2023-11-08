@@ -41,7 +41,7 @@
       </div>
       <!-- right of title -->
       <div class="title_right">
-        <button @click="close">x</button>
+        <el-icon :size="iconSize" @click="close"><CloseBold /></el-icon>
       </div>
     </div>
     <div class="modal_content">
@@ -55,6 +55,7 @@
 
 <script>
 import { computed } from "vue";
+import { CloseBold } from "@element-plus/icons-vue";
 
 export default {
   name: "TDynamicPopup",
@@ -76,6 +77,7 @@ export default {
       default: 0,
     },
   },
+  components: { CloseBold },
   setup(props) {
     const styles = computed(() => {
       let style = {
@@ -86,6 +88,7 @@ export default {
       }
       return style;
     });
+
     const classes = computed(() => {
       let myClass = {
         "background-color": `#fff`,
@@ -93,15 +96,18 @@ export default {
       return myClass;
     });
 
+    const iconSize = 32;
+
     return {
       styles,
       classes,
+      iconSize,
     };
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 :deep(.modal-container) {
   display: flex;
   justify-content: center;
@@ -117,6 +123,12 @@ export default {
 .modal_title {
   display: flex;
   justify-content: space-between;
+
+  .title_right {
+    .el-icon {
+      cursor: pointer;
+    }
+  }
 }
 
 .modal_title .title {

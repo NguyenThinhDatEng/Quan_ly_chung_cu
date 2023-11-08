@@ -4,10 +4,10 @@
       >Show popup</el-button
     >
   </div>
-  <t-dynamic-popup v-model="showModal" :title="'Demo popup'" :width="800">
+  <t-dynamic-popup v-model="showModal" :title="'Demo popup'" :width="400">
     <!-- Nội dung popup -->
     <template #content>
-      <div class="flex-column">
+      <div class="flex-column" :style="{ marginBottom: '16px' }">
         <label for="name">Họ và tên</label>
         <el-input
           id="name"
@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .popup-demo-container {
   width: 100%;
   height: 100%;
@@ -69,9 +69,16 @@ export default {
   .input-custom {
     border: 1px solid #afafaf;
   }
+}
 
-  .footer {
-    justify-content: space-between;
+.modal_content {
+  label {
+    text-align: left;
+    margin-bottom: 8px;
   }
+}
+
+.footer {
+  justify-content: space-between;
 }
 </style>
