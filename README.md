@@ -34,6 +34,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [Home](https://element-plus.org/).
 [Component](https://element-plus.org/en-US/component/button.html).
+[Icon](https://element-plus.org/en-US/component/icon.html#icon-collection).
 
 ### Vue Final Modal
 
