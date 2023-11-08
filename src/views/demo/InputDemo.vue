@@ -12,16 +12,16 @@
 <script>
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .input-demo-container {
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.input-demo-container .input-custom {
-  width: 200px;
+  .input-custom {
+    width: 200px;
+  }
 }
 </style>

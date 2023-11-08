@@ -60,17 +60,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .popup-demo-container {
   width: 100%;
   position: relative;
-}
 
-.popup-demo-container .input-custom {
-  border: 1px solid #afafaf;
-}
+  .input-custom {
+    border: 1px solid #afafaf;
+  }
 
-.footer {
-  justify-content: space-between;
+  .footer {
+    justify-content: space-between;
+  }
 }
 </style>
