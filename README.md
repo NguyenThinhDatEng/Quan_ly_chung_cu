@@ -33,8 +33,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Element Plus
 
 [Home](https://element-plus.org/).
+
 [Component](https://element-plus.org/en-US/component/button.html).
+
 [Icon](https://element-plus.org/en-US/component/icon.html#icon-collection).
+
+[TableWithPaginationExample1](https://laracasts.com/discuss/channels/vue/element-ui-table-combine-pagination-and-search).
+[TableWithPaginationExample2](https://codesandbox.io/s/vue-element-ui-table-pagination-3v4n2).
+[TableWithPaginationExample3](https://vuejsexamples.com/table-and-pagination-components-of-element-ui-together-with-vue-2-x/).
 
 ### Vue Final Modal
 

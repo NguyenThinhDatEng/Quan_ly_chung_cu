@@ -1,5 +1,6 @@
 <template>
   <el-container class="layout-container-demo">
+    <!-- Header -->
     <el-header style="font-size: 24px">
       <div class="header-content">
         <span>{{ headerTitle }}</span>
@@ -20,8 +21,9 @@
         </div>
       </div>
     </el-header>
+    <!-- Content -->
     <el-container direction="horizontal">
-      <el-aside width="200px">
+      <el-aside :width="elAside.width + 'px'">
         <el-scrollbar>
           <!-- :default-openeds="['1', '3']" -->
           <el-menu
@@ -32,7 +34,10 @@
           >
             <template v-for="(item, i) in elSubMenus" :key="i">
               <!-- Nếu mục có mục con -->
-              <el-sub-menu v-if="item.elMenuItemGroups?.length > 0">
+              <el-sub-menu
+                v-if="item.elMenuItemGroups?.length > 0"
+                :index="i + 1"
+              >
                 <template #title>
                   <el-icon :size="iconSize"
                     ><component :is="item.iconName" /></el-icon
@@ -74,6 +79,7 @@ import {
   Histogram,
   User,
   UserFilled,
+  Management,
 } from "@element-plus/icons-vue";
 
 export default {
@@ -85,6 +91,7 @@ export default {
     Histogram,
     User,
     UserFilled,
+    Management,
   },
   setup() {
     const { proxy } = getCurrentInstance();
@@ -110,6 +117,17 @@ export default {
         path: "/",
       },
       {
+        elSubMenuName: "Quản lý thông tin",
+        iconName: "Management",
+        path: "/management",
+        elMenuItemGroups: [
+          {
+            elMenuItemName: "Quản lý các khoản thu phí đóng góp",
+            path: "/quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
+          },
+        ],
+      },
+      {
         elSubMenuName: "Demo",
         iconName: "ElementPlus",
         elMenuItemGroups: [
@@ -127,6 +145,9 @@ export default {
 
     const activeIndex = ref(proxy.$route.path);
     const activeTextColor = ref("#63ace5");
+    const elAside = {
+      width: 285,
+    };
 
     const handleSelect = (key, keyPath) => {
       console.log(key, keyPath);
@@ -141,6 +162,7 @@ export default {
       headerTitle,
       personalFeature,
       iconSize,
+      elAside,
     };
   },
 };
@@ -168,7 +190,7 @@ export default {
     height: 100%;
 
     .el-main {
-      height: 100%;
+      padding: 20px;
     }
   }
 }

@@ -1,4 +1,10 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
-  transpileDependencies: true
-})
+  transpileDependencies: true,
+  // Fix ResizeObserver loop completed with undelivered notifications.
+  devServer: {
+    client: {
+      overlay: false,
+    },
+  },
+});
