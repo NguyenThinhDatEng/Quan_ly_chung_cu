@@ -8,8 +8,11 @@ import PopupDemo from "@/views/demo/PopupDemo.vue";
 import InputDemo from "@/views/demo/InputDemo.vue";
 // Authentication
 import LogIn from "@/views/Authentication/LogIn.vue";
-// Contents
+//#region Contents
 import Overview from "@/views/overview/Overview.vue";
+// Management
+import ContributionFeesList from "@/views/management/contributionFees/ContributionFeesList.vue";
+//#endregion
 
 // init routes
 const routes = [
@@ -21,6 +24,11 @@ const routes = [
         path: "",
         name: "Overview",
         component: Overview,
+      },
+      {
+        path: "quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
+        name: "ContributionFeesList",
+        component: ContributionFeesList,
       },
       {
         path: "popupDemo",
