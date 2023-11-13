@@ -1,14 +1,15 @@
 <template>
   <vue-final-modal
+    v-model="show"
     v-slot="{ close }"
-    :name="null"
+    :name="name"
     :value="false"
     :ssr="true"
-    :classes="'modal-container'"
+    classes="modal-container"
     overlay-class=""
     content-class="modal-content"
-    styles=""
-    overlay-style=""
+    :styles="{}"
+    :overlay-style="{}"
     :content-style="styles"
     :lock-scroll="true"
     :hide-overlay="false"
@@ -48,13 +49,13 @@
       <slot name="content" />
     </div>
     <div class="modal_footer">
-      <slot name="footer" />
+      <slot name="footer" :close="close" />
     </div>
   </vue-final-modal>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { CloseBold } from "@element-plus/icons-vue";
 
 export default {
@@ -75,6 +76,11 @@ export default {
     width: {
       type: Number,
       default: 0,
+    },
+    name: {
+      type: String,
+      required: true,
+      default: "",
     },
   },
   components: { CloseBold },
@@ -98,10 +104,13 @@ export default {
 
     const iconSize = 32;
 
+    const show = ref(false);
+
     return {
       styles,
       classes,
       iconSize,
+      show,
     };
   },
 };

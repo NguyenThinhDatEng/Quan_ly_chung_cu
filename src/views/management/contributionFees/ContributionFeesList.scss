@@ -1,0 +1,15 @@
+.contribution-fees-list {
+  position: relative;
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+
+    .right {
+      padding-bottom: 20px;
+      .add {
+        width: fit-content;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 <template>
   <el-table
+    ref="grid"
     style="width: 100%"
     :lazy="true"
     :show-overflow-tooltip="true"
@@ -65,7 +66,7 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { Timer } from "@element-plus/icons-vue";
 
 export default {
@@ -115,15 +116,14 @@ export default {
         return [];
       },
     },
+    maxHeight: {
+      type: [Number, String],
+      default: 600,
+    },
   },
   setup(props) {
     // ['fixed', 'auto']
     const tableLayout = ref("fixed");
-    /**
-     * 60: header height
-     * 40: padding top and bottom
-     */
-    const maxHeight = computed(() => window.innerHeight - 60 - 40);
 
     const currentRow = ref();
     const handleCurrentChange = (val) => {
@@ -187,7 +187,6 @@ export default {
       handleDelete,
       getSummaries,
       tableLayout,
-      maxHeight,
       getHeaderCellClassNameDefault,
     };
   },

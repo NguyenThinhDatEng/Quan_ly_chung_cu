@@ -36,7 +36,7 @@
               <!-- Nếu mục có mục con -->
               <el-sub-menu
                 v-if="item.elMenuItemGroups?.length > 0"
-                :index="i + 1"
+                :index="`${i + 1}`"
               >
                 <template #title>
                   <el-icon :size="iconSize"

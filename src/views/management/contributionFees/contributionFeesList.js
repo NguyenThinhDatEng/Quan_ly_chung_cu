@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useContributionFeesList = () => {
   const item = {
@@ -7,7 +7,11 @@ export const useContributionFeesList = () => {
     address: "No. 189, Grove St, Los Angeles",
     age: 22,
   };
-  const tableData = ref(Array.from({ length: 20 }).fill(item));
+  const tableData = ref(
+    Array.from({ length: 20 })
+      .fill(item)
+      .map((data, i) => ({ ...data, key: i }))
+  );
 
   const propsData = [
     {
@@ -36,5 +40,15 @@ export const useContributionFeesList = () => {
     },
   ];
 
-  return { tableData, propsData };
+  /**
+   * 60: header height
+   * 40: padding top and bottom
+   * 20: padding bottom of toolbar
+   * 32: height of toolbar
+   */
+  const tableMaxHeight = computed(() => window.innerHeight - 60 - 40 - 20 - 32);
+
+  const detailForm = "ContributionFeesDetail";
+
+  return { tableData, propsData, tableMaxHeight, detailForm };
 };
