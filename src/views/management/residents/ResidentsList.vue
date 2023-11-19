@@ -1,5 +1,5 @@
 <template>
-  <div class="contribution-fees-list flex-column">
+  <div class="residents-list flex-column">
     <div class="toolbar">
       <div class="left"></div>
       <div class="right">
@@ -12,33 +12,27 @@
         >
       </div>
     </div>
-    <grid-viewer
-      :table-data="tableData"
-      :props-data="propsData"
-      :max-height="tableMaxHeight"
-      @handle-edit="handleOnEditGrid"
-    ></grid-viewer>
   </div>
 </template>
 
 <script>
-import { useContributionFeesList } from "./contributionFeesList";
+import { useResidentsList } from "./residentsList.js";
 import BaseList from "@/views/base/baseList.js";
 
 export default {
   extends: BaseList,
-  name: "ContributionFeesList",
+  name: "ResidentsList",
   components: {},
   setup() {
-    const contributionFeesList = useContributionFeesList();
-    return contributionFeesList;
+    const residentsList = useResidentsList();
+    return residentsList;
   },
 };
 </script>
 
 <style lang="scss">
-.contribution-fees-list {
+.residents-list {
   position: relative;
-  @import "./ContributionFeesList.scss";
+  @import "./ResidentsList.scss";
 }
 </style>

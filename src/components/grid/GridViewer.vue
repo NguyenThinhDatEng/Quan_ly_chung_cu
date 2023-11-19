@@ -50,7 +50,7 @@
       label="Tính năng"
       width="180"
     >
-      <template #default>
+      <template #default="scope">
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Xem/Sửa</el-button
         >
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { getCurrentInstance, ref } from "vue";
 import { Timer } from "@element-plus/icons-vue";
 
 export default {
@@ -121,7 +121,9 @@ export default {
       default: 600,
     },
   },
+  emits: ["handle-edit"],
   setup(props) {
+    const { proxy } = getCurrentInstance();
     // ['fixed', 'auto']
     const tableLayout = ref("fixed");
 
@@ -131,8 +133,9 @@ export default {
     };
 
     const handleEdit = (index, row) => {
-      console.log(row);
+      const me = proxy;
       handleCurrentChange(index);
+      me.$emit("handle-edit", { row });
     };
 
     const handleDelete = (index, row) => {

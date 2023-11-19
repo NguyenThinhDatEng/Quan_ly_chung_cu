@@ -12,6 +12,7 @@ import LogIn from "@/views/Authentication/LogIn.vue";
 import Overview from "@/views/overview/Overview.vue";
 // Management
 import ContributionFeesList from "@/views/management/contributionFees/ContributionFeesList.vue";
+import ResidentsList from "@/views/management/residents/ResidentsList.vue";
 //#endregion
 
 // init routes
@@ -29,6 +30,11 @@ const routes = [
         path: "quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
         name: "ContributionFeesList",
         component: ContributionFeesList,
+      },
+      {
+        path: "quan-ly-thong-tin-co-ban-ve-cac-ho-gia-dinh",
+        name: "ResidentsList",
+        component: ResidentsList,
       },
       {
         path: "popupDemo",

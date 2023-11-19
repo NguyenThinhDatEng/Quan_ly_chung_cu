@@ -1,10 +1,11 @@
 import { ref, onMounted, reactive } from "vue";
 // Enum
+import Enum from "@/commons/enum";
 import FundType from "@/commons/enum/FundType";
 import i18nFundType from "@/i18n/enum/i18nFundType";
 
 export const useContributionFeesDetail = () => {
-  const title = "Khoản thu phí đóng góp";
+  const title = ref("Khoản thu phí đóng góp");
 
   const options = [
     {
@@ -83,8 +84,13 @@ export const useContributionFeesDetail = () => {
     });
   };
 
+  // Mảng lưu ẩn hiện và giá trị của các quỹ người dùng chọn
   const selectedFunds = reactive([]);
   onMounted(() => {
+    /**
+     * Map lại các trường dữ liệu cho mảng các dòng quỹ
+     * Cập nhật ẩn hết các dòng quỹ đi
+     */
     options.forEach((item) => {
       selectedFunds.push({
         key: item.value,
@@ -102,5 +108,6 @@ export const useContributionFeesDetail = () => {
     selectedFunds,
     onClear,
     onRemoveTag,
+    Enum,
   };
 };

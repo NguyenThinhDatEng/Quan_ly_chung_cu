@@ -1,4 +1,4 @@
-# temp
+# Quản lý chung cư
 
 ## Project setup
 
@@ -45,3 +45,28 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Vue Final Modal
 
 [Setup](https://v3.vue-final-modal.org/setup)
+
+## Cấu trúc thu mục
+
+### src
+
+#### views
+
+Chứa các folder tương ứng với các mục lớn trong Left Nav (Ví dụ: Tổng quan, Quản lý thông tin, Đăng nhập...)
+
+##### folder
+
+.vue: Xây dựng giao diện (HTML) của trang
+.js: Xây dựng logic của trang
+.scss: Style (scss) giao diện của trang
+
+Note: Thông thường sẽ tạo 2 loại .vue
+-- Trang danh sách (đuôi file là List.vue) phục vụ hiển thị thông tin đã lưu
+-- Trang chi tiết (đuôi file là Detail.vue) phục vụ Thêm mới hoặc Xem/Sửa
+
+## Thi công
+
+### Thêm mới trang chi tiết
+
+1. Tạo các file .vue, .js, .scss
+2. Cấu hình vào file register.js

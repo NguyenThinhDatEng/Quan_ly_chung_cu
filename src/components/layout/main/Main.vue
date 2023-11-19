@@ -122,8 +122,12 @@ export default {
         path: "/management",
         elMenuItemGroups: [
           {
-            elMenuItemName: "Quản lý các khoản thu phí đóng góp",
+            elMenuItemName: "Các khoản thu phí đóng góp",
             path: "/quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
+          },
+          {
+            elMenuItemName: "Thông tin cơ bản về các hộ gia đình",
+            path: "/quan-ly-thong-tin-co-ban-ve-cac-ho-gia-dinh",
           },
         ],
       },

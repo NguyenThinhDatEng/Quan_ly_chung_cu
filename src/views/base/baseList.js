@@ -1,3 +1,6 @@
+// Enum
+import _enum from "@/commons/enum";
+
 export default {
   name: "BaseList",
   props: {},
@@ -24,7 +27,24 @@ export default {
       if (!me.detailForm) {
         throw new Error("detailForm is required");
       }
-      me.$vfm.show(me.detailForm).then(() => {
+      const param = {
+        mode: _enum.Mode.Add,
+      };
+      me.$vfm.show({ component: me.detailForm }, param).then(() => {
+        // do something on modal opened
+        console.log(me.detailForm);
+      });
+    },
+
+    handleOnEditGrid() {
+      const me = this;
+      if (!me.detailForm) {
+        throw new Error("detailForm is required");
+      }
+      const param = {
+        mode: _enum.Mode.View,
+      };
+      me.$vfm.show({ component: me.detailForm }, param).then(() => {
         // do something on modal opened
         console.log(me.detailForm);
       });

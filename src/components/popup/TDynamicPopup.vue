@@ -34,6 +34,8 @@
     :min-height="200"
     :max-width="Infinity"
     :max-height="Infinity"
+    @before-open="$emit('before-open', $event)"
+    @opened="$emit('opened', $event)"
   >
     <div v-if="isShowTitle" class="modal_title">
       <div class="title_left">
@@ -55,7 +57,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { CloseBold } from "@element-plus/icons-vue";
 
 export default {
@@ -80,10 +82,11 @@ export default {
     name: {
       type: String,
       required: true,
-      default: "",
+      default: "TDynamicPopup",
     },
   },
   components: { CloseBold },
+  emits: ["before-open", "opened"],
   setup(props) {
     const styles = computed(() => {
       let style = {
@@ -105,6 +108,8 @@ export default {
     const iconSize = 32;
 
     const show = ref(false);
+
+    onMounted(() => {});
 
     return {
       styles,

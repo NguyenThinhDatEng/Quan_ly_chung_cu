@@ -4,17 +4,27 @@
     :width="600"
     name="ContributionFeesDetail"
     class="contribution-fees-detail"
+    @before-open="beforeOpen"
+    @opened="opened"
   >
     <!-- Nội dung popup -->
     <template #content>
       <div class="flex space-between mb-2">
         <div class="flex-column flex mr-1">
           <label> Họ và tên </label>
-          <el-input v-model="model.fullName" placeholder="Nguyễn Văn A" />
+          <el-input
+            v-model="model.fullName"
+            placeholder="Nguyễn Văn A"
+            :disabled="viewing"
+          />
         </div>
         <div class="flex-column flex">
           <label>Địa chỉ</label>
-          <el-input v-model="model.address" placeholder="00/00" />
+          <el-input
+            v-model="model.address"
+            placeholder="00/00"
+            :disabled="viewing"
+          />
         </div>
       </div>
       <el-select
@@ -26,6 +36,7 @@
         collapse-tags-tooltip
         clearable
         :max-collapse-tags="4"
+        :disabled="viewing"
         @visible-change="onVisibleChange"
         @clear="onClear"
         @remove-tag="onRemoveTag"
@@ -56,7 +67,15 @@
     <template #footer="{ close }">
       <div class="flex footer">
         <el-button @click="close">Cancel</el-button>
-        <el-button type="primary">Lưu</el-button>
+        <el-button
+          v-if="!viewing"
+          type="primary"
+          @click="commandClick(Enum.Mode.Add)"
+          >Lưu</el-button
+        >
+        <el-button v-else type="primary" @click="commandClick(Enum.Mode.Update)"
+          >Sửa</el-button
+        >
       </div>
     </template>
   </t-dynamic-popup>
@@ -64,8 +83,8 @@
 
 <script>
 import { useContributionFeesDetail } from "./contributionFeesDetail";
+// base
 import BaseDetail from "@/views/base/baseDetail.js";
-
 export default {
   extends: BaseDetail,
   name: "ContributionFeesDetail",
@@ -82,23 +101,6 @@ export default {
   height: 100%;
   position: relative;
 
-  .modal_content {
-    label {
-      text-align: left;
-      margin-bottom: 8px;
-    }
-
-    .space-between {
-      justify-content: space-between;
-    }
-
-    .select {
-      width: 75%;
-    }
-  }
-
-  .footer {
-    justify-content: space-between;
-  }
+  @import "./ContributionFeesDetail.scss";
 }
 </style>
