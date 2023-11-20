@@ -11,8 +11,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item
                   v-for="feature in personalFeature"
-                  :key="feature"
-                  >{{ feature }}</el-dropdown-item
+                  :key="feature.action"
+                  @click="onClickHeaderFeatures(feature.action)"
+                  >{{ feature.display }}</el-dropdown-item
                 >
               </el-dropdown-menu>
             </template>
@@ -102,11 +103,40 @@ export default {
 
     //#region Header
     const headerTitle = "Phần mềm quản lý chung cư";
+    const actions = {
+      viewInfo: "view-info",
+      changePassword: "change-password",
+      logout: "logout",
+    };
     const personalFeature = [
-      "Thông tin cá nhân",
-      "Thay đổi mật khẩu",
-      "Đăng xuất",
+      {
+        action: actions.viewInfo,
+        display: "Thông tin cá nhân",
+      },
+      {
+        action: actions.changePassword,
+        display: "Thay đổi mật khẩu",
+      },
+      {
+        action: actions.logout,
+        display: "Đăng xuất",
+      },
     ];
+
+    /**
+     * Xử lý sự kiện khi click vào chức năng của header
+     * @param {String} action các hành động thuộc actions
+     */
+    const onClickHeaderFeatures = (action) => {
+      switch (action) {
+        case actions.logout:
+          sessionStorage.removeItem("userId");
+          proxy.$router.push({ name: "Login" });
+          break;
+        default:
+          break;
+      }
+    };
     //#endregion
 
     //#region Nav
@@ -114,7 +144,7 @@ export default {
       {
         elSubMenuName: "Tổng quan",
         iconName: "Histogram",
-        path: "/",
+        path: "/tong-quan",
       },
       {
         elSubMenuName: "Quản lý thông tin",
@@ -167,6 +197,7 @@ export default {
       personalFeature,
       iconSize,
       elAside,
+      onClickHeaderFeatures,
     };
   },
 };

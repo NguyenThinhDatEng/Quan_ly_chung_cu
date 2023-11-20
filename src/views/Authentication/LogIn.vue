@@ -7,19 +7,24 @@
         <!-- Username field -->
         <div class="form-group">
           <label for="username">Username:</label>
-          <input type="text" id="username" v-model="username" required>
+          <input type="text" id="username" v-model="model.username" required />
         </div>
 
         <!-- Password field -->
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required>
+          <input
+            type="password"
+            id="password"
+            v-model="model.password"
+            required
+          />
         </div>
 
         <!-- Remember me and Forgot Password -->
         <div class="form-group">
           <label class="remember-me">
-            <input type="checkbox" v-model="remember"> Remember Me
+            <input type="checkbox" v-model="model.remember" /> Remember Me
           </label>
           <a href="#" class="forgot-password-link">Forgot Password?</a>
         </div>
@@ -30,6 +35,17 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useLogin } from "./login";
+
+export default {
+  setup() {
+    const login = useLogin();
+    return login;
+  },
+};
+</script>
 
 <style scoped>
 .full-screen {

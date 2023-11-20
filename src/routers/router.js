@@ -19,10 +19,17 @@ import ResidentsList from "@/views/management/residents/ResidentsList.vue";
 const routes = [
   {
     path: "/",
+    name: "main",
+    meta: {
+      requiresAuth: true,
+    },
     component: Main,
+    redirect: () => {
+      return { path: "/tong-quan" };
+    },
     children: [
       {
-        path: "",
+        path: "/tong-quan",
         name: "Overview",
         component: Overview,
       },
@@ -51,6 +58,7 @@ const routes = [
   { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   {
     path: "/Login",
+    name: "Login",
     component: LogIn,
   },
 ];
@@ -58,6 +66,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (sessionStorage.getItem("userId")) {
+      next();
+    } else {
+      next({ name: "Login" });
+    }
+  } else {
+    next(); // does not require auth, make sure to always call next()!
+  }
 });
 
 export default router;
