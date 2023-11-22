@@ -1,7 +1,7 @@
 import TDynamicPopup from "@/components/popup/TDynamicPopup.vue";
-import GridViewer from "@/components/grid/GridViewer.vue";
+import TGridViewer from "@/components/grid/TGridViewer.vue";
 
 export function useComponents(app) {
   app.component(TDynamicPopup.name, TDynamicPopup);
-  app.component(GridViewer.name, GridViewer);
+  app.component(TGridViewer.name, TGridViewer);
 }

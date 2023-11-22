@@ -36,13 +36,14 @@ export default {
       });
     },
 
-    handleOnEditGrid() {
+    handleOnEditGrid({ row }) {
       const me = this;
       if (!me.detailForm) {
         throw new Error("detailForm is required");
       }
       const param = {
         mode: _enum.Mode.View,
+        detailData: row,
       };
       me.$vfm.show({ component: me.detailForm }, param).then(() => {
         // do something on modal opened

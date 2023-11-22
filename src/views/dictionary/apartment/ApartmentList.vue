@@ -1,5 +1,5 @@
 <template>
-  <div class="contribution-fees-list flex-column">
+  <div class="apartment-list flex-column">
     <div class="toolbar">
       <div class="left"></div>
       <div class="right">
@@ -22,23 +22,22 @@
 </template>
 
 <script>
-import { useContributionFeesList } from "./contributionFeesList";
+import { usApartmentList } from "./apartmentList";
 import BaseList from "@/views/base/baseList.js";
 
 export default {
   extends: BaseList,
-  name: "ContributionFeesList",
+  name: "ApartmentList",
   components: {},
   setup() {
-    const contributionFeesList = useContributionFeesList();
-    return contributionFeesList;
+    const apartmentList = usApartmentList();
+    return apartmentList;
   },
 };
 </script>
 
 <style lang="scss">
-.contribution-fees-list {
-  position: relative;
-  @import "./ContributionFeesList.scss";
+.apartment-list {
+  @import "./ApartmentList.scss";
 }
 </style>

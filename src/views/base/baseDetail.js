@@ -31,7 +31,8 @@ export default {
     beforeOpen($event) {
       const me = this;
       me._formParam = $event.ref.params?.value;
-      const { mode } = me._formParam;
+      const { mode, detailData } = me._formParam;
+      me.model = { ...detailData };
       me.updateTitle(mode);
     },
 

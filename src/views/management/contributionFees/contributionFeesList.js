@@ -4,7 +4,7 @@ import i18nFundType from "@/i18n/enum/i18nFundType";
 
 export const useContributionFeesList = () => {
   const item = {
-    fullName: "Nguyễn Văn A",
+    fullName: "Tôi đi code dạo",
     address: "01/01",
     ForThePoor: 1000,
     ForVNSeasAndIslands: 20000,

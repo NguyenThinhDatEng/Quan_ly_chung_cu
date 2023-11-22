@@ -32,6 +32,7 @@
             :active-text-color="activeTextColor"
             :router="true"
             @select="handleSelect"
+            @open="openMenu"
           >
             <template v-for="(item, i) in elSubMenus" :key="i">
               <!-- Nếu mục có mục con -->
@@ -48,9 +49,11 @@
                   v-for="(menuItem, a) in item.elMenuItemGroups"
                   :key="a"
                 >
-                  <el-menu-item :index="menuItem.path">{{
-                    menuItem.elMenuItemName
-                  }}</el-menu-item>
+                  <el-menu-item :index="menuItem.path"
+                    ><el-icon :size="iconSize"
+                      ><component :is="menuItem.iconName" /></el-icon
+                    >{{ menuItem.elMenuItemName }}</el-menu-item
+                  >
                 </el-menu-item-group>
               </el-sub-menu>
               <!-- Nếu mục không có mục con -->
@@ -74,13 +77,16 @@
 <script>
 import { getCurrentInstance, ref } from "vue";
 import {
-  Menu as HomeFilled,
+  HomeFilled,
   Setting,
   ElementPlus,
   Histogram,
   User,
   UserFilled,
   Management,
+  Grid,
+  Money,
+  OfficeBuilding,
 } from "@element-plus/icons-vue";
 
 export default {
@@ -93,9 +99,61 @@ export default {
     User,
     UserFilled,
     Management,
+    Grid,
+    Money,
+    OfficeBuilding,
   },
   setup() {
     const { proxy } = getCurrentInstance();
+
+    //#region Nav
+    const elSubMenus = [
+      {
+        elSubMenuName: "Tổng quan",
+        iconName: "Histogram",
+        path: "/tong-quan",
+      },
+      {
+        elSubMenuName: "Quản lý thông tin",
+        iconName: "Management",
+        path: "/management",
+        elMenuItemGroups: [
+          {
+            elMenuItemName: "Các khoản thu phí đóng góp",
+            path: "/quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
+            iconName: "Money",
+          },
+        ],
+      },
+      {
+        elSubMenuName: "Danh mục",
+        path: "/danh-muc",
+        iconName: "Grid",
+        elMenuItemGroups: [
+          {
+            elMenuItemName: "Thông tin căn hộ",
+            path: "/thong-tin-can-ho",
+            iconName: "OfficeBuilding",
+          },
+          {
+            elMenuItemName: "Thông tin cơ bản về các hộ gia đình",
+            path: "/thong-tin-co-ban-ve-cac-ho-gia-dinh",
+            iconName: "HomeFilled",
+          },
+        ],
+      },
+    ];
+
+    const activeIndex = ref(proxy.$route.path);
+    const activeTextColor = ref("#63ace5");
+    const elAside = {
+      width: 350,
+    };
+
+    const handleSelect = (key, keyPath) => {
+      console.log(key, keyPath);
+    };
+    //#endregion
 
     //#region General
     const iconSize = 32;
@@ -139,54 +197,13 @@ export default {
     };
     //#endregion
 
-    //#region Nav
-    const elSubMenus = [
-      {
-        elSubMenuName: "Tổng quan",
-        iconName: "Histogram",
-        path: "/tong-quan",
-      },
-      {
-        elSubMenuName: "Quản lý thông tin",
-        iconName: "Management",
-        path: "/management",
-        elMenuItemGroups: [
-          {
-            elMenuItemName: "Các khoản thu phí đóng góp",
-            path: "/quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
-          },
-          {
-            elMenuItemName: "Thông tin cơ bản về các hộ gia đình",
-            path: "/quan-ly-thong-tin-co-ban-ve-cac-ho-gia-dinh",
-          },
-        ],
-      },
-      {
-        elSubMenuName: "Demo",
-        iconName: "ElementPlus",
-        elMenuItemGroups: [
-          {
-            elMenuItemName: "PopupDemo",
-            path: "/popupDemo",
-          },
-          {
-            elMenuItemName: "InputDemo",
-            path: "/inputDemo",
-          },
-        ],
-      },
-    ];
-
-    const activeIndex = ref(proxy.$route.path);
-    const activeTextColor = ref("#63ace5");
-    const elAside = {
-      width: 285,
+    /**
+     * Sự kiện mở menu (Hiển thị danh sách các sub menu)
+     * @param {Number} index
+     */
+    const openMenu = (index) => {
+      console.log(index);
     };
-
-    const handleSelect = (key, keyPath) => {
-      console.log(key, keyPath);
-    };
-    //#endregion
 
     return {
       elSubMenus,
@@ -198,6 +215,7 @@ export default {
       iconSize,
       elAside,
       onClickHeaderFeatures,
+      openMenu,
     };
   },
 };

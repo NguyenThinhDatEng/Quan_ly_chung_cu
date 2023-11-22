@@ -70,7 +70,7 @@ import { getCurrentInstance, ref } from "vue";
 import { Timer } from "@element-plus/icons-vue";
 
 export default {
-  name: "GridViewer",
+  name: "TGridViewer",
   components: {
     Timer,
   },

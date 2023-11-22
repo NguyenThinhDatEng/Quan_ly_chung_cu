@@ -70,3 +70,8 @@ Note: Thông thường sẽ tạo 2 loại .vue
 
 1. Tạo các file .vue, .js, .scss
 2. Cấu hình vào file register.js
+
+## Tham khảo
+
+[luanvan.co](https://luanvan.co/luan-van/de-tai-cong-nghe-phan-mem-phan-mem-quan-ly-chung-cu-34573/)
+[studocu.com](https://www.studocu.com/vn/document/truong-dai-hoc-tai-nguyen-va-moi-truong-ha-noi/tin-hoc-ung-dung/bao-cao-quan-ly-khu-chung-cu-1/38787527)
