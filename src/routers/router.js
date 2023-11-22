@@ -38,7 +38,7 @@ const routes = [
         component: ContributionFeesList,
       },
       {
-        path: "thong-tin-co-ban-ve-cac-ho-gia-dinh",
+        path: "thong-tin-cac-ho-gia-dinh",
         name: "ResidentsList",
         component: ResidentsList,
       },

@@ -1,4 +1,4 @@
-import { computed, ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive } from "vue";
 
 export const usApartmentList = () => {
   const item = {
@@ -53,15 +53,7 @@ export const usApartmentList = () => {
     // }
   });
 
-  /**
-   * 60: header height
-   * 40: padding top and bottom
-   * 20: padding bottom of toolbar
-   * 32: height of toolbar
-   */
-  const tableMaxHeight = computed(() => window.innerHeight - 60 - 40 - 20 - 32);
-
   const detailForm = "ApartmentDetail";
 
-  return { tableData, propsData, tableMaxHeight, detailForm };
+  return { tableData, propsData, detailForm };
 };

@@ -42,15 +42,7 @@ export const useContributionFeesList = () => {
     }
   });
 
-  /**
-   * 60: header height
-   * 40: padding top and bottom
-   * 20: padding bottom of toolbar
-   * 32: height of toolbar
-   */
-  const tableMaxHeight = computed(() => window.innerHeight - 60 - 40 - 20 - 32);
-
   const detailForm = "ContributionFeesDetail";
 
-  return { tableData, propsData, tableMaxHeight, detailForm };
+  return { tableData, propsData, detailForm };
 };

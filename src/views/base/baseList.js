@@ -5,9 +5,19 @@ export default {
   name: "BaseList",
   props: {},
   data() {
-    return { detailForm: "" };
+    return { detailForm: "", tableData: [] };
   },
-  computed: {},
+  computed: {
+    /**
+     * 60: header height
+     * 40: padding top and bottom
+     * 20: padding bottom of toolbar
+     * 32: height of toolbar
+     */
+    tableMaxHeight() {
+      return window.innerHeight - 60 - 40 - 20 - 32;
+    },
+  },
   created() {
     const me = this;
 

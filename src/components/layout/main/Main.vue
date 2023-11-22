@@ -136,8 +136,8 @@ export default {
             iconName: "OfficeBuilding",
           },
           {
-            elMenuItemName: "Thông tin cơ bản về các hộ gia đình",
-            path: "/thong-tin-co-ban-ve-cac-ho-gia-dinh",
+            elMenuItemName: "Thông tin các hộ gia đình",
+            path: "/thong-tin-cac-ho-gia-dinh",
             iconName: "HomeFilled",
           },
         ],

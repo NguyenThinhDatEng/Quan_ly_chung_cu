@@ -12,6 +12,12 @@
         >
       </div>
     </div>
+    <t-grid-viewer
+      :table-data="tableData"
+      :props-data="propsData"
+      :max-height="tableMaxHeight"
+      @handle-edit="handleOnEditGrid"
+    ></t-grid-viewer>
   </div>
 </template>
 
@@ -32,7 +38,6 @@ export default {
 
 <style lang="scss">
 .residents-list {
-  position: relative;
   @import "./ResidentsList.scss";
 }
 </style>
