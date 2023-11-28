@@ -1,18 +1,29 @@
 import { ref, onMounted, reactive } from "vue";
 
 export const usApartmentList = () => {
-  const item = {
-    apartmentCode: "M01",
-    area: 120,
-    price: 10000000,
-    status: false,
-    noOfRooms: 3,
-  };
-  const tableData = ref(
-    Array.from({ length: 20 })
-      .fill(item)
-      .map((data, i) => ({ ...data, key: i }))
-  );
+  const tableData = ref([
+    {
+      apartmentCode: "M01",
+      area: 120,
+      price: 10000000,
+      status: false,
+      noOfRooms: 3,
+    },
+    {
+      apartmentCode: "M02",
+      area: 200,
+      price: 19000000,
+      status: false,
+      noOfRooms: 3,
+    },
+    {
+      apartmentCode: "M05",
+      area: 100,
+      price: 10000000,
+      status: true,
+      noOfRooms: 2,
+    },
+  ]);
 
   const propsData = reactive([
     {

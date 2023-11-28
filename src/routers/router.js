@@ -10,6 +10,10 @@ import Overview from "@/views/overview/Overview.vue";
 // Management
 import ContributionFeesList from "@/views/management/contributionFees/ContributionFeesList.vue";
 import ResidentsList from "@/views/management/residents/ResidentsList.vue";
+import FeesList from "@/views/management/fees/FeesList.vue";
+import RoomRentalList from "@/views/management/roomRental/RoomRentalList.vue";
+// Thống kê
+import RevenueView from "@/views/statistic/revenue/RevenueView.vue";
 // Dictionary
 import ApartmentList from "@/views/dictionary/apartment/ApartmentList.vue";
 //#endregion
@@ -32,13 +36,31 @@ const routes = [
         name: "Overview",
         component: Overview,
       },
+      // Quản lý thông tin
       {
         path: "quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
         name: "ContributionFeesList",
         component: ContributionFeesList,
       },
       {
-        path: "thong-tin-cac-ho-gia-dinh",
+        path: "quan-ly-thu-phi",
+        name: "FeesList",
+        component: FeesList,
+      },
+      {
+        path: "quan-ly-cu-dan",
+        name: "RoomRentalList",
+        component: RoomRentalList,
+      },
+      // Thống kê
+      {
+        path: "thong-ke-doanh-thu",
+        name: "RevenueView",
+        component: RevenueView,
+      },
+      // Danh mục
+      {
+        path: "thong-tin-cu-dan",
         name: "ResidentsList",
         component: ResidentsList,
       },

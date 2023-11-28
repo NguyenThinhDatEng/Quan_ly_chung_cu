@@ -75,3 +75,4 @@ Note: Thông thường sẽ tạo 2 loại .vue
 
 [luanvan.co](https://luanvan.co/luan-van/de-tai-cong-nghe-phan-mem-phan-mem-quan-ly-chung-cu-34573/)
 [studocu.com](https://www.studocu.com/vn/document/truong-dai-hoc-tai-nguyen-va-moi-truong-ha-noi/tin-hoc-ung-dung/bao-cao-quan-ly-khu-chung-cu-1/38787527)
+[vienthongbachviet.com](https://vienthongbachviet.com/phan-mem/phan-mem-quan-ly-chung-cu-pihome.htm)

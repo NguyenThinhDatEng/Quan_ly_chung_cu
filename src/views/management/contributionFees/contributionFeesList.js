@@ -1,4 +1,4 @@
-import { computed, ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive } from "vue";
 // i18n
 import i18nFundType from "@/i18n/enum/i18nFundType";
 

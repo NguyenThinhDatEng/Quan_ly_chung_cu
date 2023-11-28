@@ -87,6 +87,11 @@ import {
   Grid,
   Money,
   OfficeBuilding,
+  HelpFilled,
+  Menu,
+  School,
+  List,
+  TrendCharts,
 } from "@element-plus/icons-vue";
 
 export default {
@@ -102,6 +107,11 @@ export default {
     Grid,
     Money,
     OfficeBuilding,
+    HelpFilled,
+    Menu,
+    School,
+    List,
+    TrendCharts,
   },
   setup() {
     const { proxy } = getCurrentInstance();
@@ -110,7 +120,7 @@ export default {
     const elSubMenus = [
       {
         elSubMenuName: "Tổng quan",
-        iconName: "Histogram",
+        iconName: "HelpFilled",
         path: "/tong-quan",
       },
       {
@@ -121,23 +131,45 @@ export default {
           {
             elMenuItemName: "Các khoản thu phí đóng góp",
             path: "/quan-ly-thong-tin-cac-khoan-thu-phi-dong-gop",
+            iconName: "List",
+          },
+          {
+            elMenuItemName: "Quản lý Thu phí",
+            path: "/quan-ly-thu-phi",
             iconName: "Money",
+          },
+          {
+            elMenuItemName: "Quản lý các hộ gia đình",
+            path: "/quan-ly-cac-ho-gia-dinh",
+            iconName: "OfficeBuilding",
+          },
+        ],
+      },
+      {
+        elSubMenuName: "Thống kê",
+        path: "/thong-ke",
+        iconName: "Histogram",
+        elMenuItemGroups: [
+          {
+            elMenuItemName: "Doanh thu",
+            path: "/thong-ke-doanh-thu",
+            iconName: "TrendCharts",
           },
         ],
       },
       {
         elSubMenuName: "Danh mục",
         path: "/danh-muc",
-        iconName: "Grid",
+        iconName: "Menu",
         elMenuItemGroups: [
           {
             elMenuItemName: "Thông tin căn hộ",
             path: "/thong-tin-can-ho",
-            iconName: "OfficeBuilding",
+            iconName: "School",
           },
           {
-            elMenuItemName: "Thông tin các hộ gia đình",
-            path: "/thong-tin-cac-ho-gia-dinh",
+            elMenuItemName: "Thông tin cư dân",
+            path: "/thong-tin-cu-dan",
             iconName: "HomeFilled",
           },
         ],
