@@ -1,6 +1,6 @@
 export default {
   OnePersonOneMonth: 1, // 1 người/tháng
-  Number: 2, // số (Ex: số điện)
-  CubicMeter: 3, // khối (Ex: Khối nước)
-  OneRoomOneMonth: 4, // 1 phòng/tháng
+  OneRoomOneMonth: 2, // 1 phòng/tháng
+  Number: 3, // số (Ex: số điện)
+  CubicMeter: 4, // khối (Ex: Khối nước)
 };

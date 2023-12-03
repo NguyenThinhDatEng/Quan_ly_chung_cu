@@ -1,12 +1,17 @@
 import { defineAsyncComponent } from "vue";
 
-const ResidentsDetail = defineAsyncComponent(() =>
-  import("@/views/management/residents/ResidentsDetail.vue")
-);
+//#region Management
 const ContributionFeesDetail = defineAsyncComponent(() =>
   import("@/views/management/contributionFees/ContributionFeesDetail.vue")
 );
+const FeesDetail = defineAsyncComponent(() =>
+  import("@/views/management/fees/FeesDetail.vue")
+);
+//#endregion
 //#region dictionary
+const ResidentsDetail = defineAsyncComponent(() =>
+  import("@/views/management/residents/ResidentsDetail.vue")
+);
 const ApartmentDetail = defineAsyncComponent(() =>
   import("@/views/dictionary/apartment/ApartmentDetail.vue")
 );
@@ -19,9 +24,12 @@ const ServiceDetail = defineAsyncComponent(() =>
 //#endregion
 
 export function register(app) {
-  app.component("ResidentsDetail", ResidentsDetail);
+  //#region Management
   app.component("ContributionFeesDetail", ContributionFeesDetail);
-  //#region
+  app.component("FeesDetail", FeesDetail);
+  //#endregion
+  //#region Dictionary
+  app.component("ResidentsDetail", ResidentsDetail);
   app.component("ApartmentDetail", ApartmentDetail);
   app.component("VehicleDetail", VehicleDetail);
   app.component("ServiceDetail", ServiceDetail);

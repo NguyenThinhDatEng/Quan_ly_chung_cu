@@ -68,6 +68,10 @@ body {
   padding-left: 8px;
 }
 
+.mr-4 {
+  margin-right: 32px;
+}
+
 .pointer {
   cursor: pointer;
 }

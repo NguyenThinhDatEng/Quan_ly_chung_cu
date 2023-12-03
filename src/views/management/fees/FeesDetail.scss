@@ -8,8 +8,70 @@
     justify-content: space-between;
   }
 
-  .select {
-    width: 75%;
+  .date-picker-custom {
+    width: unset;
+  }
+
+  .flex-2 {
+    flex: 2;
+
+    &.amount-label {
+      height: 30px;
+      line-height: 30px;
+      font-size: 18px;
+    }
+  }
+
+  .total-amount {
+    font-weight: 700;
+    span,
+    div {
+      font-size: 20px;
+    }
+  }
+
+  .amount {
+    font-weight: 600;
+    span,
+    div {
+      font-size: 18px;
+    }
+  }
+
+  .amount-child {
+    span,
+    div {
+      font-size: 14px;
+    }
+  }
+
+  .services-fee-detail {
+    .service-fee-left {
+      align-items: center;
+      span {
+        min-width: 60px;
+        font-size: 14px;
+        text-align: left;
+      }
+
+      .el-input-number {
+        width: 100%;
+      }
+
+      &.flex-3 {
+        flex: 3;
+      }
+
+      &.flex-4 {
+        flex: 4;
+      }
+    }
+
+    .service-fee-right {
+      justify-content: flex-end;
+      font-size: 14px;
+      align-items: center;
+    }
   }
 }
 

@@ -1,66 +1,161 @@
 <template>
   <t-dynamic-popup
     :title="title"
-    :width="600"
-    name="ContributionFeesDetail"
-    class="contribution-fees-detail"
+    :width="800"
+    name="FeesDetail"
+    class="fees-detail"
     @before-open="beforeOpen"
     @opened="opened"
   >
     <!-- Nội dung popup -->
     <template #content>
+      <!-- Row 1 -->
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-1">
-          <label> Họ và tên </label>
-          <el-input
-            v-model="model.fullName"
-            placeholder="Nguyễn Văn A"
-            :disabled="viewing"
+        <div class="flex-column flex mr-2">
+          <label> Mã căn hộ </label>
+          <el-input v-model="model.apartmentCode" :disabled="true" />
+        </div>
+        <div class="flex-column flex">
+          <label> Diện tích </label>
+          <el-input v-model="model.area" :disabled="true" />
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="flex space-between mb-2">
+        <div class="flex-column flex mr-2">
+          <label> Mã chủ hộ </label>
+          <el-input v-model="model.residentCode" :disabled="true" />
+        </div>
+        <div class="flex-column flex">
+          <label> Tên chủ căn hộ </label>
+          <el-input v-model="model.residentName" :disabled="true" />
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="flex space-between mb-2">
+        <div class="flex-column flex mr-2">
+          <label> Từ ngày </label>
+          <el-date-picker
+            v-model="model.fromDate"
+            type="date"
+            :default-time="new Date()"
+            format="DD/MM/YYYY"
+            value-format="DD/MM/YYYY"
+            class="date-picker-custom"
+            :disabled="true"
           />
         </div>
         <div class="flex-column flex">
-          <label>Địa chỉ</label>
-          <el-input
-            v-model="model.address"
-            placeholder="00/00"
-            :disabled="viewing"
+          <label> Đến ngày </label>
+          <el-date-picker
+            v-model="model.toDate"
+            type="date"
+            :default-time="new Date()"
+            format="DD/MM/YYYY"
+            value-format="DD/MM/YYYY"
+            class="date-picker-custom"
+            :disabled="true"
           />
         </div>
       </div>
-      <el-select
-        v-model="fundTypeKeys"
-        placeholder="Chọn quỹ đóng góp"
-        class="select"
-        multiple
-        collapse-tags
-        collapse-tags-tooltip
-        clearable
-        :max-collapse-tags="4"
-        :disabled="viewing"
-        @visible-change="onVisibleChange"
-        @clear="onClear"
-        @remove-tag="onRemoveTag"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-          :style="{ fontFamily: 'Avenir, Helvetica, Arial, sans-serif' }"
-        />
-      </el-select>
-      <div v-for="item in selectedFunds" :key="item.key">
-        <template v-if="item.visible">
-          <div class="flex mt-2">
-            <el-input v-model="item.fundName" disabled class="mr-2 flex" />
-            <el-input-number
-              v-model="item.paidAmount"
-              :min="0"
-              :controls="false"
-              class="flex"
-            />
+      <!-- Row 4 -->
+      <div class="flex space-between total-amount mb-2">
+        <span> Tổng tiền </span>
+        <div>
+          {{ totalAmount.display }}
+        </div>
+      </div>
+      <!-- Row 5 -->
+      <div class="flex-column">
+        <!-- Phí chung cư -->
+        <div
+          id="apartmentFee"
+          class="flex space-between amount mb-2 pointer"
+          @click="toggleFeesDetail('apartmentFee')"
+        >
+          <span
+            ><el-icon><ArrowRightBold /></el-icon> Phí chung cư
+          </span>
+          <div>
+            {{ apartmentFee.display }}
           </div>
-        </template>
+        </div>
+        <div v-if="isShowFeesDetail.apartmentFee" class="flex-column">
+          <div class="flex space-between amount-child mb-2">
+            <span> Phí dịch vụ chung cư </span>
+            <div>
+              {{ apartmentServiceFee.display }}
+            </div>
+          </div>
+          <div class="flex space-between amount-child mb-2">
+            <span> Phí quản lý chung cư </span>
+            <div>
+              {{ apartmentManagementFee.display }}
+            </div>
+          </div>
+        </div>
+        <!-- Phí dịch vụ -->
+        <div
+          id="servicesFee"
+          class="flex space-between amount mb-2 pointer"
+          @click="toggleFeesDetail('servicesFee')"
+        >
+          <span
+            ><el-icon><ArrowRightBold /></el-icon> Phí dịch vụ
+          </span>
+          <div>
+            {{ servicesFee.display }}
+          </div>
+        </div>
+        <div v-if="isShowFeesDetail.servicesFee" class="flex-column">
+          <div
+            v-for="service in serviceList"
+            :key="service.serviceCode"
+            class="flex space-between mb-2 services-fee-detail"
+          >
+            <div class="service-fee-left flex flex-4">
+              <span class="mr-1">{{ service.serviceName }}</span>
+              <div v-if="service.unit > 2" class="flex">
+                <el-input-number
+                  v-model="service.oldIndex"
+                  placeholder="Chỉ số cũ"
+                  class="mr-1"
+                  :min="0"
+                  :controls="false"
+                  :disabled="viewing"
+                />
+                <el-input-number
+                  v-model="service.newIndex"
+                  placeholder="Chỉ số mới"
+                  class="mr-1"
+                  :min="0"
+                  :controls="false"
+                  :disabled="viewing"
+                />
+                <el-input
+                  v-model="service.price"
+                  placeholder="Đơn giá"
+                  :disabled="true"
+                />
+              </div>
+            </div>
+            <div class="service-fee-right flex">
+              <template v-if="service.unit > 2">
+                {{ (service.newIndex - service.oldIndex) * service.price || 0 }}
+              </template>
+              <template v-else>
+                {{ service.price }}
+              </template>
+            </div>
+          </div>
+        </div>
+        <!-- Phí gửi xe -->
+        <div class="flex space-between amount">
+          <span> Phí gửi xe </span>
+          <div>
+            {{ vehicleFee.display }}
+          </div>
+        </div>
       </div>
     </template>
     <!-- Chân popup -->
@@ -70,10 +165,13 @@
         <el-button
           v-if="!viewing"
           type="primary"
-          @click="commandClick(Enum.Mode.Add)"
+          @click="commandClick(_enum.Mode.Add)"
           >Lưu</el-button
         >
-        <el-button v-else type="primary" @click="commandClick(Enum.Mode.Update)"
+        <el-button
+          v-else
+          type="primary"
+          @click="commandClick(_enum.Mode.Update)"
           >Sửa</el-button
         >
       </div>
@@ -82,25 +180,25 @@
 </template>
 
 <script>
-import { useContributionFeesDetail } from "./contributionFeesDetail";
+import { useFeesDetail } from "./feesDetail";
 // base
 import BaseDetail from "@/views/base/baseDetail.js";
+// icons
+import { ArrowRightBold } from "@element-plus/icons-vue";
+
 export default {
   extends: BaseDetail,
-  name: "ContributionFeesDetail",
+  name: "FeesDetail",
+  components: { ArrowRightBold },
   setup() {
-    const contributionFeesDetail = useContributionFeesDetail();
-    return contributionFeesDetail;
+    const feesDetail = useFeesDetail();
+    return feesDetail;
   },
 };
 </script>
 
 <style lang="scss">
-.contribution-fees-detail {
-  width: 100%;
-  height: 100%;
-  position: relative;
-
-  @import "./ContributionFeesDetail.scss";
+.fees-detail {
+  @import "./FeesDetail.scss";
 }
 </style>
