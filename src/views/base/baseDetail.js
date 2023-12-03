@@ -4,7 +4,13 @@ export default {
   name: "BaseList",
   props: {},
   data() {
-    return { title: "", model: {}, editMode: _enum.Mode.Add };
+    return {
+      title: "",
+      model: {},
+      defaultModel: {},
+      editMode: _enum.Mode.Add,
+      _enum,
+    };
   },
   computed: {
     viewing() {
@@ -20,9 +26,16 @@ export default {
   },
   methods: {
     /**
-     * @description Khởi tạo cấu hình cho list
+     * @description Khởi tạo cấu hình
      */
-    initConfig() {},
+    initConfig() {
+      const me = this;
+      // update model with default model
+      const keys = Object.keys(me.defaultModel);
+      if (keys.length > 0) {
+        me.model = { ...me.defaultModel };
+      }
+    },
 
     /**
      * Thực hiện trước khi mở modal
@@ -32,7 +45,9 @@ export default {
       const me = this;
       me._formParam = $event.ref.params?.value;
       const { mode, detailData } = me._formParam;
-      me.model = { ...detailData };
+      if (mode != _enum.Mode.Add) {
+        me.model = { ...detailData };
+      }
       me.updateTitle(mode);
     },
 

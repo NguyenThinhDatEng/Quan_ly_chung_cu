@@ -16,6 +16,8 @@ import RoomRentalList from "@/views/management/roomRental/RoomRentalList.vue";
 import RevenueView from "@/views/statistic/revenue/RevenueView.vue";
 // Dictionary
 import ApartmentList from "@/views/dictionary/apartment/ApartmentList.vue";
+import VehicleList from "@/views/dictionary/vehicle/VehicleList.vue";
+import ServiceList from "@/views/dictionary/service/ServiceList.vue";
 //#endregion
 
 // init routes
@@ -48,7 +50,7 @@ const routes = [
         component: FeesList,
       },
       {
-        path: "quan-ly-cu-dan",
+        path: "quan-ly-cac-ho-gia-dinh",
         name: "RoomRentalList",
         component: RoomRentalList,
       },
@@ -68,6 +70,16 @@ const routes = [
         path: "thong-tin-can-ho",
         name: "ApartmentList",
         component: ApartmentList,
+      },
+      {
+        path: "phi-gui-xe",
+        name: "VehicleList",
+        component: VehicleList,
+      },
+      {
+        path: "phi-dich-vu",
+        name: "ServiceList",
+        component: ServiceList,
       },
     ],
   },

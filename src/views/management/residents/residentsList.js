@@ -7,14 +7,14 @@ export const useResidentsList = () => {
     {
       residentCode: "CD001",
       residentName: "John Smith",
-      gender: "Nam",
+      gender: 1,
       bod: "20/11/2000",
       job: "Tài xế",
     },
     {
       residentCode: "CD005",
       residentName: "The Will",
-      gender: "Nữ",
+      gender: 2,
       bod: "20/11/2001",
       job: "Sinh viên",
     },
@@ -25,7 +25,7 @@ export const useResidentsList = () => {
       prop: "residentCode",
       label: "Mã cư dân",
       sortable: true,
-      width: 200,
+      width: 120,
     },
     {
       prop: "residentName",
@@ -40,13 +40,13 @@ export const useResidentsList = () => {
     {
       prop: "bod",
       label: "Ngày sinh",
-      width: 200,
+      width: 150,
       align: "center",
     },
     {
       prop: "job",
       label: "Nghề nghiệp",
-      width: 300,
+      width: 200,
     },
   ]);
 

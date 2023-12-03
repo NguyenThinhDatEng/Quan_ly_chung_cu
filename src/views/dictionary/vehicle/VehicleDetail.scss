@@ -2,20 +2,22 @@
   label {
     text-align: left;
     margin-bottom: 8px;
-  }
 
-  .el-radio-group {
-    label {
+    &:last-child {
       margin-bottom: unset;
     }
+  }
+
+  .el-input-number {
+    width: unset;
   }
 
   .space-between {
     justify-content: space-between;
   }
 
-  .date-picker-custom {
-    width: unset;
+  .select {
+    width: 75%;
   }
 }
 

@@ -5,48 +5,46 @@ export const useRoomRentalList = () => {
 
   const tableData = ref([
     {
-      residentCode: "CD001",
-      residentName: "John Smith",
-      gender: "Nam",
-      bod: "20/11/2000",
-      job: "Tài xế",
-    },
-    {
-      residentCode: "CD005",
-      residentName: "The Will",
-      gender: "Nữ",
-      bod: "20/11/2001",
-      job: "Sinh viên",
+      apartmentCode: "A0001",
+      address: "01/01",
+      residentCode: "T0001",
+      residentName: "Nguyễn Bảo Bằng",
+      memberNumber: 3,
+      vehicleNumber: 3,
     },
   ]);
 
   const propsData = reactive([
     {
+      prop: "apartmentCode",
+      label: "Mã căn hộ",
+      sortable: true,
+      width: 150,
+    },
+    {
+      prop: "address",
+      label: "Vị trí",
+      width: 200,
+    },
+    {
       prop: "residentCode",
-      label: "Mã cư dân",
+      label: "Mã chủ hộ",
       sortable: true,
       width: 200,
     },
     {
       prop: "residentName",
-      label: "Họ và tên",
-      sortable: true,
+      label: "Họ và tên chủ hộ",
     },
     {
-      prop: "gender",
-      label: "Giới tính",
-      width: 100,
-    },
-    {
-      prop: "bod",
-      label: "Ngày sinh",
+      prop: "memberNumber",
+      label: "Số thành viên GĐ",
       width: 200,
-      align: "center",
     },
     {
-      prop: "job",
-      label: "Nghề nghiệp",
-      width: 300,
+      prop: "vehicleNumber",
+      label: "Số phương tiện",
+      width: 200,
     },
   ]);
 

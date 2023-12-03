@@ -5,13 +5,11 @@ export default {
     Update: 2, // Chỉnh sửa
     Delete: 3, // Xóa 1 bản ghi
   },
-  Type: {
-    Main: 1, // Button chính
-    Secondary: 2, // Button phụ
-  },
-  DlgType: {
-    RequiredInfo: 0, // Thông tin bắt buộc
-    Describe: 1, // Miêu tả thông tin có tính nghiệp vụ
+  // Giới tính
+  Gender: {
+    Other: 0,
+    Male: 1,
+    Female: 2,
   },
   // Phím tắt
   KeyCode: {
@@ -61,11 +59,5 @@ export default {
       boolean: 4, // Kiểu true/false
       enum: 5,
     },
-  },
-  // Giới tính
-  Gender: {
-    Other: 0,
-    Male: 1,
-    Female: 2,
   },
 };

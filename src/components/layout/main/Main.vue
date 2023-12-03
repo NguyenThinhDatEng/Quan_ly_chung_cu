@@ -92,6 +92,8 @@ import {
   School,
   List,
   TrendCharts,
+  Bicycle,
+  Help,
 } from "@element-plus/icons-vue";
 
 export default {
@@ -112,6 +114,8 @@ export default {
     School,
     List,
     TrendCharts,
+    Bicycle,
+    Help,
   },
   setup() {
     const { proxy } = getCurrentInstance();
@@ -172,6 +176,16 @@ export default {
             path: "/thong-tin-cu-dan",
             iconName: "HomeFilled",
           },
+          {
+            elMenuItemName: "Phí gửi xe",
+            path: "/phi-gui-xe",
+            iconName: "Bicycle",
+          },
+          {
+            elMenuItemName: "Phí dịch vụ",
+            path: "/phi-dich-vu",
+            iconName: "Help",
+          },
         ],
       },
     ];
@@ -182,9 +196,12 @@ export default {
       width: 350,
     };
 
-    const handleSelect = (key, keyPath) => {
-      console.log(key, keyPath);
-    };
+    /**
+     * Xử lý sự kiện khi chọn menu mới
+     * @param {*} key
+     * @param {*} keyPath
+     */
+    const handleSelect = () => {};
     //#endregion
 
     //#region General
@@ -233,9 +250,7 @@ export default {
      * Sự kiện mở menu (Hiển thị danh sách các sub menu)
      * @param {Number} index
      */
-    const openMenu = (index) => {
-      console.log(index);
-    };
+    const openMenu = () => {};
 
     return {
       elSubMenus,
