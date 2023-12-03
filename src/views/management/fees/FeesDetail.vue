@@ -74,7 +74,11 @@
           @click="toggleFeesDetail('apartmentFee')"
         >
           <span
-            ><el-icon><ArrowRightBold /></el-icon> Phí chung cư
+            ><el-icon
+              ><ArrowRightBold v-show="!isShowFeesDetail.apartmentFee" />
+              <ArrowDownBold v-show="isShowFeesDetail.apartmentFee"
+            /></el-icon>
+            Phí chung cư
           </span>
           <div>
             {{ apartmentFee.display }}
@@ -101,7 +105,11 @@
           @click="toggleFeesDetail('servicesFee')"
         >
           <span
-            ><el-icon><ArrowRightBold /></el-icon> Phí dịch vụ
+            ><el-icon
+              ><ArrowRightBold v-show="!isShowFeesDetail.servicesFee" />
+              <ArrowDownBold v-show="isShowFeesDetail.servicesFee"
+            /></el-icon>
+            Phí dịch vụ
           </span>
           <div>
             {{ servicesFee.display }}
@@ -184,12 +192,12 @@ import { useFeesDetail } from "./feesDetail";
 // base
 import BaseDetail from "@/views/base/baseDetail.js";
 // icons
-import { ArrowRightBold } from "@element-plus/icons-vue";
+import { ArrowRightBold, ArrowDownBold } from "@element-plus/icons-vue";
 
 export default {
   extends: BaseDetail,
   name: "FeesDetail",
-  components: { ArrowRightBold },
+  components: { ArrowRightBold, ArrowDownBold },
   setup() {
     const feesDetail = useFeesDetail();
     return feesDetail;
