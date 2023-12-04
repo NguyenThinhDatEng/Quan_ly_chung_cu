@@ -46,6 +46,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [Setup](https://v3.vue-final-modal.org/setup)
 
+### Vue materials
+
+[VueSchool](https://vueschool.io/)
+
+### Export file
+
+[FirebaseTutorial](https://youtu.be/Efs7kP0X5OQ)
+
 ## Cấu trúc thu mục
 
 ### src
