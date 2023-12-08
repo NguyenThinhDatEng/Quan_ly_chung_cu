@@ -1,12 +1,12 @@
 <template>
   <div class="full-screen">
-    <h1 class="big-heading">Welcome to My Website</h1>
+    <h1 class="big-heading">Quản lý thu phí khu chung cư</h1>
     <div class="login-container">
       <form @submit.prevent="submitForm" class="login-form">
         <h2 class="sub-heading">Please log in to continue</h2>
         <!-- Username field -->
         <div class="form-group">
-          <label for="username">Username:</label>
+          <label for="username">Username/Email:</label>
           <input type="text" id="username" v-model="username" required>
         </div>
 
