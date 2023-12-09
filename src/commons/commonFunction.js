@@ -120,4 +120,20 @@ export default {
   removeSpecialCharacters(str = "") {
     return str.replace(/[^0-9]/g, "");
   },
+
+  /**
+   * Mapping enum với resource phục vụ hiển thị dữ liệu
+   * @param {Object} enumObj Object khởi tạo trong enum
+   * @param {Object} resourceObj object khởi tạo trong resource
+   * @returns {Object}
+   * @author nvthinh 1.12.2023
+   */
+  mappingEnumWithResource(enumObj, resourceObj) {
+    let result = {};
+    const keys = Object.keys(enumObj);
+    keys.forEach((key) => {
+      result[enumObj[key]] = resourceObj[key];
+    });
+    return result;
+  },
 };

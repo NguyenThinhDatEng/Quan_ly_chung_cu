@@ -1,18 +1,15 @@
 export default {
   Mode: {
-    Add: 0, // Thêm mới
-    Update: 1, // Chỉnh sửa
-    Delete: 2, // Xóa 1 bản ghi
-    DeleteMulti: 3, // Xóa nhiều bản ghi
-    Duplicate: 4, // Nhân bản
+    View: 0,
+    Add: 1, // Thêm mới
+    Update: 2, // Chỉnh sửa
+    Delete: 3, // Xóa 1 bản ghi
   },
-  Type: {
-    Main: 1, // Button chính
-    Secondary: 2, // Button phụ
-  },
-  DlgType: {
-    RequiredInfo: 0, // Thông tin bắt buộc
-    Describe: 1, // Miêu tả thông tin có tính nghiệp vụ
+  // Giới tính
+  Gender: {
+    Other: 0,
+    Male: 1,
+    Female: 2,
   },
   // Phím tắt
   KeyCode: {
@@ -62,11 +59,5 @@ export default {
       boolean: 4, // Kiểu true/false
       enum: 5,
     },
-  },
-  // Giới tính
-  Gender: {
-    Other: 0,
-    Male: 1,
-    Female: 2,
   },
 };

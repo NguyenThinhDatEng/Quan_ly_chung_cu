@@ -1,0 +1,24 @@
+.modal_content {
+  label {
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .el-radio-group {
+    label {
+      margin-bottom: unset;
+    }
+  }
+
+  .space-between {
+    justify-content: space-between;
+  }
+
+  .date-picker-custom {
+    width: unset;
+  }
+}
+
+.footer {
+  justify-content: space-between;
+}

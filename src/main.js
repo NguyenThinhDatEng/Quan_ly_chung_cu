@@ -10,15 +10,19 @@ import router from "@/routers/router";
 import store from "./stores";
 // Popup
 import { vfmPlugin } from "vue-final-modal";
-import TDynamicPopup from "./components/popup/TDynamicPopup.vue";
-// Component
+// Global Components
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
 const app = createApp(App);
-
 app.use(vfmPlugin);
-app.component("TDynamicPopup", TDynamicPopup);
+
+// Khai báo dùng chung
+import { useComponents } from "./commons/globalComponents";
+useComponents(app);
+// Đăng ký các detail
+import { register } from "./commons/popupRegister/register";
+register(app);
 
 app.use(ElementPlus);
 app.use(router);

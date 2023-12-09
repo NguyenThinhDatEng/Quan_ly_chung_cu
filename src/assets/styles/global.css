@@ -44,12 +44,16 @@ body {
   margin-top: 8px;
 }
 
-.mt-2 {
-  margin-top: 16px;
-}
-
 .mr-1 {
   margin-right: 8px;
+}
+
+.mb-1 {
+  margin-bottom: 8px;
+}
+
+.mt-2 {
+  margin-top: 16px;
 }
 
 .mr-2 {
@@ -62,4 +66,12 @@ body {
 
 .pl-1 {
   padding-left: 8px;
+}
+
+.mr-4 {
+  margin-right: 32px;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -1,6 +1,6 @@
 .icon {
     background-repeat: no-repeat;
-    background: url('../imgs/config/qlts-icon.png');
+    /* background: url('../imgs/config/qlts-icon.png'); */
 }
 
 .icon-item {
@@ -228,11 +228,11 @@
     background-position: -329px -417px;
 }
 
-.icon--warning {
+/* .icon--warning {
     background-image: url(../imgs/icons/warning_icon--48px.png);
     width: 48px;
     height: 48px;
-}
+} */
 
 .icon--tick {
     background-position: -71px -512px;
@@ -240,11 +240,11 @@
     height: 8px;
 }
 
-.icon--check {
+/* .icon--check {
     background-image: url(../imgs/icons/check-16px.png);
     width: 16px;
     height: 16px;
-}
+} */
 
 .icon--horizontal-page {
     background-position: -110px -420px;
@@ -290,20 +290,8 @@
     background-position: -467px -423px;
 }
 
-.icon--payment {
-    background: url('../imgs/icons/hand.png');
-    width: 16px;
-    height: 16px;
-}
-
-.icon--check-out {
+/* .icon--check-out {
     background: url('../imgs/icons/logout.png');
     width: 16px;
     height: 16px;
-}
-
-.icon--round-about {
-    background: url('../imgs/icons/roundabout.png');
-    width: 16px;
-    height: 16px;
-}
+} */

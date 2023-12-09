@@ -1,14 +1,15 @@
 <template>
   <vue-final-modal
+    v-model="show"
     v-slot="{ close }"
-    :name="null"
+    :name="name"
     :value="false"
     :ssr="true"
-    :classes="'modal-container'"
+    classes="modal-container"
     overlay-class=""
     content-class="modal-content"
-    styles=""
-    overlay-style=""
+    :styles="{}"
+    :overlay-style="{}"
     :content-style="styles"
     :lock-scroll="true"
     :hide-overlay="false"
@@ -33,6 +34,8 @@
     :min-height="200"
     :max-width="Infinity"
     :max-height="Infinity"
+    @before-open="$emit('before-open', $event)"
+    @opened="$emit('opened', $event)"
   >
     <div v-if="isShowTitle" class="modal_title">
       <div class="title_left">
@@ -41,20 +44,21 @@
       </div>
       <!-- right of title -->
       <div class="title_right">
-        <button @click="close">x</button>
+        <el-icon :size="iconSize" @click="close"><CloseBold /></el-icon>
       </div>
     </div>
     <div class="modal_content">
       <slot name="content" />
     </div>
     <div class="modal_footer">
-      <slot name="footer" />
+      <slot name="footer" :close="close" />
     </div>
   </vue-final-modal>
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
+import { CloseBold } from "@element-plus/icons-vue";
 
 export default {
   name: "TDynamicPopup",
@@ -75,7 +79,14 @@ export default {
       type: Number,
       default: 0,
     },
+    name: {
+      type: String,
+      required: true,
+      default: "TDynamicPopup",
+    },
   },
+  components: { CloseBold },
+  emits: ["before-open", "opened"],
   setup(props) {
     const styles = computed(() => {
       let style = {
@@ -86,6 +97,7 @@ export default {
       }
       return style;
     });
+
     const classes = computed(() => {
       let myClass = {
         "background-color": `#fff`,
@@ -93,15 +105,23 @@ export default {
       return myClass;
     });
 
+    const iconSize = 32;
+
+    const show = ref(false);
+
+    onMounted(() => {});
+
     return {
       styles,
       classes,
+      iconSize,
+      show,
     };
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 :deep(.modal-container) {
   display: flex;
   justify-content: center;
@@ -117,6 +137,12 @@ export default {
 .modal_title {
   display: flex;
   justify-content: space-between;
+
+  .title_right {
+    .el-icon {
+      cursor: pointer;
+    }
+  }
 }
 
 .modal_title .title {
