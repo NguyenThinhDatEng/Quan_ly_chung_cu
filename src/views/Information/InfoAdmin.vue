@@ -32,11 +32,11 @@
 }
 
 .user-image {
-  margin-right: 300px; /* Khoảng cách giữa ảnh và bảng thông tin */
+  margin-right: 200px; /* Khoảng cách giữa ảnh và bảng thông tin */
 }
 
 .user-image img {
-  max-width: 400px; /* Ảnh sẽ không vượt quá kích thước của container */
+  max-width: 200px; /* Ảnh sẽ không vượt quá kích thước của container */
 }
 
 .user-info {

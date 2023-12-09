@@ -18,6 +18,7 @@ import RevenueView from "@/views/statistic/revenue/RevenueView.vue";
 import ApartmentList from "@/views/dictionary/apartment/ApartmentList.vue";
 import VehicleList from "@/views/dictionary/vehicle/VehicleList.vue";
 import ServiceList from "@/views/dictionary/service/ServiceList.vue";
+import InfoAdmin from "@/views/Information/InfoAdmin.vue";
 //#endregion
 
 // init routes
@@ -80,6 +81,11 @@ const routes = [
         path: "phi-dich-vu",
         name: "ServiceList",
         component: ServiceList,
+      },
+      {
+        path: "thong-tin-ca-nhan",
+        name: "InfoAdmin",
+        component: InfoAdmin,
       },
     ],
   },
