@@ -1,29 +1,11 @@
-import { ref, onMounted, reactive } from "vue";
+import { onMounted, reactive } from "vue";
+// store
+import apartmentStore from "@/stores/views/apartmentStore.js";
 
 export const usApartmentList = () => {
-  const tableData = ref([
-    {
-      apartmentCode: "M01",
-      area: 120,
-      price: 10000000,
-      status: false,
-      noOfRooms: 3,
-    },
-    {
-      apartmentCode: "M02",
-      area: 200,
-      price: 19000000,
-      status: false,
-      noOfRooms: 3,
-    },
-    {
-      apartmentCode: "M05",
-      area: 100,
-      price: 10000000,
-      status: true,
-      noOfRooms: 2,
-    },
-  ]);
+  const store = apartmentStore;
+
+  const detailForm = "ApartmentDetail";
 
   const propsData = reactive([
     {
@@ -58,13 +40,7 @@ export const usApartmentList = () => {
     },
   ]);
 
-  onMounted(() => {
-    // for (const [key, value] of Object.entries(i18nFundType)) {
-    //   propsData.push({ prop: key, label: value, width: 170, align: "right" });
-    // }
-  });
+  onMounted(() => {});
 
-  const detailForm = "ApartmentDetail";
-
-  return { tableData, propsData, detailForm };
+  return { propsData, detailForm, store };
 };

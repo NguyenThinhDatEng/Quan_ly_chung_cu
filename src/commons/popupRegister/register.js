@@ -10,6 +10,10 @@ const FeesDetail = defineAsyncComponent(() =>
 const PaymentDetail = defineAsyncComponent(() =>
   import("@/views/management/fees/PaymentDetail.vue")
 );
+
+const RoomRentalDetail = defineAsyncComponent(() =>
+  import("@/views/management/roomRental/RoomRentalDetail.vue")
+);
 //#endregion
 //#region dictionary
 const ResidentsDetail = defineAsyncComponent(() =>
@@ -31,7 +35,9 @@ export function register(app) {
   app.component("ContributionFeesDetail", ContributionFeesDetail);
   app.component("FeesDetail", FeesDetail);
   app.component("PaymentDetail", PaymentDetail);
+  app.component("RoomRentalDetail", RoomRentalDetail);
   //#endregion
+
   //#region Dictionary
   app.component("ResidentsDetail", ResidentsDetail);
   app.component("ApartmentDetail", ApartmentDetail);

@@ -3,9 +3,13 @@ import { ref, onMounted, reactive } from "vue";
 import Enum from "@/commons/enum";
 import FundType from "@/commons/enum/FundType";
 import i18nFundType from "@/i18n/enum/i18nFundType";
+// store
+import apartmentStore from "@/stores/views/apartmentStore";
 
 export const useApartmentDetail = () => {
   const title = ref("Thông tin căn hộ");
+
+  const store = apartmentStore;
 
   const options = [
     {
@@ -109,5 +113,6 @@ export const useApartmentDetail = () => {
     onClear,
     onRemoveTag,
     Enum,
+    store,
   };
 };

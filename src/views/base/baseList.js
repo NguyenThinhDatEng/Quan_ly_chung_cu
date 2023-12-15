@@ -5,7 +5,7 @@ export default {
   name: "BaseList",
   props: {},
   data() {
-    return { detailForm: "", tableData: [] };
+    return { detailForm: "", store: {} };
   },
   computed: {
     /**
@@ -16,6 +16,10 @@ export default {
      */
     tableMaxHeight() {
       return window.innerHeight - 60 - 40 - 20 - 32;
+    },
+
+    tableData() {
+      return this.store.state?.items ?? [];
     },
   },
   created() {

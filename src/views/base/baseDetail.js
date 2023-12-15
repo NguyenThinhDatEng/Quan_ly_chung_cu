@@ -10,6 +10,7 @@ export default {
       defaultModel: {},
       editMode: _enum.Mode.Add,
       _enum,
+      store: {},
     };
   },
   computed: {
@@ -84,8 +85,6 @@ export default {
      */
     commandClick(mode) {
       const me = this;
-      // update edit mode
-      me.editMode = mode;
       // do action
       switch (mode) {
         case _enum.Mode.Add:
@@ -95,9 +94,24 @@ export default {
         case _enum.Mode.Update:
           // update title
           me.updateTitle(mode);
+          // update edit mode
+          me.editMode = mode;
           break;
         default:
           break;
+      }
+    },
+
+    beforeSubmit() {},
+
+    insert() {
+      const me = this;
+      // handle before save
+      beforeSubmit();
+      // call API
+      debugger;
+      if (me.editMode == _enum.Mode.Add) {
+        me.store.dispatch("insert", me.model);
       }
     },
 
