@@ -85,11 +85,14 @@ export default {
      */
     commandClick(mode) {
       const me = this;
+      debugger;
       // do action
       switch (mode) {
         case _enum.Mode.Add:
           // hide form
           me.hide();
+          // CALL API
+          me.submit();
           break;
         case _enum.Mode.Update:
           // update title
@@ -104,10 +107,10 @@ export default {
 
     beforeSubmit() {},
 
-    insert() {
+    submit() {
       const me = this;
       // handle before save
-      beforeSubmit();
+      me.beforeSubmit();
       // call API
       debugger;
       if (me.editMode == _enum.Mode.Add) {

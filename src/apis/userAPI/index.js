@@ -28,7 +28,7 @@ class ServiceAPI extends BaseAPI {
    */
   register(user) {
     try {
-      const res = httpClient.post(user, "Register");
+      const res = this.postAsync(user, "Register");
       return res;
     } catch (error) {
       console.log(error);
