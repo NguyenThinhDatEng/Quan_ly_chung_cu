@@ -1,8 +1,7 @@
 import BaseAPI from "@/apis/baseAPI";
 
+const END_POINT = "Service/";
 class ServiceAPI extends BaseAPI {
-  END_POINT = "Service/";
-
   constructor() {
     super(END_POINT); // Gọi constructor của lớp cha
   }
