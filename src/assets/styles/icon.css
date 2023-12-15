@@ -1,0 +1,297 @@
+.icon {
+    background-repeat: no-repeat;
+    /* background: url('../imgs/config/qlts-icon.png'); */
+}
+
+.icon-item {
+    width: 22px;
+    height: 22px;
+}
+
+.icon-function_wrapper {
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+
+
+.icon-item_wrapper {
+    position: relative;
+    border-radius: 6px;
+    width: 44px;
+    height: 40px;
+}
+
+.icon-header {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-arrow {
+    width: 12px;
+    height: 7px;
+}
+
+.icon--14px {
+    width: 14px;
+    height: 14px;
+}
+
+.icon-15px {
+    width: 15px;
+    height: 15px;
+}
+
+.icon--18px {
+    width: 18px;
+    height: 18px;
+}
+
+.icon--home {
+    background-position: -20px -680px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+.icon--general {
+    background-position: -21px -153px;
+}
+
+.icon--asset {
+    background-position: -65px -153px;
+}
+
+.icon--path {
+    background-position: -110px -153px;
+}
+
+.icon--tool {
+    background-position: -153px -153px;
+}
+
+.icon--category {
+    background-position: -197px -153px;
+}
+
+.icon--search {
+    background-position: -241px -153px;
+}
+
+.icon--report {
+    background-position: -329px -153px;
+}
+
+
+.item:hover .icon--general,
+.item--active .icon--general {
+    background-position: -22px -198px;
+}
+
+.item:hover .icon--asset,
+.item--active .icon--asset {
+    background-position: -65px -197px;
+}
+
+.item:hover .icon--path,
+.item--active .icon-item_wrapper .icon--path {
+    background-position: -110px -197px;
+}
+
+.item:hover .icon--tool,
+.item--active .icon--tool {
+    background-position: -153px -197px;
+}
+
+.item:hover .icon--category,
+.item--active .icon--category {
+    background-position: -198px -198px;
+}
+
+.item:hover .icon--search,
+.item--active .icon--search {
+    background-position: -241px -197px;
+}
+
+.item:hover .icon--report,
+.item--active .icon--report {
+    background-position: -330px -198px;
+}
+
+.icon--up_down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 15px;
+    width: 8px;
+}
+
+.icon--down {
+    background-position: -71px -337px;
+    width: 9px;
+    height: 7px;
+}
+
+.icon--up {
+    background-position: -27px -337px;
+    width: 9px;
+    height: 7px;
+}
+
+.icon--account {
+    background-position: -20px -20px;
+}
+
+.icon--help {
+    background-position: -64px -64px;
+}
+
+.icon--menu {
+    background-position: -196px -20px;
+}
+
+.icon--notification {
+    background-position: -327px -107px;
+}
+
+.icon--search-input {
+    background-position: -243px -23px;
+}
+
+.icon--filter {
+    background-position: -242px -67px;
+}
+
+.icon--add {
+    background-position: -204px -424px;
+    width: 8px;
+    height: 8px;
+}
+
+.icon--export {
+    background-position: -287px -111px;
+}
+
+.icon--delete {
+    background-position: -463px -111px;
+}
+
+.icon--edit {
+    background-position: -156px -68px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon--duplicate {
+    background-position: -244px -112px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon--left-arrow {
+    background-position: -28px -245px;
+}
+
+.icon--white-left-arrow {
+    background-position: -29px -290px;
+}
+
+.icon--white-right-arrow {
+    background-position: -73px -290px;
+}
+
+.icon--right-arrow {
+    background-position: -72px -245.5px;
+}
+
+.icon--down-arrow {
+    background-position: -158px -293px;
+}
+
+.icon--close {
+    background-position: -375px -287px;
+}
+
+.icon--calendar {
+    background-position: -285px -65px;
+}
+
+.icon--sidebar-collapse {
+    background-position: -285px -417px;
+}
+
+.icon--sidebar-extension {
+    background-position: -329px -417px;
+}
+
+/* .icon--warning {
+    background-image: url(../imgs/icons/warning_icon--48px.png);
+    width: 48px;
+    height: 48px;
+} */
+
+.icon--tick {
+    background-position: -71px -512px;
+    width: 11px;
+    height: 8px;
+}
+
+/* .icon--check {
+    background-image: url(../imgs/icons/check-16px.png);
+    width: 16px;
+    height: 16px;
+} */
+
+.icon--horizontal-page {
+    background-position: -110px -420px;
+    width: 20px;
+    height: 15px;
+}
+
+.icon--vertical-page {
+    background-position: -22px -421px;
+    width: 20px;
+    height: 15px;
+}
+
+.icon--black-down-arrow {
+    background-position: -158px -249px;
+    width: 11px;
+    height: 7px;
+}
+
+.icon--print {
+    background-position: -331px -67px;
+}
+
+.icon--option {
+    background-position: -383px -26px;
+    width: 3px;
+    height: 13px;
+}
+
+.icon--zoom-in {
+    background-position: -245px -333px;
+}
+
+.icon--plus-in-square {
+    background-position: -375px -419px;
+}
+
+.icon--minus-in-circle {
+    background-position: -375px -463px;
+}
+
+.icon--plus-black {
+    background-position: -467px -423px;
+}
+
+/* .icon--check-out {
+    background: url('../imgs/icons/logout.png');
+    width: 16px;
+    height: 16px;
+} */

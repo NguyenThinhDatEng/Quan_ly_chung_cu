@@ -1,0 +1,22 @@
+.modal_content {
+  label {
+    text-align: left;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: unset;
+    }
+  }
+
+  .el-input-number {
+    width: unset;
+  }
+
+  .space-between {
+    justify-content: space-between;
+  }
+}
+
+.footer {
+  justify-content: space-between;
+}
