@@ -5,12 +5,6 @@ export default {
     Update: 2, // Chỉnh sửa
     Delete: 3, // Xóa 1 bản ghi
   },
-  // Giới tính
-  Gender: {
-    Other: 0,
-    Male: 1,
-    Female: 2,
-  },
   // Phím tắt
   KeyCode: {
     Backspace: 8, // phím Backspace
@@ -46,8 +40,8 @@ export default {
     Error: 1,
     Warning: 2,
   },
-  API: {
-    OK: 200,
+  APIStatus: {
+    Ok: 200,
   },
   // td trong table
   TableData: {
@@ -59,5 +53,9 @@ export default {
       boolean: 4, // Kiểu true/false
       enum: 5,
     },
+  },
+  Action: {
+    Confirm: "confirm",
+    Cancel: "cancel",
   },
 };

@@ -7,8 +7,11 @@ import i18nFundType from "@/i18n/enum/i18nFundType";
 import apartmentStore from "@/stores/views/apartmentStore";
 
 export const useApartmentDetail = () => {
+  const defaultModel = {
+    roomCount: 1,
+  };
   const title = ref("Thông tin căn hộ");
-
+  // store
   const store = apartmentStore;
 
   const options = [
@@ -114,5 +117,6 @@ export const useApartmentDetail = () => {
     onRemoveTag,
     Enum,
     store,
+    defaultModel,
   };
 };

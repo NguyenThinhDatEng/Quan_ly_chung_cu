@@ -1,11 +1,13 @@
 // Enum
 import _enum from "@/commons/enum";
+// components
+import { ElMessageBox } from "element-plus";
 
 export default {
   name: "BaseList",
   props: {},
   data() {
-    return { detailForm: "", store: {} };
+    return { detailForm: "", store: {}, loading: false };
   },
   computed: {
     /**
@@ -21,11 +23,20 @@ export default {
     tableData() {
       return this.store.state?.items ?? [];
     },
+
+    idField() {
+      return this.store.state?.idField ?? "";
+    },
   },
-  created() {
+  async created() {
     const me = this;
+    me.loading = true;
 
     me.initConfig();
+
+    await me.getTableData();
+
+    me.loading = false;
   },
   mounted() {
     window._list = this;
@@ -35,6 +46,14 @@ export default {
      * @description Khởi tạo cấu hình cho list
      */
     initConfig() {},
+
+    async getTableData() {
+      const me = this;
+      // Lấy dữ liệu danh sách
+      if (typeof me.store.dispatch == "function") {
+        await me.store?.dispatch("getAll");
+      }
+    },
 
     handleOnClickAddButton() {
       const me = this;
@@ -64,6 +83,26 @@ export default {
       me.$vfm.show({ component: me.detailForm }, param).then(() => {
         // do something on modal opened
         console.log(me.detailForm);
+      });
+    },
+
+    handleOnDeleteGrid({ row }) {
+      const me = this;
+
+      ElMessageBox.alert("Bạn có thực sự muốn xóa bản ghi này?", "Xác nhận", {
+        // if you want to disable its autofocus
+        // autofocus: false,
+        confirmButtonText: "Đồng ý",
+        showCancelButton: true,
+        cancelButtonText: "Hoãn",
+        draggable: true,
+        callback: (action) => {
+          if (action == _enum.Action.Confirm) {
+            if (me.idField) {
+              me.store.dispatch("delete", row[me.idField]);
+            }
+          }
+        },
       });
     },
   },

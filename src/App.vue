@@ -9,7 +9,6 @@ import { ModalsContainer } from "vue-final-modal";
 export default {
   name: "App",
   components: {
-    // ContributionFeesDetail,
     ModalsContainer,
   },
 };

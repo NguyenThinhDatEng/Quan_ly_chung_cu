@@ -11,6 +11,7 @@ export default {
       editMode: _enum.Mode.Add,
       _enum,
       store: {},
+      loading: false,
     };
   },
   computed: {
@@ -29,14 +30,7 @@ export default {
     /**
      * @description Khởi tạo cấu hình
      */
-    initConfig() {
-      const me = this;
-      // update model with default model
-      const keys = Object.keys(me.defaultModel);
-      if (keys.length > 0) {
-        me.model = { ...me.defaultModel };
-      }
-    },
+    initConfig() {},
 
     /**
      * Thực hiện trước khi mở modal
@@ -46,8 +40,14 @@ export default {
       const me = this;
       me._formParam = $event.ref.params?.value;
       const { mode, detailData } = me._formParam;
-      if (mode == _enum.Mode.Update) {
+      if (mode == _enum.Mode.View) {
         me.model = { ...detailData };
+      } else {
+        // update model with default model
+        const keys = Object.keys(me.defaultModel);
+        if (keys.length > 0) {
+          me.model = { ...me.defaultModel };
+        }
       }
       me.updateTitle(mode);
     },
@@ -85,7 +85,6 @@ export default {
      */
     commandClick(mode) {
       const me = this;
-      debugger;
       // do action
       switch (mode) {
         case _enum.Mode.Add:
@@ -107,14 +106,25 @@ export default {
 
     beforeSubmit() {},
 
-    submit() {
+    async submit() {
       const me = this;
+      me.loading = true;
       // handle before save
       me.beforeSubmit();
       // call API
-      debugger;
-      if (me.editMode == _enum.Mode.Add) {
-        me.store.dispatch("insert", me.model);
+      try {
+        switch (me.editMode) {
+          case _enum.Mode.Add:
+            await me.store.dispatch("insert", me.model);
+            break;
+          case _enum.Mode.Update:
+            await me.store.dispatch("update", me.model);
+            break;
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        me.loading = false;
       }
     },
 

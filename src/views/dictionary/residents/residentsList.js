@@ -3,25 +3,6 @@ import { ref, reactive } from "vue";
 export const useResidentsList = () => {
   const detailForm = "ResidentsDetail";
 
-  const tableData = ref([
-    {
-      residentCode: "CD001",
-      residentName: "John Smith",
-      gender: 1,
-      bod: "20/11/2000",
-      job: "Tài xế",
-      phoneNumber: "0963689222",
-      identificationNumber: "0123456789",
-    },
-    {
-      residentCode: "CD005",
-      residentName: "The Will",
-      gender: 2,
-      bod: "20/11/2001",
-      job: "Sinh viên",
-    },
-  ]);
-
   const propsData = reactive([
     {
       prop: "residentCode",
@@ -62,5 +43,5 @@ export const useResidentsList = () => {
     },
   ]);
 
-  return { detailForm, propsData, tableData };
+  return { detailForm, propsData };
 };

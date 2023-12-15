@@ -20,7 +20,7 @@ export default class BaseAPI {
   }
 
   async deleteAsync(id) {
-    return await httpClient.delete(this.endPoint + "/" + id);
+    return await httpClient.delete(this.endPoint + id);
   }
 
   async putAsync(payload, apiPath = "") {

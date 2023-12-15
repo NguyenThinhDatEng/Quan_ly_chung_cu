@@ -15,14 +15,17 @@
     :summary-method="getSummaries"
     :table-layout="tableLayout"
     :header-cell-class-name="getHeaderCellClassNameDefault"
+    v-loading="loading"
     @current-change="handleCurrentChange"
   >
+    <template #empty> <el-empty description="Không có dữ liệu" /> </template>
     <el-table-column v-if="multiple" type="selection" width="55" />
     <el-table-column
       v-if="isDisplayRowIndex"
       type="index"
       label="STT"
-      :width="showSummary ? 60 : 50"
+      align="center"
+      :width="showSummary ? 70 : 60"
     />
     <el-table-column
       v-for="item in propsData"
@@ -135,8 +138,12 @@ export default {
       type: Number,
       default: 180,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  emits: ["handle-edit"],
+  emits: ["handle-edit", "handle-delete"],
   setup(props) {
     const { proxy } = getCurrentInstance();
     // ['fixed', 'auto']
@@ -198,8 +205,9 @@ export default {
     };
 
     const handleDelete = (index, row) => {
-      console.log(row);
+      const me = proxy;
       handleCurrentChange(index);
+      me.$emit("handle-delete", { row });
     };
 
     const getSummaries = (param) => {

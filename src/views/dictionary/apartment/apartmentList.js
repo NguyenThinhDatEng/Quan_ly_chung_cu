@@ -12,31 +12,31 @@ export const usApartmentList = () => {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
+      width: 150,
+    },
+    {
+      prop: "position",
+      label: "Vị trí",
+      sortable: true,
     },
     {
       prop: "area",
       label: "Diện tích",
       sortable: true,
-      width: 200,
-      align: "center",
+      width: 120,
+      align: "right",
     },
     {
       prop: "price",
       label: "Giá",
-      width: 200,
+      width: 150,
       align: "right",
     },
     {
-      prop: "status",
-      label: "Trạng thái",
-      width: 200,
-      align: "center",
-    },
-    {
-      prop: "noOfRooms",
+      prop: "roomCount",
       label: "Số phòng",
-      width: 200,
-      align: "center",
+      width: 120,
+      align: "right",
     },
   ]);
 

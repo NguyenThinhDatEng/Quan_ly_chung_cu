@@ -6,48 +6,59 @@
     class="apartment-detail"
     @before-open="beforeOpen"
     @opened="opened"
+    v-loading="loading"
   >
     <!-- Nội dung popup -->
     <template #content>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-1">
-          <label> Mã căn hộ </label>
+        <div class="flex-column flex mr-2 flex1">
+          <label for="apartmentCode"> Mã căn hộ </label>
           <el-input
+            id="apartmentCode"
             v-model="model.apartmentCode"
             placeholder="MCH000"
+            :disabled="viewing || editMode == _enum.Mode.Update"
+          />
+        </div>
+        <div class="flex-column flex flex1">
+          <label for="position"> Vị trí </label>
+          <el-input
+            id="position"
+            v-model="model.position"
+            placeholder="01/01"
             :disabled="viewing"
           />
         </div>
-        <div class="flex-column flex">
-          <label> Giá </label>
+      </div>
+      <div class="flex space-between mb-2">
+        <div class="flex-column flex mr-2 flex1">
+          <label for="area">Diện tích</label>
           <el-input
+            id="area"
+            v-model="model.area"
+            placeholder="100"
+            :disabled="viewing"
+          />
+        </div>
+        <div class="flex-column flex flex1">
+          <label for="price"> Giá </label>
+          <el-input
+            id="price"
             v-model="model.price"
             placeholder="1000000"
             :disabled="viewing"
           />
         </div>
       </div>
-      <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-1">
-          <label>Diện tích</label>
-          <el-input
-            v-model="model.area"
-            placeholder="100"
-            :disabled="viewing"
-          />
-        </div>
-        <div class="flex-column flex">
-          <label>Số phòng</label>
-          <el-input
-            v-model="model.noOfRooms"
-            placeholder="5"
-            :disabled="viewing"
-          />
-        </div>
+      <div class="flex-column flex flex1">
+        <label> Số phòng </label>
+        <el-input-number
+          v-model="model.roomCount"
+          :min="1"
+          :max="100"
+          :disabled="viewing"
+        />
       </div>
-      <el-checkbox v-model="model.status" :disabled="viewing"
-        >Đã được thuê</el-checkbox
-      >
     </template>
     <!-- Chân popup -->
     <template #footer="{ close }">

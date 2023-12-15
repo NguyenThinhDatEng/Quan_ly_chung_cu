@@ -4,8 +4,4 @@ export default {
     Male: "Nam",
     Female: "Nữ",
   },
-
-  Status: {
-    Ok: 200,
-  },
 };

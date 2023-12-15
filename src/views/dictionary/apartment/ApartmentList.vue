@@ -16,7 +16,9 @@
       :table-data="tableData"
       :props-data="propsData"
       :max-height="tableMaxHeight"
+      :loading="loading"
       @handle-edit="handleOnEditGrid"
+      @handle-delete="handleOnDeleteGrid"
     ></t-grid-viewer>
   </div>
 </template>

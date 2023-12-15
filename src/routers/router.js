@@ -11,13 +11,13 @@ import ProfileView from "@/views/profile/ProfileView.vue";
 import Overview from "@/views/overview/Overview.vue";
 // Management
 import ContributionFeesList from "@/views/management/contributionFees/ContributionFeesList.vue";
-import ResidentsList from "@/views/management/residents/ResidentsList.vue";
 import FeesList from "@/views/management/fees/FeesList.vue";
 import RoomRentalList from "@/views/management/roomRental/RoomRentalList.vue";
 // Thống kê
 import RevenueView from "@/views/statistic/revenue/RevenueView.vue";
 // Dictionary
 import ApartmentList from "@/views/dictionary/apartment/ApartmentList.vue";
+import ResidentsList from "@/views/dictionary/residents/ResidentsList.vue";
 import VehicleList from "@/views/dictionary/vehicle/VehicleList.vue";
 import ServiceList from "@/views/dictionary/service/ServiceList.vue";
 //#endregion

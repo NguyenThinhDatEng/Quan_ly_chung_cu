@@ -17,7 +17,7 @@ const RoomRentalDetail = defineAsyncComponent(() =>
 //#endregion
 //#region dictionary
 const ResidentsDetail = defineAsyncComponent(() =>
-  import("@/views/management/residents/ResidentsDetail.vue")
+  import("@/views/dictionary/residents/ResidentsDetail.vue")
 );
 const ApartmentDetail = defineAsyncComponent(() =>
   import("@/views/dictionary/apartment/ApartmentDetail.vue")

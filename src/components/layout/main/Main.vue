@@ -5,7 +5,8 @@
       <div class="header-content">
         <span>{{ headerTitle }}</span>
         <div class="toolbar">
-          <el-dropdown>
+          <span>{{ userInfo.username ?? "" }}</span>
+          <el-dropdown class="ml-2">
             <el-icon class="pointer" :size="iconSize"><UserFilled /></el-icon>
             <template #dropdown>
               <el-dropdown-menu>
@@ -18,7 +19,6 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <span>NVThinh</span>
         </div>
       </div>
     </el-header>
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, ref, computed } from "vue";
 import {
   HomeFilled,
   Setting,
@@ -241,6 +241,7 @@ export default {
       switch (action) {
         case actions.logout:
           sessionStorage.removeItem("userToken");
+          sessionStorage.removeItem("userInfo");
           proxy.$router.push({ name: "Login" });
           break;
         case actions.viewInfo:
@@ -258,6 +259,15 @@ export default {
      */
     const openMenu = () => {};
 
+    const userInfo = computed(() => {
+      const sessionItem = sessionStorage.getItem("userInfo");
+      if (sessionItem && typeof sessionItem == "string") {
+        return JSON.parse(sessionItem);
+      }
+
+      return {};
+    });
+
     return {
       elSubMenus,
       activeIndex,
@@ -269,6 +279,7 @@ export default {
       elAside,
       onClickHeaderFeatures,
       openMenu,
+      userInfo,
     };
   },
 };

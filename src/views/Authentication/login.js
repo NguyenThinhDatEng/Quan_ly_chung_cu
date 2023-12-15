@@ -1,6 +1,6 @@
 import { reactive, computed, ref, getCurrentInstance } from "vue";
 import UserAPI from "../../apis/userAPI";
-import _i18n from "@/i18n/enum/index.js";
+import _enum from "../../commons/enum";
 // Component
 import { ElMessage } from "element-plus";
 
@@ -20,10 +20,14 @@ export const useLogin = () => {
       } else {
         res = await UserAPI.login(model);
       }
-      if (res?.status == _i18n.Status.Ok) {
+      if (res?.status == _enum.APIStatus.Ok) {
         const response = res.data;
         if (response?.token || response?.code != -1) {
+          // Lưu token vào session
           sessionStorage.setItem("userToken", res.data?.token ?? "register");
+          // Lưu thông tin người dùng vào session
+          debugger;
+          sessionStorage.setItem("userInfo", JSON.stringify(res.data?.entity));
 
           const message = isRegisterForm.value ? "Đăng ký" : "Đăng nhập";
           ElMessage({ message: message + " thành công", type: "success" });
