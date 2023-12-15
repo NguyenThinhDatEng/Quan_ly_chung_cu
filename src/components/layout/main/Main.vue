@@ -240,8 +240,11 @@ export default {
     const onClickHeaderFeatures = (action) => {
       switch (action) {
         case actions.logout:
-          sessionStorage.removeItem("userId");
+          sessionStorage.removeItem("userToken");
           proxy.$router.push({ name: "Login" });
+          break;
+        case actions.viewInfo:
+          proxy.$router.push({ name: "ProfileView" });
           break;
         default:
           break;

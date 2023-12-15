@@ -4,12 +4,12 @@ import axios from "axios";
 const ApplicationJson = "application/json";
 // tạo 1 axios instances
 const httpClient = axios.create({
-  baseURL: "https://localhost:44364/api/v1/",
+  baseURL: "https://localhost:4001/api/",
   timeout: 5000, // Nếu kết nối có vấn đề -> tránh treo kết nối mãi mãi
   headers: {
     "Content-Type": ApplicationJson,
   },
-  withCredentials: false,
 });
 
+// withCredentials: true,
 export default httpClient;

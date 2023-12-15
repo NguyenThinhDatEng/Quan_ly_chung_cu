@@ -47,6 +47,14 @@ body {
   margin-top: 8px;
 }
 
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-4 {
+  margin-top: 32px;
+}
+
 .mr-1 {
   margin-right: 8px;
 }
