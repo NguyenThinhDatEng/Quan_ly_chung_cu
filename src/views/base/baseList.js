@@ -39,6 +39,7 @@ export default {
       }
       const param = {
         mode: _enum.Mode.Add,
+        detailForm: me.detailForm,
       };
       me.$vfm.show({ component: me.detailForm }, param).then(() => {
         // do something on modal opened
@@ -54,6 +55,7 @@ export default {
       const param = {
         mode: _enum.Mode.View,
         detailData: row,
+        detailForm: me.detailForm,
       };
       me.$vfm.show({ component: me.detailForm }, param).then(() => {
         // do something on modal opened

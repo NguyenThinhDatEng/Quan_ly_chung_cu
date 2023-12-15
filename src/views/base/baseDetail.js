@@ -84,15 +84,27 @@ export default {
      */
     commandClick(mode) {
       const me = this;
-      this.editMode = mode;
-      me.updateTitle(mode);
+      // update edit mode
+      me.editMode = mode;
+      // do action
       switch (mode) {
         case _enum.Mode.Add:
+          // hide form
+          me.hide();
           break;
         case _enum.Mode.Update:
+          // update title
+          me.updateTitle(mode);
           break;
         default:
           break;
+      }
+    },
+
+    hide() {
+      const me = this;
+      if (me._formParam?.detailForm) {
+        me.$vfm.hide(me._formParam.detailForm);
       }
     },
   },
