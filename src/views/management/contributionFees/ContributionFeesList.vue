@@ -1,7 +1,16 @@
 <template>
   <div class="contribution-fees-list flex-column">
-    <div class="toolbar">
-      <div class="left"></div>
+    <div class="toolbar mb-2">
+      <div class="left">
+        <el-select v-model="year">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
       <div class="right">
         <el-button
           type="primary"

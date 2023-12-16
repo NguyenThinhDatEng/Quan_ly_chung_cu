@@ -44,18 +44,32 @@ export default {
     Ok: 200,
   },
   // td trong table
-  TableData: {
-    type: {
+  Table: {
+    ColumnType: {
       text: 0, // nhận dữ liệu chuỗi
       number: 1, // nhận dữ liệu kiểu số
       checkbox: 2, // nhận checkbox
       date: 3, // nhận dữ liệu thời gian
       boolean: 4, // Kiểu true/false
-      enum: 5,
+      enum: 5, // Kiểu enum
     },
   },
   Action: {
     Confirm: "confirm",
     Cancel: "cancel",
+  },
+  Store: {
+    Mutations: {
+      GetAll: "getAll",
+      Insert: "insert",
+      Update: "update",
+      Delete: "delete",
+    },
+  },
+  // Giới tính
+  Gender: {
+    Other: 0,
+    Male: 1,
+    Female: 2,
   },
 };

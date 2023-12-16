@@ -43,7 +43,7 @@
           /></el-icon>
           <!-- <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span> -->
           <span style="margin-left: 10px">{{
-            this.renderData(scope.row, item)
+            renderData(scope.row, item)
           }}</span>
         </div>
       </template>
@@ -78,8 +78,12 @@
 </template>
 
 <script>
+// library
 import { getCurrentInstance, ref } from "vue";
+import moment from "moment";
+// component
 import { Timer } from "@element-plus/icons-vue";
+// resources
 import _enum from "@/commons/enum";
 import _i18n from "@/i18n/enum/index.js";
 
@@ -156,9 +160,11 @@ export default {
 
     const renderData = (data, column) => {
       const me = proxy;
-      if (data) {
-        switch (column.type) {
-          case 5:
+      if (Object.keys(data).length > 0) {
+        switch (column.columnType) {
+          case _enum.Table.ColumnType.date:
+            return moment(data).format("DD/MM/YYYY");
+          case _enum.Table.ColumnType.enum:
             return me.formatEnum(data, column);
           default:
             return data[column.prop];

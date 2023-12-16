@@ -1,7 +1,13 @@
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
+// store
+import residentStore from "@/stores/views/residentStore.js";
+// enum
+import _enum from "../../../commons/enum";
 
 export const useResidentsList = () => {
   const detailForm = "ResidentsDetail";
+
+  const store = residentStore;
 
   const propsData = reactive([
     {
@@ -11,37 +17,40 @@ export const useResidentsList = () => {
       width: 120,
     },
     {
-      prop: "residentName",
+      prop: "name",
       label: "Họ và tên",
       sortable: true,
     },
     {
       prop: "phoneNumber",
       label: "Số diện thoại",
+      width: 150,
     },
     {
       prop: "identificationNumber",
       label: "Số CMD/CCCD",
+      width: 180,
     },
     {
       prop: "gender",
       label: "Giới tính",
       width: 100,
       enum: "Gender",
-      type: 5,
+      columnType: _enum.Table.ColumnType.enum,
     },
     {
-      prop: "bod",
+      prop: "birthDate",
       label: "Ngày sinh",
       width: 150,
       align: "center",
+      columnType: _enum.Table.ColumnType.date,
     },
     {
-      prop: "job",
+      prop: "career",
       label: "Nghề nghiệp",
       width: 200,
     },
   ]);
 
-  return { detailForm, propsData };
+  return { detailForm, propsData, store };
 };

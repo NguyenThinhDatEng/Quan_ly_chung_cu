@@ -1,0 +1,62 @@
+.modal_content .input-info {
+  width: 220px;
+}
+.modal_content label {
+  text-align: left;
+  margin-bottom: 8px;
+}
+.modal_content .space-between {
+  justify-content: space-between;
+}
+.modal_content .flex-2 {
+  flex: 2;
+}
+.modal_content .flex-2.amount-label {
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+}
+.modal_content .total-amount {
+  font-weight: 700;
+}
+.modal_content .total-amount span,
+.modal_content .total-amount div {
+  font-size: 20px;
+}
+.modal_content .amount {
+  font-weight: 600;
+}
+.modal_content .amount span,
+.modal_content .amount div {
+  font-size: 18px;
+}
+.modal_content .amount-child span,
+.modal_content .amount-child div {
+  font-size: 14px;
+}
+.modal_content .services-fee-detail .service-fee-left {
+  align-items: center;
+}
+.modal_content .services-fee-detail .service-fee-left span {
+  min-width: 60px;
+  font-size: 14px;
+  text-align: left;
+}
+.modal_content .services-fee-detail .service-fee-left .el-input-number {
+  width: 100%;
+}
+.modal_content .services-fee-detail .service-fee-left.flex-3 {
+  flex: 3;
+}
+.modal_content .services-fee-detail .service-fee-left.flex-4 {
+  flex: 4;
+}
+.modal_content .services-fee-detail .service-fee-right {
+  justify-content: flex-end;
+  font-size: 14px;
+  align-items: center;
+}
+
+.footer {
+  justify-content: space-between;
+}/*# sourceMappingURL=FeesDetail.css.map */

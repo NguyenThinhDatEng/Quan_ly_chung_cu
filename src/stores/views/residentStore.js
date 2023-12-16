@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
+import moment from "moment";
 // api
-import apartmentApi from "@/apis/dictionaryAPI/apartmentAPI";
+import residentAPI from "@/apis/dictionaryAPI/residentAPI";
+
+const api = residentAPI;
 
 const apartmentStore = createStore({
   state() {
     return {
       idField: "id",
-      codeField: "apartmentCode",
       items: [],
     };
   },
@@ -43,8 +45,9 @@ const apartmentStore = createStore({
   actions: {
     async insert(context, payload) {
       try {
-        const res = await apartmentApi.postAsync(payload);
-        if (res.data?.entity) {
+        const res = await api.postAsync(payload);
+        let data = res.data?.entity;
+        if (data) {
           context.commit("insert", res.data.entity);
         }
       } catch (error) {
@@ -54,7 +57,7 @@ const apartmentStore = createStore({
 
     async update(context, payload) {
       try {
-        const res = await apartmentApi.putAsync(payload);
+        const res = await api.putAsync(payload);
         if (res.data?.entity) {
           context.commit("update", res.data.entity);
         }
@@ -65,7 +68,7 @@ const apartmentStore = createStore({
 
     async delete(context, payload) {
       try {
-        const res = await apartmentApi.deleteAsync(payload);
+        const res = await api.deleteAsync(payload);
         if (res.data?.entity) {
           context.commit("delete", res.data.entity);
         }
@@ -76,7 +79,7 @@ const apartmentStore = createStore({
 
     async getAll(context) {
       try {
-        const res = await apartmentApi.getAsync();
+        const res = await api.getAsync();
         if (res.data) {
           context.commit("getAll", res.data);
         }

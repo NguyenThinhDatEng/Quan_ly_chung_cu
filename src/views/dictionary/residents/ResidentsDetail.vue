@@ -10,40 +10,80 @@
     <!-- Nội dung popup -->
     <template #content>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-2">
+        <div class="flex-column flex mr-2 flex1">
           <label> Mã cư dân </label>
           <el-input
             v-model="model.residentCode"
             placeholder="C0001"
-            :disabled="viewing"
+            :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>
-        <div class="flex-column flex">
-          <label> Tên cư dân </label>
-          <el-input
-            v-model="model.residentName"
-            placeholder="Nguyễn Văn A"
+        <div class="flex-column flex flex1">
+          <label> Thuộc căn hộ </label>
+          <el-select
+            v-model="model.apartmentId"
+            placeholder="Mã căn hộ"
+            no-data-text="Không có dữ liệu"
             :disabled="viewing"
-          />
+          >
+            <el-option
+              v-for="item in apartmentItems"
+              :key="item?.label"
+              :label="item?.label || ''"
+              :value="item?.value || ''"
+            />
+          </el-select>
         </div>
       </div>
       <!-- Row 2 -->
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-2">
+        <div class="flex-column flex flex1 mr-2">
+          <label> Tên cư dân </label>
+          <el-input
+            v-model="model.name"
+            placeholder="Nguyễn Văn A"
+            :disabled="viewing"
+          />
+        </div>
+        <div class="flex-column flex flex1">
+          <label> Số điện thoại </label>
+          <el-input
+            v-model="model.phoneNumber"
+            placeholder="09xxxxxxxx"
+            maxlength="10"
+            show-word-limit
+            :disabled="viewing"
+          />
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="flex space-between mb-2">
+        <div class="flex-column flex flex1 mr-2">
+          <label> Số CCCD/CMND </label>
+          <el-input
+            v-model="model.identificationNumber"
+            placeholder="0272xxxxxxxx"
+            maxlength="12"
+            show-word-limit
+            :disabled="viewing"
+          />
+        </div>
+        <div class="flex-column flex flex1">
           <label> Ngày sinh </label>
           <el-date-picker
-            v-model="model.bod"
+            v-model="model.birthDate"
             type="date"
             placeholder="Chọn ngày sinh"
             size="default"
-            :default-time="new Date()"
             format="DD/MM/YYYY"
-            value-format="DD/MM/YYYY"
             class="date-picker-custom"
             :disabled="viewing"
           />
         </div>
-        <div class="flex-column flex">
+      </div>
+      <!-- Row 4 -->
+      <div class="flex space-between">
+        <div class="flex-column flex flex1 mr-2">
           <label> Giới tính </label>
           <div class="flex items-center text-sm">
             <el-radio-group v-model="model.gender" :disabled="viewing">
@@ -53,13 +93,10 @@
             </el-radio-group>
           </div>
         </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="flex space-between">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1">
           <label> Nghề nghiệp </label>
           <el-input
-            v-model="model.job"
+            v-model="model.career"
             placeholder="Giáo viên, Sinh viên, ..."
             :disabled="viewing"
           />

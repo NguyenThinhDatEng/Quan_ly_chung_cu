@@ -1,18 +1,7 @@
 import { ref, onMounted, reactive } from "vue";
 
 export const usVehicleList = () => {
-  const tableData = ref([
-    {
-      vehicleCode: "V0001",
-      vehicleName: "Ô tô",
-      price: 1200000,
-    },
-    {
-      vehicleCode: "V0002",
-      vehicleName: "Xe máy",
-      price: 70000,
-    },
-  ]);
+  const detailForm = "VehicleDetail";
 
   const propsData = reactive([
     {
@@ -36,7 +25,5 @@ export const usVehicleList = () => {
 
   onMounted(() => {});
 
-  const detailForm = "VehicleDetail";
-
-  return { tableData, propsData, detailForm };
+  return { propsData, detailForm };
 };
