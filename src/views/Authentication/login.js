@@ -26,7 +26,6 @@ export const useLogin = () => {
           // Lưu token vào session
           sessionStorage.setItem("userToken", res.data?.token ?? "register");
           // Lưu thông tin người dùng vào session
-          debugger;
           sessionStorage.setItem("userInfo", JSON.stringify(res.data?.entity));
 
           const message = isRegisterForm.value ? "Đăng ký" : "Đăng nhập";
