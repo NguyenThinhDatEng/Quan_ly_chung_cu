@@ -2,7 +2,7 @@ import BaseAPI from "@/apis/baseAPI";
 
 const END_POINT = "User/";
 
-class ServiceAPI extends BaseAPI {
+class UserAPI extends BaseAPI {
   constructor() {
     super(END_POINT); // Gọi constructor của lớp cha
   }
@@ -34,6 +34,15 @@ class ServiceAPI extends BaseAPI {
       console.log(error);
     }
   }
+
+  updateUserInfo(user) {
+    try {
+      const res = this.postAsync(user, "UpdateInformation");
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
-export default new ServiceAPI();
+export default new UserAPI();
