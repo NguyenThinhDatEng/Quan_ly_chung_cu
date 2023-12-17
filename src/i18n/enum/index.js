@@ -10,4 +10,9 @@ export default {
     CubicMeter: "/khối (m\u00B3)", // khối (Ex: Khối nước)
     OneRoomOneMonth: "/phòng/tháng", // 1 phòng/tháng
   },
+  // Trạng thái phòng
+  ApartmentStatus: {
+    NotEmpty: "Đang sử dụng",
+    IsEmpty: "Còn trống",
+  },
 };

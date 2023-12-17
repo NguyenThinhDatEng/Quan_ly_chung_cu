@@ -41,8 +41,14 @@ export default {
     beforeOpen($event) {
       const me = this;
       me._formParam = $event.ref.params?.value;
-      const { mode, detailData } = me._formParam;
-      if (mode == _enum.Mode.View) {
+      const { mode } = me._formParam;
+
+      // Cập nhật edit mode
+      me.editMode = mode;
+
+      // Cập nhật model
+      if (me.viewing) {
+        const detailData = me._formParam.detailData;
         me.model = { ...detailData };
       } else {
         // update model with default model
@@ -51,7 +57,6 @@ export default {
           me.model = { ...me.defaultModel };
         }
       }
-      me.updateTitle(mode);
     },
 
     /**
@@ -59,7 +64,7 @@ export default {
      */
     opened() {
       const me = this;
-      me.editMode = me._formParam?.mode;
+      me.updateTitle(me.editMode);
     },
 
     /**
@@ -115,18 +120,22 @@ export default {
       try {
         switch (me.editMode) {
           case _enum.Mode.Add:
-            await me.store.dispatch("insert", me.model);
-            ElMessage({
-              message: "Thêm mới bản ghi thành công",
-              type: "success",
-            });
+            if (typeof me.store.dispatch == "function") {
+              await me.store.dispatch("insert", me.model);
+              ElMessage({
+                message: "Thêm mới bản ghi thành công",
+                type: "success",
+              });
+            }
             break;
           case _enum.Mode.Update:
-            await me.store.dispatch("update", me.model);
-            ElMessage({
-              message: "Cập nhật bản ghi thành công",
-              type: "success",
-            });
+            if (typeof me.store.dispatch == "function") {
+              await me.store.dispatch("update", me.model);
+              ElMessage({
+                message: "Cập nhật bản ghi thành công",
+                type: "success",
+              });
+            }
             break;
         }
       } catch (error) {

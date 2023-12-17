@@ -2,7 +2,7 @@ import { reactive } from "vue";
 // store
 import residentStore from "@/stores/views/residentStore.js";
 // enum
-import _enum from "../../../commons/enum";
+import _enum from "@/commons/enum";
 
 export const useResidentsList = () => {
   const detailForm = "ResidentsDetail";

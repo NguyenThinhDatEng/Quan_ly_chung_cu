@@ -9,6 +9,7 @@ const apartmentStore = createStore({
     return {
       idField: "id",
       nameField: "name",
+      codeField: "residentCode",
       items: [],
     };
   },

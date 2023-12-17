@@ -141,7 +141,7 @@ export default {
     },
     featureColWidth: {
       type: Number,
-      default: 180,
+      default: 160,
     },
     loading: {
       type: Boolean,

@@ -1,4 +1,4 @@
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, computed } from "vue";
 // i18n
 import i18nFundType from "@/i18n/enum/i18nFundType";
 // store
@@ -7,17 +7,27 @@ import contributionStore from "@/stores/views/contributionStore.js";
 export const useContributionFeesList = () => {
   const detailForm = "ContributionFeesDetail";
 
+  // store
   const store = contributionStore;
+
+  const tableDataCustom = computed(() => {
+    return me.tableData;
+  });
 
   const propsData = reactive([
     {
-      prop: "fullName",
+      prop: "residentName",
       label: "Họ và tên",
       sortable: true,
       minWidth: 150,
     },
     {
-      prop: "address",
+      prop: "apartmentCode",
+      label: "Mã căn hộ",
+      width: 100,
+    },
+    {
+      prop: "position",
       label: "Địa chỉ",
       minWidth: 150,
     },
@@ -32,19 +42,26 @@ export const useContributionFeesList = () => {
   onMounted(() => {
     for (const [key, value] of Object.entries(i18nFundType)) {
       // Viết thường chữ cái đầu tiên của key
-      const prop = key.charAt(0).toLocaleLowerCase() + key.slice(1);
-      let colConfig = { prop, label: value, align: "right" };
+      let prop = key.charAt(0).toLocaleLowerCase() + key.slice(1);
+
       let width = 160;
 
-      if (value == i18nFundType.Charity) {
-        width = 180;
-      } else if (value == i18nFundType.ResidentialGroup) {
-        width = 150;
+      switch (value) {
+        case i18nFundType.Charity:
+          width = 180;
+          break;
+        case i18nFundType.ResidentialGroup:
+          width = 150;
+          break;
+        case i18nFundType.DGFestival:
+          prop =
+            prop.charAt(0) + prop.charAt(1).toLocaleLowerCase() + prop.slice(2);
+          break;
       }
 
-      propsData.push({ ...colConfig, width });
+      propsData.push({ prop, label: value, align: "right", width });
     }
   });
 
-  return { propsData, detailForm, year, options, store };
+  return { propsData, detailForm, year, options, store, tableDataCustom };
 };

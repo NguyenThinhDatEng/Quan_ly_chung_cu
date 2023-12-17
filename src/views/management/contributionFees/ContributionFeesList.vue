@@ -27,6 +27,7 @@
       :max-height="tableMaxHeight"
       :loading="loading"
       @handle-edit="handleOnEditGrid"
+      @handle-delete="handleOnDeleteGrid"
     ></t-grid-viewer>
   </div>
 </template>

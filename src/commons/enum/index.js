@@ -72,7 +72,9 @@ export default {
     Male: 1,
     Female: 2,
   },
+
   //#region Custom
+
   // Đơn vị dịch vụ
   ServiceUnit: {
     OnePersonOneMonth: 1, // 1 người/tháng
@@ -80,5 +82,12 @@ export default {
     Number: 3, // số (Ex: số điện)
     CubicMeter: 4, // khối (Ex: Khối nước)
   },
+
+  // Trạng thái phòng
+  ApartmentStatus: {
+    NotEmpty: 0,
+    IsEmpty: 1,
+  },
+
   //#endregion
 };

@@ -13,21 +13,47 @@
       <!-- Row 1 -->
       <div class="flex space-between mb-2">
         <div class="flex-column flex flex1 mr-2">
-          <label> Người đóng góp </label>
+          <label for="resident"> Người đóng góp </label>
           <el-select
+            id="resident"
             v-model="model.residentId"
             placeholder="Họ và tên"
             :disabled="viewing"
+            @change="selectResidentName"
           >
             <el-option
               v-for="item in residentItems"
               :key="item?.label"
               :label="item?.label || ''"
               :value="item?.value || ''"
-            />
+            >
+              <span
+                style="
+                  float: left;
+                  color: var(--el-text-color-secondary);
+                  font-size: 13px;
+                "
+                >{{ item.code }}</span
+              >
+              <span style="float: right">{{ item.label }}</span>
+            </el-option>
           </el-select>
         </div>
         <div class="flex-column flex flex1">
+          <label for="year"> Năm </label>
+          <el-select v-model="model.year" popper-class="year" id="year">
+            <el-option
+              v-for="item in yearOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="flex space-between mb-2">
+        <div class="flex-column flex flex1 mr-2">
           <label> Thuộc căn hộ </label>
           <el-select
             v-model="model.apartmentId"
@@ -42,21 +68,20 @@
             />
           </el-select>
         </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="flex-column flex flex1 mb-2">
-        <label>Địa chỉ</label>
-        <el-input
-          v-model="model.address"
-          placeholder="00/00"
-          :disabled="viewing"
-        />
+        <div class="flex-column flex flex1">
+          <label>Địa chỉ</label>
+          <el-input
+            v-model="model.address"
+            placeholder="00/00"
+            :disabled="true"
+          />
+        </div>
       </div>
       <!-- Row 3 -->
       <el-select
         v-model="fundTypeKeys"
-        placeholder="Chọn quỹ đóng góp"
-        class="select"
+        placeholder="Chọn các quỹ đóng góp"
+        class="select mb-2"
         multiple
         collapse-tags
         collapse-tags-tooltip
@@ -75,18 +100,26 @@
           :style="{ fontFamily: 'Avenir, Helvetica, Arial, sans-serif' }"
         />
       </el-select>
-      <div v-for="item in selectedFunds" :key="item.key">
-        <template v-if="item.visible">
-          <div class="flex mt-2">
-            <el-input v-model="item.fundName" disabled class="mr-2 flex" />
-            <el-input-number
-              v-model="item.paidAmount"
-              :min="0"
-              :controls="false"
-              class="flex"
-            />
-          </div>
-        </template>
+      <div class="amounts">
+        <div v-for="item in selectedFunds" :key="item.key">
+          <template v-if="item.visible">
+            <div class="flex fund-amount mr-1">
+              <span
+                class="flex1"
+                :style="{ textAlign: 'left', minWidth: '170px' }"
+                >{{ item.fundName }}:</span
+              >
+              <el-input-number
+                v-model="item.paidAmount"
+                :min="0"
+                placeholder="0"
+                :controls="false"
+                class="flex1"
+                :disabled="viewing"
+              />
+            </div>
+          </template>
+        </div>
       </div>
     </template>
     <!-- Chân popup -->

@@ -25,7 +25,7 @@
     <!-- Content -->
     <el-container direction="horizontal">
       <!-- Left-Nav -->
-      <el-aside v-show="!hideSidebar" :width="elAside.width + 'px'">
+      <el-aside v-show="!hideSidebar">
         <el-scrollbar>
           <!-- :default-openeds="['1', '3']" -->
           <el-menu
@@ -305,6 +305,10 @@ export default {
 
   .el-container {
     height: 100%;
+
+    .el-aside {
+      width: 18%;
+    }
 
     .el-main {
       padding: 20px;

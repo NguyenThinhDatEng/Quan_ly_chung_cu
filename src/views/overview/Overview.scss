@@ -1,0 +1,26 @@
+.overview-container {
+  display: flex;
+  height: 100%;
+
+  .overview-info {
+    flex: 2;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 20px;
+
+    .info {
+      margin-bottom: 20px;
+      font-size: 24px;
+
+      b {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .el-image {
+    flex: 3;
+    width: 100%;
+    height: 100%;
+  }
+}
