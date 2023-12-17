@@ -8,6 +8,12 @@
     }
   }
 
+  .price {
+    .el-input-number {
+      width: unset;
+    }
+  }
+
   .space-between {
     justify-content: space-between;
   }

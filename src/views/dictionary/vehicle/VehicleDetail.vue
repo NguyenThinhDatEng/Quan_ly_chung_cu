@@ -15,7 +15,7 @@
           <el-input
             v-model="model.vehicleTypeCode"
             placeholder="V0001"
-            :disabled="viewing"
+            :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>
       </div>

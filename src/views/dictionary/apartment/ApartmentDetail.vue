@@ -40,12 +40,13 @@
             :disabled="viewing"
           />
         </div>
-        <div class="flex-column flex flex1">
+        <div class="flex-column flex flex1 price">
           <label for="price"> Giá </label>
-          <el-input
-            id="price"
+          <el-input-number
             v-model="model.price"
-            placeholder="1000000"
+            placeholder="0"
+            :min="0"
+            :controls="false"
             :disabled="viewing"
           />
         </div>

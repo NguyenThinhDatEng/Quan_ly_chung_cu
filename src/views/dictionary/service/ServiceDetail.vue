@@ -15,7 +15,7 @@
           <el-input
             v-model="model.serviceFeeTypeCode"
             placeholder="S01"
-            :disabled="viewing"
+            :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>
         <div class="flex-column flex flex1">

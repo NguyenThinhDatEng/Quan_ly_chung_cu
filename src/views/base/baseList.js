@@ -1,7 +1,7 @@
 // Enum
 import _enum from "@/commons/enum";
 // components
-import { ElMessageBox } from "element-plus";
+import { ElMessageBox, ElMessage } from "element-plus";
 
 export default {
   name: "BaseList",
@@ -96,10 +96,18 @@ export default {
         showCancelButton: true,
         cancelButtonText: "Hoãn",
         draggable: true,
-        callback: (action) => {
+        callback: async (action) => {
           if (action == _enum.Action.Confirm) {
             if (me.idField) {
-              me.store.dispatch("delete", row[me.idField]);
+              try {
+                await me.store.dispatch("delete", row[me.idField]);
+                ElMessage({
+                  message: "Xóa bản ghi thành công",
+                  type: "success",
+                });
+              } catch (error) {
+                ElMessage.error("Có lỗi xảy ra!");
+              }
             }
           }
         },

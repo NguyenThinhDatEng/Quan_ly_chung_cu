@@ -1,4 +1,6 @@
 import _enum from "@/commons/enum";
+// components
+import { ElMessage } from "element-plus";
 
 export default {
   name: "BaseList",
@@ -114,13 +116,22 @@ export default {
         switch (me.editMode) {
           case _enum.Mode.Add:
             await me.store.dispatch("insert", me.model);
+            ElMessage({
+              message: "Thêm mới bản ghi thành công",
+              type: "success",
+            });
             break;
           case _enum.Mode.Update:
             await me.store.dispatch("update", me.model);
+            ElMessage({
+              message: "Cập nhật bản ghi thành công",
+              type: "success",
+            });
             break;
         }
       } catch (error) {
         console.log(error);
+        ElMessage.error("Có lỗi xảy ra!");
       } finally {
         me.loading = false;
         // hide form

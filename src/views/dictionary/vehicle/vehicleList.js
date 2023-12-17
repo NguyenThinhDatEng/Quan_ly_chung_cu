@@ -18,7 +18,7 @@ export const usVehicleList = () => {
     {
       prop: "name",
       label: "Loại phương tiện",
-      minWidth: 140,
+      minWidth: 150,
     },
     {
       prop: "parkingFee",
