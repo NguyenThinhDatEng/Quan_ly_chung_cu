@@ -3,7 +3,7 @@ import { onMounted, reactive } from "vue";
 import vehicleFeeStore from "@/stores/views/vehicleFeeStore";
 
 export const usVehicleList = () => {
-  const detailForm = "VehicleDetail";
+  const detailForm = "VehicleFeeDetail";
 
   const store = vehicleFeeStore;
 

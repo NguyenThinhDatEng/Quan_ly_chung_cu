@@ -4,43 +4,12 @@ export const useFeesList = () => {
   const { proxy } = getCurrentInstance();
   const detailForm = "FeesDetail";
 
-  const tableData = ref([
-    {
-      apartmentCode: "M001",
-      area: 100,
-      residentCode: "P002",
-      residentName: "Bruno Mars",
-      description: "Some thing...",
-      fromDate: "05/10/2023",
-      toDate: "05/11/2023",
-      amount: 1234560,
-      status: "Quá hạn",
-    },
-    {
-      apartmentCode: "M002",
-      area: 200,
-      residentCode: "P003",
-      residentName: "MAGIC",
-      description: "MAGIC! - Rude (Official Video)",
-      fromDate: "02/11/2023",
-      toDate: "02/12/2023",
-      amount: 5432100,
-      status: "Còn hạn",
-    },
-  ]);
-
   const propsData = reactive([
     {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
       align: "center",
-      width: 115,
-    },
-    {
-      prop: "area",
-      label: "Diện tích (m\u00B2)",
-      align: "right",
       width: 120,
     },
     {
@@ -48,13 +17,13 @@ export const useFeesList = () => {
       label: "Mã chủ căn hộ",
       sortable: true,
       align: "center",
-      width: 140,
+      width: 150,
     },
     {
       prop: "residentName",
       label: "Tên chủ căn hộ",
       sortable: true,
-      width: 150,
+      minWidth: 155,
     },
     {
       prop: "description",
@@ -63,13 +32,13 @@ export const useFeesList = () => {
     {
       prop: "fromDate",
       label: "Từ ngày",
-      width: 150,
+      width: 120,
       align: "center",
     },
     {
       prop: "toDate",
       label: "Đến ngày",
-      width: 150,
+      width: 120,
       align: "center",
     },
     {
@@ -98,5 +67,5 @@ export const useFeesList = () => {
 
   onMounted(() => {});
 
-  return { tableData, propsData, detailForm, pay };
+  return { propsData, detailForm, pay };
 };

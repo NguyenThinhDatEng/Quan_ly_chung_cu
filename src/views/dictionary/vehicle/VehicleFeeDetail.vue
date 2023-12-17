@@ -1,9 +1,9 @@
-<template>
+vehicleType<template>
   <t-dynamic-popup
     :title="title"
-    :width="400"
-    name="VehicleDetail"
-    class="vehicle-detail"
+    :width="500"
+    name="VehicleFeeDetail"
+    class="vehicle-fee-detail"
     @before-open="beforeOpen"
     @opened="opened"
   >
@@ -64,21 +64,21 @@
 </template>
 
 <script>
-import { useVehicleDetail } from "./vehicleDetail";
+import { useVehicleFeeDetail } from "./vehicleFeeDetail";
 // base
 import BaseDetail from "@/views/base/baseDetail.js";
 export default {
   extends: BaseDetail,
-  name: "VehicleDetail",
+  name: "VehicleTypeDetail",
   setup() {
-    const vehicleDetail = useVehicleDetail();
-    return vehicleDetail;
+    const vehicleFeeDetail = useVehicleFeeDetail();
+    return vehicleFeeDetail;
   },
 };
 </script>
 
 <style lang="scss">
-.vehicle-detail {
-  @import "./VehicleDetail.scss";
+.vehicle-fee-detail {
+  @import "./VehicleFeeDetail.scss";
 }
 </style>

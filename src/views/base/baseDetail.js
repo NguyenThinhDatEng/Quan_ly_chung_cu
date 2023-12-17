@@ -123,7 +123,7 @@ export default {
             if (typeof me.store.dispatch == "function") {
               await me.store.dispatch("insert", me.model);
               ElMessage({
-                message: "Thêm mới bản ghi thành công",
+                message: "Thêm mới thành công",
                 type: "success",
               });
             }
@@ -132,7 +132,7 @@ export default {
             if (typeof me.store.dispatch == "function") {
               await me.store.dispatch("update", me.model);
               ElMessage({
-                message: "Cập nhật bản ghi thành công",
+                message: "Cập nhật thành công",
                 type: "success",
               });
             }

@@ -76,7 +76,7 @@ export default {
       default: false,
     },
     width: {
-      type: Number,
+      type: [Number, String],
       default: 0,
     },
     name: {
@@ -89,10 +89,12 @@ export default {
   emits: ["before-open", "opened"],
   setup(props) {
     const styles = computed(() => {
-      let style = {
-        width: `${props.width}px`,
-      };
-      if (props.maximum) {
+      let style = {};
+      if (typeof props.width == "number" && props.width != 0) {
+        style.width = `${props.width}px`;
+      } else if (typeof props.width == "string") {
+        style.width = props.width;
+      } else {
         style.width = "100%";
       }
       return style;

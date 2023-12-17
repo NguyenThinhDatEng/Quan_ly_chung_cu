@@ -68,6 +68,7 @@
           >Xem/Sửa</el-button
         >
         <el-button
+          v-if="isShowDeleteFeature"
           type="danger"
           size="small"
           @click="handleDelete(scope.$index, scope.row)"
@@ -114,6 +115,11 @@ export default {
     },
     // Ẩn/hiện cột chức năng
     isShowFeatureCol: {
+      type: Boolean,
+      default: true,
+    },
+    // Ẩn hiện nút xóa
+    isShowDeleteFeature: {
       type: Boolean,
       default: true,
     },

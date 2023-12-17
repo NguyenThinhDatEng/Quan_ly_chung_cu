@@ -9,6 +9,7 @@ const vehicleFeeStore = createStore({
     return {
       idField: "id",
       codeField: "vehicleTypeCode",
+      nameField: "name",
       items: [],
     };
   },

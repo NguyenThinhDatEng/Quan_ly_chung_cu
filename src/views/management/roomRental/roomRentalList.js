@@ -1,52 +1,48 @@
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
+// store
+import householdStore from "@/stores/views/householdStore.js";
 
 export const useRoomRentalList = () => {
   const detailForm = "RoomRentalDetail";
 
-  const tableData = ref([
-    {
-      apartmentCode: "A0001",
-      address: "01/01",
-      residentCode: "T0001",
-      residentName: "Nguyễn Bảo Bằng",
-      memberNumber: 3,
-      vehicleNumber: 3,
-    },
-  ]);
+  const store = householdStore;
 
   const propsData = reactive([
     {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
-      width: 150,
+      minWidth: 100,
     },
     {
-      prop: "address",
+      prop: "position",
       label: "Vị trí",
-      width: 200,
+      minWidth: 150,
     },
     {
       prop: "residentCode",
       label: "Mã chủ hộ",
       sortable: true,
-      width: 200,
+      minWidth: 100,
     },
     {
       prop: "residentName",
       label: "Họ và tên chủ hộ",
+      minWidth: 150,
     },
     {
-      prop: "memberNumber",
-      label: "Số thành viên GĐ",
-      width: 200,
+      prop: "memberCount",
+      label: "Số thành viên",
+      width: 120,
+      align: "center",
     },
     {
       prop: "vehicleNumber",
       label: "Số phương tiện",
-      width: 200,
+      align: "right",
+      width: 130,
     },
   ]);
 
-  return { detailForm, propsData, tableData };
+  return { detailForm, propsData, store };
 };

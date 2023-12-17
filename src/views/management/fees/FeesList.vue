@@ -2,7 +2,17 @@
   <div class="fees-list flex-column">
     <div class="toolbar">
       <div class="left"></div>
-      <div class="right"></div>
+      <div class="right">
+        <el-dropdown split-button type="primary" @click="handleClick">
+          Sinh thu phí
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item>Tháng này</el-dropdown-item>
+              <el-dropdown-item>Tháng sau</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
     <t-grid-viewer
       :table-data="tableData"
