@@ -4,6 +4,7 @@
     :width="600"
     name="ResidentsDetail"
     class="residents-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >
@@ -61,7 +62,7 @@
         <div class="flex-column flex flex1 mr-2">
           <label> Số CCCD/CMND </label>
           <el-input
-            v-model="model.identificationNumber"
+            v-model="model.cccd"
             placeholder="0272xxxxxxxx"
             maxlength="12"
             show-word-limit

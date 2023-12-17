@@ -35,6 +35,7 @@
       :width="item.width"
       :align="item.align"
       :sortable="item.sortable"
+      :min-width="item.minWidth"
     >
       <template #default="scope">
         <div style="display: flex; align-items: center">

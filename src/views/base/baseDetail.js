@@ -88,8 +88,6 @@ export default {
       // do action
       switch (mode) {
         case _enum.Mode.Add:
-          // hide form
-          me.hide();
           // CALL API
           me.submit();
           break;
@@ -125,6 +123,8 @@ export default {
         console.log(error);
       } finally {
         me.loading = false;
+        // hide form
+        me.hide();
       }
     },
 

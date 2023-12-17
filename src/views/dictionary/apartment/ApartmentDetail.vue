@@ -4,9 +4,9 @@
     :width="600"
     name="ApartmentDetail"
     class="apartment-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
-    v-loading="loading"
   >
     <!-- Nội dung popup -->
     <template #content>

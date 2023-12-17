@@ -1,14 +1,13 @@
 import { createStore } from "vuex";
 // api
-import residentAPI from "@/apis/dictionaryAPI/residentAPI";
+import contributionAPI from "@/apis/managementAPI/contributionAPI";
 
-const api = residentAPI;
+const api = contributionAPI;
 
-const apartmentStore = createStore({
+const contributionStore = createStore({
   state() {
     return {
       idField: "id",
-      nameField: "name",
       items: [],
     };
   },
@@ -90,4 +89,4 @@ const apartmentStore = createStore({
   },
 });
 
-export default apartmentStore;
+export default contributionStore;

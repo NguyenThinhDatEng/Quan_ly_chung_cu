@@ -10,30 +10,30 @@
     <!-- Nội dung popup -->
     <template #content>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1">
           <label> Mã phương tiện </label>
           <el-input
-            v-model="model.vehicleCode"
+            v-model="model.vehicleTypeCode"
             placeholder="V0001"
             :disabled="viewing"
           />
         </div>
       </div>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1">
           <label> Loại phương tiện </label>
           <el-input
-            v-model="model.vehicleName"
+            v-model="model.name"
             placeholder="Xe ..."
             :disabled="viewing"
           />
         </div>
       </div>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1">
           <label>Mức giá gửi xe/Tháng</label>
           <el-input-number
-            v-model="model.price"
+            v-model="model.parkingFee"
             placeholder="0"
             :min="0"
             :controls="false"

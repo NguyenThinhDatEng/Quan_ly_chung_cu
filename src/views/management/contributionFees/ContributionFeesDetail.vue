@@ -4,29 +4,55 @@
     :width="600"
     name="ContributionFeesDetail"
     class="contribution-fees-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >
     <!-- Nội dung popup -->
     <template #content>
+      <!-- Row 1 -->
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-1">
-          <label> Họ và tên </label>
-          <el-input
-            v-model="model.fullName"
-            placeholder="Nguyễn Văn A"
+        <div class="flex-column flex flex1 mr-2">
+          <label> Người đóng góp </label>
+          <el-select
+            v-model="model.residentId"
+            placeholder="Họ và tên"
             :disabled="viewing"
-          />
+          >
+            <el-option
+              v-for="item in residentItems"
+              :key="item?.label"
+              :label="item?.label || ''"
+              :value="item?.value || ''"
+            />
+          </el-select>
         </div>
-        <div class="flex-column flex">
-          <label>Địa chỉ</label>
-          <el-input
-            v-model="model.address"
-            placeholder="00/00"
-            :disabled="viewing"
-          />
+        <div class="flex-column flex flex1">
+          <label> Thuộc căn hộ </label>
+          <el-select
+            v-model="model.apartmentId"
+            placeholder="Mã căn hộ"
+            :disabled="true"
+          >
+            <el-option
+              v-for="item in apartmentItems"
+              :key="item?.label"
+              :label="item?.label || ''"
+              :value="item?.value || ''"
+            />
+          </el-select>
         </div>
       </div>
+      <!-- Row 2 -->
+      <div class="flex-column flex flex1 mb-2">
+        <label>Địa chỉ</label>
+        <el-input
+          v-model="model.address"
+          placeholder="00/00"
+          :disabled="viewing"
+        />
+      </div>
+      <!-- Row 3 -->
       <el-select
         v-model="fundTypeKeys"
         placeholder="Chọn quỹ đóng góp"
@@ -70,10 +96,13 @@
         <el-button
           v-if="!viewing"
           type="primary"
-          @click="commandClick(Enum.Mode.Add)"
+          @click="commandClick(_enum.Mode.Add)"
           >Lưu</el-button
         >
-        <el-button v-else type="primary" @click="commandClick(Enum.Mode.Update)"
+        <el-button
+          v-else
+          type="primary"
+          @click="commandClick(_enum.Mode.Update)"
           >Sửa</el-button
         >
       </div>

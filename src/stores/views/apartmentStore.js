@@ -2,6 +2,8 @@ import { createStore } from "vuex";
 // api
 import apartmentApi from "@/apis/dictionaryAPI/apartmentAPI";
 
+const api = apartmentApi;
+
 const apartmentStore = createStore({
   state() {
     return {
@@ -43,7 +45,7 @@ const apartmentStore = createStore({
   actions: {
     async insert(context, payload) {
       try {
-        const res = await apartmentApi.postAsync(payload);
+        const res = await api.postAsync(payload);
         if (res.data?.entity) {
           context.commit("insert", res.data.entity);
         }
@@ -54,7 +56,7 @@ const apartmentStore = createStore({
 
     async update(context, payload) {
       try {
-        const res = await apartmentApi.putAsync(payload);
+        const res = await api.putAsync(payload);
         if (res.data?.entity) {
           context.commit("update", res.data.entity);
         }
@@ -65,7 +67,7 @@ const apartmentStore = createStore({
 
     async delete(context, payload) {
       try {
-        const res = await apartmentApi.deleteAsync(payload);
+        const res = await api.deleteAsync(payload);
         if (res.data?.entity) {
           context.commit("delete", res.data.entity);
         }
@@ -76,7 +78,7 @@ const apartmentStore = createStore({
 
     async getAll(context) {
       try {
-        const res = await apartmentApi.getAsync();
+        const res = await api.getAsync();
         if (res.data) {
           context.commit("getAll", res.data);
         }

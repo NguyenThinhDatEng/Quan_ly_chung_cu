@@ -1,11 +1,14 @@
 import { ref } from "vue";
-// Enum
-import Enum from "@/commons/enum";
+// store
+import vehicleFeeStore from "@/stores/views/vehicleFeeStore";
+
 export const useVehicleDetail = () => {
   const title = ref("Thông tin phương tiện");
 
+  const store = vehicleFeeStore;
+
   return {
     title,
-    Enum,
+    store,
   };
 };

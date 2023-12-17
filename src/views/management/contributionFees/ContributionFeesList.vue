@@ -2,7 +2,7 @@
   <div class="contribution-fees-list flex-column">
     <div class="toolbar mb-2">
       <div class="left">
-        <el-select v-model="year">
+        <el-select v-model="year" popper-class="year">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -25,6 +25,7 @@
       :table-data="tableData"
       :props-data="propsData"
       :max-height="tableMaxHeight"
+      :loading="loading"
       @handle-edit="handleOnEditGrid"
     ></t-grid-viewer>
   </div>
@@ -47,7 +48,6 @@ export default {
 
 <style lang="scss">
 .contribution-fees-list {
-  position: relative;
   @import "./ContributionFeesList.scss";
 }
 </style>

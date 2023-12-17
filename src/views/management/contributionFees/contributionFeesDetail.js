@@ -1,11 +1,38 @@
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, computed } from "vue";
 // Enum
-import Enum from "@/commons/enum";
+import _enum from "@/commons/enum";
 import FundType from "@/commons/enum/FundType";
 import i18nFundType from "@/i18n/enum/i18nFundType";
+// stores
+import apartmentStore from "@/stores/views/apartmentStore";
+import residentStore from "@/stores/views/residentStore.js";
 
 export const useContributionFeesDetail = () => {
   const title = ref("Khoản thu phí đóng góp");
+
+  const apartmentItems = computed(() => {
+    const items = apartmentStore?.state?.items ?? [];
+    const idField = apartmentStore?.state?.idField;
+    const codeField = apartmentStore?.state?.codeField;
+
+    return items.map((item) => {
+      return {
+        label: item[codeField],
+        value: item[idField],
+      };
+    });
+  });
+
+  const residentItems = computed(() => {
+    const { items, idField, nameField } = residentStore.state;
+
+    return items.map((item) => {
+      return {
+        label: item[nameField],
+        value: item[idField],
+      };
+    });
+  });
 
   const options = [
     {
@@ -98,7 +125,20 @@ export const useContributionFeesDetail = () => {
         visible: false,
       });
     });
+
+    // Lấy dữ liệu căn hộ nếu trong store chưa có dữ liệu
+    getRelatedData(apartmentStore);
+
+    // Lấy dữ liệu cư dân nếu trong store chưa có dữ liệu
+    getRelatedData(residentStore);
   });
+
+  const getRelatedData = (store) => {
+    const items = store?.state?.items ?? [];
+    if (items.length == 0 && typeof store.dispatch == "function") {
+      store.dispatch(_enum.Store.Mutations.GetAll);
+    }
+  };
 
   return {
     title,
@@ -108,6 +148,7 @@ export const useContributionFeesDetail = () => {
     selectedFunds,
     onClear,
     onRemoveTag,
-    Enum,
+    apartmentItems,
+    residentItems,
   };
 };

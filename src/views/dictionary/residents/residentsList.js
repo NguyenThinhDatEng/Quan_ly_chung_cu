@@ -20,6 +20,7 @@ export const useResidentsList = () => {
       prop: "name",
       label: "Họ và tên",
       sortable: true,
+      minWidth: 150,
     },
     {
       prop: "phoneNumber",
@@ -27,7 +28,7 @@ export const useResidentsList = () => {
       width: 150,
     },
     {
-      prop: "identificationNumber",
+      prop: "cccd",
       label: "Số CMD/CCCD",
       width: 180,
     },
@@ -48,7 +49,7 @@ export const useResidentsList = () => {
     {
       prop: "career",
       label: "Nghề nghiệp",
-      width: 200,
+      width: 180,
     },
   ]);
 

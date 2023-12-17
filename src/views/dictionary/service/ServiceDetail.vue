@@ -1,7 +1,7 @@
 <template>
   <t-dynamic-popup
     :title="title"
-    :width="450"
+    :width="500"
     name="ServiceDetail"
     class="service-detail"
     @before-open="beforeOpen"
@@ -10,40 +10,28 @@
     <!-- Nội dung popup -->
     <template #content>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1 mr-2">
           <label> Mã dịch vụ </label>
           <el-input
-            v-model="model.vehicleCode"
-            placeholder="V0001"
+            v-model="model.serviceFeeTypeCode"
+            placeholder="S01"
             :disabled="viewing"
           />
         </div>
-      </div>
-      <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1">
           <label> Loại dịch vụ </label>
           <el-input
-            v-model="model.vehicleName"
-            placeholder="Xe ..."
+            v-model="model.name"
+            placeholder="Tên loại dịch vụ"
             :disabled="viewing"
           />
         </div>
       </div>
       <div class="flex space-between mb-2">
-        <div class="flex-column flex mr-1">
-          <label>Mức giá</label>
-          <el-input-number
-            v-model="model.price"
-            placeholder="0"
-            :min="0"
-            :controls="false"
-            :disabled="viewing"
-          />
-        </div>
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1 mr-2">
           <label>Đơn vị</label>
           <el-select
-            v-model="model.unit"
+            v-model="model.measuringUnit"
             placeholder="Chọn đơn vị"
             class="select"
             clearable
@@ -57,6 +45,16 @@
               :style="{ fontFamily: 'Avenir, Helvetica, Arial, sans-serif' }"
             />
           </el-select>
+        </div>
+        <div class="flex-column flex flex1">
+          <label>Đơn giá / đơn vị</label>
+          <el-input-number
+            v-model="model.pricePerUnit"
+            placeholder="0"
+            :min="0"
+            :controls="false"
+            :disabled="viewing"
+          />
         </div>
       </div>
     </template>

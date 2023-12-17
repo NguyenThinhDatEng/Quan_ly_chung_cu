@@ -3,6 +3,12 @@
   justify-content: space-between;
   align-items: center;
 
+  .left {
+    .el-select {
+      width: 100px;
+    }
+  }
+
   .right {
     .add {
       width: fit-content;

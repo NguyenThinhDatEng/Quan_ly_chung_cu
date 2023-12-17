@@ -1,69 +1,42 @@
-import { ref, onMounted, reactive } from "vue";
-// enum
-import ServiceUnit from "@/commons/enum/ServiceUnit";
-// resources
-import Resource from "@/commons/resource";
-// functions
-import CommonFunction from "@/commons/commonFunction";
+import { reactive } from "vue";
+// store
+import serviceFeeStore from "@/stores/views/serviceFeeStore";
+// Enum
+import _enum from "@/commons/enum";
 
 export const usServiceList = () => {
-  const tableData = ref([
-    {
-      serviceCode: "S0001",
-      serviceName: "Điện",
-      price: 3800,
-      unit: ServiceUnit.Number,
-    },
-    {
-      serviceCode: "S0002",
-      serviceName: "Nước",
-      price: 8509,
-      unit: ServiceUnit.CubicMeter,
-    },
-    {
-      serviceCode: "S0003",
-      serviceName: "Vệ sinh",
-      price: 100000,
-      unit: ServiceUnit.OnePersonOneMonth,
-    },
-  ]);
+  const store = serviceFeeStore;
+
+  const detailForm = "ServiceDetail";
 
   const propsData = reactive([
     {
-      prop: "serviceCode",
+      prop: "serviceFeeTypeCode",
       label: "Mã dịch vụ",
       sortable: true,
       width: 200,
       align: "center",
     },
     {
-      prop: "serviceName",
+      prop: "name",
       label: "Loại dịch vụ",
+      minWidth: 140,
     },
     {
-      prop: "price",
+      prop: "pricePerUnit",
       label: "Mức giá",
-      width: 200,
+      width: 150,
       align: "right",
     },
     {
-      prop: "unit",
+      prop: "measuringUnit",
       label: "Đơn vị",
-      width: 200,
+      width: 150,
+      align: "center",
+      enum: "ServiceUnit",
+      columnType: _enum.Table.ColumnType.enum,
     },
   ]);
 
-  onMounted(() => {
-    const mapping = CommonFunction.mappingEnumWithResource(
-      ServiceUnit,
-      Resource.ServiceUnit
-    );
-    tableData.value = tableData.value.map((item) => {
-      return { ...item, unit: mapping[item.unit] };
-    });
-  });
-
-  const detailForm = "ServiceDetail";
-
-  return { tableData, propsData, detailForm };
+  return { propsData, detailForm, store };
 };

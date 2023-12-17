@@ -1,14 +1,14 @@
 import { createStore } from "vuex";
 // api
-import residentAPI from "@/apis/dictionaryAPI/residentAPI";
+import serviceFeeAPI from "@/apis/dictionaryAPI/serviceFeeAPI";
 
-const api = residentAPI;
+const api = serviceFeeAPI;
 
-const apartmentStore = createStore({
+const serviceFeeStore = createStore({
   state() {
     return {
       idField: "id",
-      nameField: "name",
+      codeField: "serviceTypeCode",
       items: [],
     };
   },
@@ -46,8 +46,7 @@ const apartmentStore = createStore({
     async insert(context, payload) {
       try {
         const res = await api.postAsync(payload);
-        let data = res.data?.entity;
-        if (data) {
+        if (res.data?.entity) {
           context.commit("insert", res.data.entity);
         }
       } catch (error) {
@@ -90,4 +89,4 @@ const apartmentStore = createStore({
   },
 });
 
-export default apartmentStore;
+export default serviceFeeStore;
