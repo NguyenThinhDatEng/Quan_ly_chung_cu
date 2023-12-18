@@ -26,6 +26,7 @@
             placeholder="Mã căn hộ"
             no-data-text="Không có dữ liệu"
             :disabled="viewing"
+            @change="selectApartment"
           >
             <el-option
               v-for="item in apartmentItems"
@@ -84,7 +85,7 @@
       </div>
       <!-- Row 4 -->
       <div class="flex space-between">
-        <div class="flex-column flex flex1 mr-2">
+        <div class="flex-column flex1 mr-2">
           <label> Giới tính </label>
           <div class="flex items-center text-sm">
             <el-radio-group v-model="model.gender" :disabled="viewing">
@@ -94,7 +95,7 @@
             </el-radio-group>
           </div>
         </div>
-        <div class="flex-column flex flex1">
+        <div class="flex-column flex1">
           <label> Nghề nghiệp </label>
           <el-input
             v-model="model.career"
@@ -107,19 +108,30 @@
     <!-- Chân popup -->
     <template #footer="{ close }">
       <div class="flex footer">
-        <el-button @click="close">Cancel</el-button>
-        <el-button
-          v-if="!viewing"
-          type="primary"
-          @click="commandClick(_enum.Mode.Add)"
-          >Lưu</el-button
-        >
-        <el-button
-          v-else
-          type="primary"
-          @click="commandClick(_enum.Mode.Update)"
-          >Sửa</el-button
-        >
+        <div class="left flex">
+          <el-checkbox
+            v-model="model.isOwner"
+            size="large"
+            border
+            :disabled="viewing || ownerDisable"
+            >Chủ hộ</el-checkbox
+          >
+        </div>
+        <div class="right">
+          <el-button @click="close">Cancel</el-button>
+          <el-button
+            v-if="!viewing"
+            type="primary"
+            @click="commandClick(_enum.Mode.Add)"
+            >Lưu</el-button
+          >
+          <el-button
+            v-else
+            type="primary"
+            @click="commandClick(_enum.Mode.Update)"
+            >Sửa</el-button
+          >
+        </div>
       </div>
     </template>
   </t-dynamic-popup>

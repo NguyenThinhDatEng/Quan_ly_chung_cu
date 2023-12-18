@@ -21,4 +21,12 @@
 
 .footer {
   justify-content: space-between;
+
+  .left {
+    align-items: center;
+
+    .el-checkbox {
+      height: 32px;
+    }
+  }
 }

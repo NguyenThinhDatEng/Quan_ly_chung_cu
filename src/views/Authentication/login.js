@@ -41,6 +41,7 @@ export const useLogin = () => {
       }
     } catch (error) {
       console.log(error);
+      ElMessage.error("Có lỗi xảy ra!");
     } finally {
       loading.value = false;
     }

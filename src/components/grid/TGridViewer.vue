@@ -28,24 +28,24 @@
       :width="showSummary ? 70 : 60"
     />
     <el-table-column
-      v-for="item in propsData"
-      :key="item.prop"
-      :prop="item.prop"
-      :label="item.label"
-      :width="item.width"
-      :align="item.align"
-      :sortable="item.sortable"
-      :min-width="item.minWidth"
+      v-for="col in propsData"
+      :key="col.prop"
+      :prop="col.prop"
+      :label="col.label"
+      :width="col.width"
+      :align="col.align"
+      :sortable="col.sortable"
+      :min-width="col.minWidth"
     >
       <template #default="scope">
-        <div style="display: flex; align-items: center">
-          <el-icon v-if="item.iconName != null"
-            ><component :is="item.iconName"
+        <el-icon v-if="col.columnType == _enum.Table.ColumnType.boolean"
+          ><Check v-show="renderData(scope.row, col)"
+        /></el-icon>
+        <div v-else style="display: flex; align-items: center">
+          <el-icon v-if="col.iconName != null"
+            ><component :is="col.iconName"
           /></el-icon>
-          <!-- <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span> -->
-          <span style="margin-left: 10px">{{
-            renderData(scope.row, item)
-          }}</span>
+          <span>{{ renderData(scope.row, col) }}</span>
         </div>
       </template>
     </el-table-column>
@@ -84,7 +84,7 @@
 import { getCurrentInstance, ref } from "vue";
 import moment from "moment";
 // component
-import { Timer } from "@element-plus/icons-vue";
+import { Timer, Check } from "@element-plus/icons-vue";
 // resources
 import _enum from "@/commons/enum";
 import _i18n from "@/i18n/enum/index.js";
@@ -93,6 +93,7 @@ export default {
   name: "TGridViewer",
   components: {
     Timer,
+    Check,
   },
   props: {
     tableData: {
@@ -170,7 +171,7 @@ export default {
       if (Object.keys(data).length > 0) {
         switch (column.columnType) {
           case _enum.Table.ColumnType.date:
-            return moment(data).format("DD/MM/YYYY");
+            return moment(data[column.prop]).format("DD/MM/YYYY");
           case _enum.Table.ColumnType.enum:
             return me.formatEnum(data, column);
           default:
@@ -270,6 +271,7 @@ export default {
       getHeaderCellClassNameDefault,
       renderData,
       formatEnum,
+      _enum,
     };
   },
 };

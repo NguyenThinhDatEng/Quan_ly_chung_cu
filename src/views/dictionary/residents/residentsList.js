@@ -28,6 +28,13 @@ export const useResidentsList = () => {
       width: 150,
     },
     {
+      prop: "isOwner",
+      label: "Chủ hộ",
+      width: 90,
+      align: "center",
+      columnType: _enum.Table.ColumnType.boolean,
+    },
+    {
       prop: "cccd",
       label: "Số CMD/CCCD",
       width: 180,
