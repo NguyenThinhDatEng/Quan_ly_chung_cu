@@ -3,6 +3,8 @@ import { reactive } from "vue";
 import residentStore from "@/stores/views/residentStore.js";
 // enum
 import _enum from "@/commons/enum";
+// i18n
+import i18nTag from "@/i18n/enum/i18nTag";
 
 export const useResidentsList = () => {
   const detailForm = "ResidentsDetail";
@@ -57,6 +59,14 @@ export const useResidentsList = () => {
       prop: "career",
       label: "Nghề nghiệp",
       width: 180,
+    },
+    {
+      prop: "status",
+      label: "Tình trạng",
+      width: 120,
+      enum: "ResidentStatus",
+      columnType: _enum.Table.ColumnType.enum,
+      tags: [i18nTag.Success, i18nTag.Warning],
     },
   ]);
 

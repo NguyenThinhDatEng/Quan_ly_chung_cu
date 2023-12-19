@@ -38,14 +38,20 @@
       :min-width="col.minWidth"
     >
       <template #default="scope">
-        <el-icon v-if="col.columnType == _enum.Table.ColumnType.boolean"
+        <el-icon v-if="col.columnType == Enum.Table.ColumnType.boolean"
           ><Check v-show="renderData(scope.row, col)"
         /></el-icon>
         <div v-else style="display: flex; align-items: center">
           <el-icon v-if="col.iconName != null"
             ><component :is="col.iconName"
           /></el-icon>
-          <span>{{ renderData(scope.row, col) }}</span>
+          <el-tag
+            v-if="col.tags"
+            :type="col.tags[scope.row[col.prop]]"
+            class="text-center"
+            >{{ renderData(scope.row, col) }}</el-tag
+          >
+          <span v-else>{{ renderData(scope.row, col) }}</span>
         </div>
       </template>
     </el-table-column>
@@ -86,7 +92,7 @@ import moment from "moment";
 // component
 import { Timer, Check } from "@element-plus/icons-vue";
 // resources
-import _enum from "@/commons/enum";
+import Enum from "@/commons/enum";
 import _i18n from "@/i18n/enum/index.js";
 
 export default {
@@ -170,9 +176,9 @@ export default {
       const me = proxy;
       if (Object.keys(data).length > 0) {
         switch (column.columnType) {
-          case _enum.Table.ColumnType.date:
+          case Enum.Table.ColumnType.date:
             return moment(data[column.prop]).format("DD/MM/YYYY");
-          case _enum.Table.ColumnType.enum:
+          case Enum.Table.ColumnType.enum:
             return me.formatEnum(data, column);
           default:
             return data[column.prop];
@@ -182,7 +188,7 @@ export default {
     };
 
     const formatEnum = (data, column) => {
-      const val = _enum[column.enum];
+      const val = Enum[column.enum];
 
       let arr = [];
 
@@ -271,7 +277,7 @@ export default {
       getHeaderCellClassNameDefault,
       renderData,
       formatEnum,
-      _enum,
+      Enum,
     };
   },
 };

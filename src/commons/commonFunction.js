@@ -136,4 +136,15 @@ export default {
     });
     return result;
   },
+
+  generateComboData(enumObj, i18nObj) {
+    const enumKeys = Object.keys(enumObj);
+
+    let comboData = [];
+    enumKeys.forEach((key) => {
+      comboData.push({ label: i18nObj[key], value: enumObj[key] });
+    });
+
+    return comboData;
+  },
 };

@@ -92,6 +92,7 @@ export default {
      */
     commandClick(mode) {
       const me = this;
+
       // do action
       switch (mode) {
         case _enum.Mode.Add:

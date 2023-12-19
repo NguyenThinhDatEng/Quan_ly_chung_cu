@@ -84,7 +84,7 @@
         </div>
       </div>
       <!-- Row 4 -->
-      <div class="flex space-between">
+      <div class="flex space-between mb-2">
         <div class="flex-column flex1 mr-2">
           <label> Giới tính </label>
           <div class="flex items-center text-sm">
@@ -104,11 +104,9 @@
           />
         </div>
       </div>
-    </template>
-    <!-- Chân popup -->
-    <template #footer="{ close }">
-      <div class="flex footer">
-        <div class="left flex">
+      <!-- Row 5 -->
+      <div class="flex space-between last-row">
+        <div class="is-owner flex1 mr-2">
           <el-checkbox
             v-model="model.isOwner"
             size="large"
@@ -117,18 +115,35 @@
             >Chủ hộ</el-checkbox
           >
         </div>
-        <div class="right">
+        <div class="flex-column flex flex1">
+          <label> Tình trạng </label>
+          <div class="flex items-center text-sm">
+            <el-radio-group v-model="model.status" :disabled="viewing">
+              <el-radio :label="_enum.ResidentStatus.Active"
+                >Hoạt động</el-radio
+              >
+              <el-radio :label="_enum.ResidentStatus.InActive"
+                >Tạm vắng</el-radio
+              >
+            </el-radio-group>
+          </div>
+        </div>
+      </div>
+    </template>
+    <!-- Chân popup -->
+    <template #footer="{ close }">
+      <div class="flex footer">
+        <div class="left flex">
           <el-button @click="close">Cancel</el-button>
+        </div>
+        <div class="right">
           <el-button
             v-if="!viewing"
             type="primary"
             @click="commandClick(_enum.Mode.Add)"
             >Lưu</el-button
           >
-          <el-button
-            v-else
-            type="primary"
-            @click="commandClick(_enum.Mode.Update)"
+          <el-button v-else type="primary" @click="onClickEdit()"
             >Sửa</el-button
           >
         </div>

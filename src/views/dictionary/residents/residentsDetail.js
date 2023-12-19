@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, getCurrentInstance } from "vue";
+import { ref, computed, onMounted, getCurrentInstance, watch } from "vue";
 // store
 import residentStore from "@/stores/views/residentStore.js";
 import apartmentStore from "@/stores/views/apartmentStore";
@@ -29,20 +29,34 @@ export const useResidentsDetail = () => {
   const defaultModel = {
     gender: _enum.Gender.Male,
     isOwner: false,
+    status: _enum.ResidentStatus.Active,
   };
 
   const ownerDisable = ref(false);
   const selectApartment = (value) => {
     const me = proxy;
 
-    const owner = me.store.state.items.find(
-      (item) => item.apartmentId == value && item.isOwner == true
-    );
-    if (owner) {
+    if (checkExistOwner(value)) {
       ownerDisable.value = true;
     } else {
       me.model.isOwner = true;
     }
+  };
+
+  const checkExistOwner = (apartmentId) => {
+    const me = proxy;
+    const owner = me.store.state.items.find(
+      (item) => item.apartmentId == apartmentId && item.isOwner == true
+    );
+    return owner ? true : false;
+  };
+
+  const onClickEdit = () => {
+    const me = proxy;
+    if (checkExistOwner(me.model.apartmentId) && me.model.isOwner == false) {
+      ownerDisable.value = true;
+    }
+    me.commandClick(_enum.Mode.Update);
   };
 
   onMounted(() => {
@@ -61,5 +75,6 @@ export const useResidentsDetail = () => {
     apartmentItems,
     selectApartment,
     ownerDisable,
+    onClickEdit,
   };
 };

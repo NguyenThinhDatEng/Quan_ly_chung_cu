@@ -17,6 +17,22 @@
   .date-picker-custom {
     width: unset;
   }
+
+  .last-row {
+    align-items: flex-end;
+
+    .is-owner {
+      display: flex;
+      justify-content: flex-start;
+      .el-checkbox {
+        margin-bottom: unset;
+      }
+    }
+  }
+
+  .el-radio {
+    cursor: pointer;
+  }
 }
 
 .footer {
@@ -24,9 +40,5 @@
 
   .left {
     align-items: center;
-
-    .el-checkbox {
-      height: 32px;
-    }
   }
 }

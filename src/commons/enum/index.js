@@ -85,8 +85,14 @@ export default {
 
   // Trạng thái phòng
   ApartmentStatus: {
-    NotEmpty: 0,
-    IsEmpty: 1,
+    IsEmpty: 0,
+    NotEmpty: 1,
+  },
+
+  // Trạng thái cư dân
+  ResidentStatus: {
+    Active: 0, // Hoạt động
+    InActive: 1, // Tạm vắng
   },
 
   //#endregion

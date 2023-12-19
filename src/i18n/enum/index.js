@@ -15,4 +15,10 @@ export default {
     NotEmpty: "Đang sử dụng",
     IsEmpty: "Còn trống",
   },
+
+  // Trạng thái cư dân
+  ResidentStatus: {
+    Active: "Hoạt động", // Hoạt động
+    InActive: "Tạm vắng", // Tạm vắng
+  },
 };
