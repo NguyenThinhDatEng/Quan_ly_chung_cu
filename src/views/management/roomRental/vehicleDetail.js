@@ -1,7 +1,7 @@
 import { getCurrentInstance, onMounted, ref, computed } from "vue";
 // store
 import vehicleFeeStore from "@/stores/views/vehicleFeeStore";
-// import vehicleStore from "@/stores/views/vehicleStore";
+import vehicleStore from "@/stores/views/vehicleStore";
 // enum
 import _enum from "@/commons/enum";
 
@@ -9,8 +9,11 @@ export const useVehicleDetail = () => {
   const { proxy } = getCurrentInstance();
 
   const title = ref("Phương tiện");
+  const defaultModel = {
+    vehicleCode: "V01",
+  };
 
-  // const store = vehicleStore;
+  const store = vehicleStore;
 
   const residentItems = ref([]);
   const vehicleTypeItems = computed(() => {
@@ -41,10 +44,33 @@ export const useVehicleDetail = () => {
     }
   });
 
+  const submitSuccess = (data) => {
+    if (
+      proxy._formParam.options?.updateVehicleList &&
+      typeof proxy._formParam.options.updateVehicleList == "function"
+    ) {
+      const vehicleType = vehicleFeeStore.state.items.find(
+        (item) => item.id == data.vehicleTypeId
+      );
+      const resident = proxy._formParam.residentItems.find(
+        (item) => item.id == data.ownerId
+      );
+      proxy._formParam.options.updateVehicleList({
+        vehicleType: vehicleType.name,
+        ownerCode: resident.residentCode,
+        ownerName: resident.name,
+        name: data.name,
+        plate: data.plate,
+      });
+    }
+  };
+
   return {
     title,
-    // store,
+    store,
     residentItems,
     vehicleTypeItems,
+    defaultModel,
+    submitSuccess,
   };
 };

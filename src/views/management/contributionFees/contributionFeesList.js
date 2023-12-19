@@ -3,6 +3,8 @@ import { ref, onMounted, reactive, computed } from "vue";
 import i18nFundType from "@/i18n/enum/i18nFundType";
 // store
 import contributionStore from "@/stores/views/contributionStore.js";
+// enum
+import _enum from "@/commons/enum";
 
 export const useContributionFeesList = () => {
   const detailForm = "ContributionFeesDetail";
@@ -29,7 +31,14 @@ export const useContributionFeesList = () => {
     {
       prop: "position",
       label: "Địa chỉ",
-      minWidth: 150,
+      minWidth: 120,
+    },
+    {
+      prop: "createdTime",
+      label: "Ngày đóng góp",
+      minWidth: 130,
+      align: "center",
+      columnType: _enum.Table.ColumnType.date,
     },
   ]);
 

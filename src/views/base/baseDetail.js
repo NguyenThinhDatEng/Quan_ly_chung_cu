@@ -139,6 +139,8 @@ export default {
             }
             break;
         }
+
+        me.submitSuccess(me.model);
       } catch (error) {
         console.log(error);
         ElMessage.error("Có lỗi xảy ra!");
@@ -155,5 +157,7 @@ export default {
         me.$vfm.hide(me._formParam.detailForm);
       }
     },
+
+    submitSuccess(data) {},
   },
 };

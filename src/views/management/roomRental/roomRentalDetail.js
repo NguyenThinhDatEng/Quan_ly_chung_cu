@@ -1,9 +1,13 @@
 import { getCurrentInstance, ref } from "vue";
 // enum
 import _enum from "@/commons/enum";
+// store
+import householdStore from "@/stores/views/householdStore.js";
 
 export const useRoomRentalDetail = () => {
   const { proxy } = getCurrentInstance();
+
+  const store = householdStore;
 
   const title = ref("Thông tin hộ gia đình");
 
@@ -52,8 +56,13 @@ export const useRoomRentalDetail = () => {
   const vehiclePropsData = [
     {
       prop: "name",
-      label: "Loại phương tiện",
-      minWidth: 150,
+      label: "Kiểu xe",
+      minWidth: 120,
+    },
+    {
+      prop: "vehicleType",
+      label: "Loại xe",
+      minWidth: 120,
     },
     {
       prop: "plate",
@@ -61,12 +70,12 @@ export const useRoomRentalDetail = () => {
       minWidth: 150,
     },
     {
-      prop: "residentCode",
+      prop: "ownerCode",
       label: "Mã chủ sở hữu",
       width: 130,
     },
     {
-      prop: "residentName",
+      prop: "ownerName",
       label: "Chủ sở hữu",
       minWidth: 150,
     },
@@ -80,10 +89,17 @@ export const useRoomRentalDetail = () => {
     const param = {
       mode: _enum.Mode.Add,
       residentItems: me.model.residentList,
+      detailForm: "VehicleDetail",
+      options: {
+        updateVehicleList: (newVehicle) => {
+          me.model.vehicleList.unshift(newVehicle);
+          me.store.dispatch("getAll");
+        },
+      },
     };
     me.$vfm.show({ component: "VehicleDetail" }, param).then(() => {
       // do something on modal opened
-      console.log(me.detailForm);
+      console.log("VehicleDetail");
     });
   };
 
@@ -93,5 +109,6 @@ export const useRoomRentalDetail = () => {
     vehiclePropsData,
     tableMaxHeight,
     addNewVehicle,
+    store,
   };
 };

@@ -17,16 +17,16 @@ export const useRoomRentalList = () => {
     {
       prop: "position",
       label: "Vị trí",
-      minWidth: 150,
+      minWidth: 120,
     },
     {
-      prop: "residentCode",
+      prop: "ownerCode",
       label: "Mã chủ hộ",
       sortable: true,
       minWidth: 100,
     },
     {
-      prop: "residentName",
+      prop: "ownerName",
       label: "Họ và tên chủ hộ",
       minWidth: 150,
     },
@@ -34,10 +34,10 @@ export const useRoomRentalList = () => {
       prop: "memberCount",
       label: "Số thành viên",
       width: 120,
-      align: "center",
+      align: "right",
     },
     {
-      prop: "vehicleNumber",
+      prop: "vehicleCount",
       label: "Số phương tiện",
       align: "right",
       width: 130,

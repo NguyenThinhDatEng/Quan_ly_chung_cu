@@ -63,8 +63,9 @@ export const useResidentsList = () => {
     {
       prop: "status",
       label: "Tình trạng",
-      width: 120,
+      width: 100,
       enum: "ResidentStatus",
+      align: "center",
       columnType: _enum.Table.ColumnType.enum,
       tags: [i18nTag.Success, i18nTag.Warning],
     },

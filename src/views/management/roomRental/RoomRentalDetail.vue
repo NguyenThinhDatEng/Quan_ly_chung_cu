@@ -25,11 +25,11 @@
         </div>
         <div class="flex-column flex flex1 mr-2">
           <label> Mã chủ hộ </label>
-          <el-input v-model="model.householdHeadCode" :disabled="true" />
+          <el-input v-model="model.ownerCode" :disabled="true" />
         </div>
         <div class="flex-column flex flex1">
           <label> Tên chủ hộ </label>
-          <el-input v-model="model.householdHeadCode" :disabled="true" />
+          <el-input v-model="model.ownerName" :disabled="true" />
         </div>
       </div>
       <!-- Danh sách thành viên -->
@@ -60,7 +60,7 @@
 
         <t-grid-viewer
           ref="viewRefDetail"
-          :table-data="model.residentList"
+          :table-data="model.vehicleList"
           :props-data="vehiclePropsData"
           :max-height="tableMaxHeight"
           :isShowFeatureCol="false"

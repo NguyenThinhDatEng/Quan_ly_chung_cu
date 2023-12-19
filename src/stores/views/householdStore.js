@@ -27,8 +27,19 @@ const householdStore = createStore({
         if (dataCustom) {
           dataCustom.forEach((element) => {
             if (Array.isArray(element.residentList)) {
+              // Số thành viên
               element.memberCount = element.residentList.length;
+              // Chủ hộ
+              let { residentCode, name } = element.residentList.find(
+                (item) => item.isOwner == true
+              );
+              element.ownerCode = residentCode;
+              element.ownerName = name;
             }
+            if (Array.isArray(element.vehicleList)) {
+              element.vehicleCount = element.vehicleList.length;
+            }
+            // Số phương tiện
           });
           context.commit("getAll", dataCustom);
         }
