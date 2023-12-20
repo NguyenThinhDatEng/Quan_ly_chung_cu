@@ -21,6 +21,8 @@ export default {
 
 <style lang="scss">
 .revenue {
+  max-height: 50%;
+  align-items: center;
   @import "./Revenue.scss";
 }
 </style>
