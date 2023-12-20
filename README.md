@@ -32,6 +32,10 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 [Customize the Browser's Scrollbar with CSS](https://codepen.io/akinjide/pen/BpggrZ)
 
+### Front-end
+
+[Chart](https://www.chartjs.org/docs/latest/)
+
 ### Back-end
 
 [cors](https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0)
