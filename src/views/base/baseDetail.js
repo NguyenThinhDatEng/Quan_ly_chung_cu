@@ -154,7 +154,9 @@ export default {
             type: "success",
           });
           // Xử lý sau khi lưu thành công
-          me.submitSuccess(res.data.entity);
+          if (res.data.entity) {
+            me.submitSuccess(res.data.entity);
+          }
           // hide form
           me.hide();
         } else {
@@ -187,7 +189,9 @@ export default {
             type: "success",
           });
           // Xử lý sau khi lưu thành công
-          me.submitSuccess(res.data.entity);
+          if (res.data.entity) {
+            me.submitSuccess(res.data.entity);
+          }
           // hide form
           me.hide();
         } else {
