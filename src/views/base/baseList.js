@@ -123,6 +123,7 @@ export default {
                   ElMessage.error("Có lỗi xảy ra!");
                 }
               } catch (error) {
+                console.log(error);
                 ElMessage.error("Có lỗi xảy ra!");
               }
             }

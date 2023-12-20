@@ -96,10 +96,15 @@ export const useRoomRentalDetail = () => {
       detailForm: "VehicleDetail",
       options: {
         updateVehicleList: (newVehicle) => {
-          // Cập nhật dữ liệu bảng phương tiện
-          me.model.vehicleList.unshift(newVehicle);
-          // Cập nhật dữ liệu danh sách bên ngoài
-          me.store.dispatch("getAll");
+          if (newVehicle) {
+            // Cập nhật dữ liệu bảng phương tiện
+            me.model.vehicleList.unshift(newVehicle);
+            // Cập nhật dữ liệu danh sách bên ngoài
+            me.store.commit("addVehicle", {
+              vehicle: newVehicle,
+              apartmentCode: me.model.apartmentCode,
+            });
+          }
         },
       },
     };
@@ -129,14 +134,22 @@ export const useRoomRentalDetail = () => {
               res?.status == _enum.APIStatus.Ok &&
               res?.data?.code == _enum.APICode.Success
             ) {
+              const data = res.data.entity;
               // update store
-              vehicleStore.commit("delete", res.data.entity);
-              // Cập nhật danh sách phương tiện
-              me.model.vehicleList = vehicleStore.state.items;
+              vehicleStore.commit("delete", data);
               // show toast
               ElMessage({
                 message: "Xóa thành công",
                 type: "success",
+              });
+              // Cập nhật danh sách phương tiện
+              me.model.vehicleList = me.model.vehicleList.filter(
+                (x) => x.id != data.id
+              );
+              // Cập nhật dữ liệu danh sách bên ngoài
+              me.store.commit("deleteVehicle", {
+                vehicleList: me.model.vehicleList,
+                apartmentCode: me.model.apartmentCode,
               });
             } else {
               if (res?.data?.code == _enum.APICode.Fail) {
@@ -145,6 +158,7 @@ export const useRoomRentalDetail = () => {
               ElMessage.error("Có lỗi xảy ra!");
             }
           } catch (error) {
+            console.log(error);
             ElMessage.error("Có lỗi xảy ra phía Client!");
           }
         }

@@ -166,6 +166,7 @@ export default {
           }
         }
       } catch (error) {
+        console.log(error);
         ElMessage.error("Có lỗi xảy ra!");
       }
     },
@@ -201,6 +202,7 @@ export default {
           }
         }
       } catch (error) {
+        console.log(error);
         ElMessage.error("Có lỗi xảy ra!");
       }
     },

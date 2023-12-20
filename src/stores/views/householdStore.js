@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 // api
 import householdAPI from "@/apis/managementAPI/HouseholdAPI";
+import _enum from "@/commons/enum";
 
 const api = householdAPI;
 
@@ -17,6 +18,30 @@ const householdStore = createStore({
   mutations: {
     getAll(state, data) {
       state.items = data;
+    },
+
+    deleteVehicle(state, data) {
+      // update list
+      const index = state.items.findIndex(
+        (x) => x.apartmentCode == data.apartmentCode
+      );
+      if (index > -1) {
+        // update list
+        state.items[index].vehicleList = data.vehicleList;
+        // update count
+        state.items[index].vehicleCount -= 1;
+      }
+    },
+
+    addVehicle(state, data) {
+      // update list
+      const index = state.items.findIndex(
+        (x) => x.apartmentCode == data.apartmentCode
+      );
+      if (index > -1) {
+        // update count
+        state.items[index].vehicleCount += 1;
+      }
     },
   },
 
