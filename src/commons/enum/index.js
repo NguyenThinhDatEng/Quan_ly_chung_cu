@@ -95,8 +95,8 @@ export default {
 
   // Trạng thái phòng
   ApartmentStatus: {
-    IsEmpty: 0,
-    NotEmpty: 1,
+    NotEmpty: 0,
+    IsEmpty: 1,
   },
 
   // Trạng thái cư dân

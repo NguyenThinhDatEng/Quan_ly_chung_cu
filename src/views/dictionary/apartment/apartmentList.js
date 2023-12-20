@@ -3,6 +3,8 @@ import { onMounted, reactive } from "vue";
 import apartmentStore from "@/stores/views/apartmentStore.js";
 // Enum
 import _enum from "@/commons/enum";
+// i18n
+import i18nTag from "@/i18n/enum/i18nTag";
 
 export const usApartmentList = () => {
   const store = apartmentStore;
@@ -47,6 +49,7 @@ export const usApartmentList = () => {
       align: "center",
       enum: "ApartmentStatus",
       columnType: _enum.Table.ColumnType.enum,
+      tags: [i18nTag.Success, i18nTag.Warning],
     },
   ]);
 

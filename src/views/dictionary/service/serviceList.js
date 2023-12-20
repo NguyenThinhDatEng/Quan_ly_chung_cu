@@ -32,7 +32,6 @@ export const usServiceList = () => {
       prop: "measuringUnit",
       label: "Đơn vị",
       width: 150,
-      align: "center",
       enum: "ServiceUnit",
       columnType: _enum.Table.ColumnType.enum,
     },

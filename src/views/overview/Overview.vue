@@ -8,7 +8,9 @@
       <div class="info">
         Số lượng dân cư: <b>{{ noOfResidents }}</b>
       </div>
-      <div class="info">Số lượng phương tiện đã đăng ký: <b>50</b></div>
+      <div class="info">
+        Số lượng phương tiện đã đăng ký: <b>{{ noOfVehicles }}</b>
+      </div>
     </div>
     <el-image :src="url" :fit="fit">
       <template #error>

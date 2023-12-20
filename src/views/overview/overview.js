@@ -1,8 +1,8 @@
 import { computed, onMounted, ref } from "vue";
 // store
 import apartmentStore from "@/stores/views/apartmentStore.js";
-// store
 import residentStore from "@/stores/views/residentStore.js";
+import vehicleStore from "@/stores/views/vehicleStore";
 // enum
 import _enum from "@/commons/enum";
 
@@ -32,6 +32,11 @@ export const useOverView = () => {
     return items.length;
   });
 
+  const noOfVehicles = computed(() => {
+    const items = vehicleStore?.state?.items ?? [];
+    return items.length;
+  });
+
   onMounted(async () => {
     await getRelatedData(apartmentStore);
     await getRelatedData(residentStore);
@@ -45,5 +50,5 @@ export const useOverView = () => {
     }
   };
 
-  return { url, fit, noOfApartment, loading, noOfResidents };
+  return { url, fit, noOfApartment, loading, noOfResidents, noOfVehicles };
 };
