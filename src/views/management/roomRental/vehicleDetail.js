@@ -49,19 +49,7 @@ export const useVehicleDetail = () => {
       proxy._formParam.options?.updateVehicleList &&
       typeof proxy._formParam.options.updateVehicleList == "function"
     ) {
-      const vehicleType = vehicleFeeStore.state.items.find(
-        (item) => item.id == data.vehicleTypeId
-      );
-      const resident = proxy._formParam.residentItems.find(
-        (item) => item.id == data.ownerId
-      );
-      proxy._formParam.options.updateVehicleList({
-        vehicleType: vehicleType.name,
-        ownerCode: resident.residentCode,
-        ownerName: resident.name,
-        name: data.name,
-        plate: data.plate,
-      });
+      proxy._formParam.options.updateVehicleList(data);
     }
   };
 

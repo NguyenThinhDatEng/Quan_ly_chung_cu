@@ -100,11 +100,28 @@ export default {
           if (action == _enum.Action.Confirm) {
             if (me.idField) {
               try {
-                await me.store.dispatch("delete", row[me.idField]);
-                ElMessage({
-                  message: "Xóa bản ghi thành công",
-                  type: "success",
-                });
+                // CALL API
+                const res = await me.store.state.api.deleteAsync(
+                  row[me.idField]
+                );
+                // Show result
+                if (
+                  res?.status == _enum.APIStatus.Ok &&
+                  res?.data?.code == _enum.APICode.Success
+                ) {
+                  // update store
+                  me.store.commit("delete", res.data.entity);
+                  // show toast
+                  ElMessage({
+                    message: "Xóa thành công",
+                    type: "success",
+                  });
+                } else {
+                  if (res?.data?.code == _enum.APICode.Fail) {
+                    ElMessage.error(res.data.message);
+                  }
+                  ElMessage.error("Có lỗi xảy ra!");
+                }
               } catch (error) {
                 ElMessage.error("Có lỗi xảy ra!");
               }

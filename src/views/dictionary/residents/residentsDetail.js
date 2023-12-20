@@ -5,11 +5,14 @@ import apartmentStore from "@/stores/views/apartmentStore";
 // root enum
 import i18nEnum from "@/i18n/enum";
 import _enum from "../../../commons/enum";
+// api
+import residentAPI from "@/apis/dictionaryAPI/residentAPI";
 
 export const useResidentsDetail = () => {
   const { proxy } = getCurrentInstance();
 
   const store = residentStore;
+  const api = residentAPI;
 
   const title = ref("Thông tin cư dân");
 
@@ -76,5 +79,6 @@ export const useResidentsDetail = () => {
     selectApartment,
     ownerDisable,
     onClickEdit,
+    api,
   };
 };

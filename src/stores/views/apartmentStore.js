@@ -10,6 +10,7 @@ const apartmentStore = createStore({
       idField: "id",
       codeField: "apartmentCode",
       items: [],
+      api: api,
     };
   },
 
@@ -43,39 +44,6 @@ const apartmentStore = createStore({
   },
 
   actions: {
-    async insert(context, payload) {
-      try {
-        const res = await api.postAsync(payload);
-        if (res.data?.entity) {
-          context.commit("insert", res.data.entity);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async update(context, payload) {
-      try {
-        const res = await api.putAsync(payload);
-        if (res.data?.entity) {
-          context.commit("update", res.data.entity);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async delete(context, payload) {
-      try {
-        const res = await api.deleteAsync(payload);
-        if (res.data?.entity) {
-          context.commit("delete", res.data.entity);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
     async getAll(context) {
       try {
         const res = await api.getAsync();

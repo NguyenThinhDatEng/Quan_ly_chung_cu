@@ -9,27 +9,15 @@ const vehicleFeeStore = createStore({
     return {
       idField: "id",
       items: [],
+      api: api,
     };
   },
 
   getters: {},
 
   mutations: {
-    getAll(state, data) {
-      state.items = data;
-    },
-
     insert(state, data) {
       state.items.unshift(data);
-    },
-
-    update(state, data) {
-      let selectedData = state.items.filter(
-        (item) => item[state.idField] == data[state.idField]
-      );
-      if (selectedData.length > 0) {
-        Object.assign(selectedData[0], data);
-      }
     },
 
     delete(state, data) {
@@ -41,29 +29,7 @@ const vehicleFeeStore = createStore({
     },
   },
 
-  actions: {
-    async insert(context, payload) {
-      try {
-        const res = await api.postAsync(payload);
-        if (res.data?.entity) {
-          context.commit("insert", res.data.entity);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async delete(context, payload) {
-      try {
-        const res = await api.deleteAsync(payload);
-        if (res.data?.entity) {
-          context.commit("delete", res.data.entity);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
+  actions: {},
 });
 
 export default vehicleFeeStore;

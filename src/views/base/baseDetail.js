@@ -121,33 +121,84 @@ export default {
       try {
         switch (me.editMode) {
           case _enum.Mode.Add:
-            if (typeof me.store.dispatch == "function") {
-              await me.store.dispatch("insert", me.model);
-              ElMessage({
-                message: "Thêm mới thành công",
-                type: "success",
-              });
-            }
+            await me.insert();
             break;
           case _enum.Mode.Update:
-            if (typeof me.store.dispatch == "function") {
-              await me.store.dispatch("update", me.model);
-              ElMessage({
-                message: "Cập nhật thành công",
-                type: "success",
-              });
-            }
+            await me.update();
             break;
         }
-
         me.submitSuccess(me.model);
       } catch (error) {
         console.log(error);
         ElMessage.error("Có lỗi xảy ra!");
       } finally {
         me.loading = false;
-        // hide form
-        me.hide();
+      }
+    },
+
+    async insert() {
+      const me = this;
+      try {
+        // CALL API
+        const res = await me.store.state.api.postAsync(me.model);
+        // Show result
+        if (
+          res?.status == _enum.APIStatus.Ok &&
+          res?.data?.code == _enum.APICode.Success
+        ) {
+          // update store
+          me.store.commit("insert", res.data.entity);
+          // show toast
+          ElMessage({
+            message: "Thêm mới thành công",
+            type: "success",
+          });
+          // Xử lý sau khi lưu thành công
+          me.submitSuccess(res.data.entity);
+          // hide form
+          me.hide();
+        } else {
+          if (res?.data?.code == _enum.APICode.Fail) {
+            ElMessage.error(res.data.message);
+          } else {
+            ElMessage.error("Có lỗi xảy ra!");
+          }
+        }
+      } catch (error) {
+        ElMessage.error("Có lỗi xảy ra!");
+      }
+    },
+
+    async update() {
+      const me = this;
+      try {
+        // CALL API
+        const res = await me.store.state.api.putAsync(me.model);
+        // Show result
+        if (
+          res?.status == _enum.APIStatus.Ok &&
+          res?.data?.code == _enum.APICode.Success
+        ) {
+          // update store
+          me.store.commit("update", res.data.entity);
+          // show toast
+          ElMessage({
+            message: "Cập nhật thành công",
+            type: "success",
+          });
+          // Xử lý sau khi lưu thành công
+          me.submitSuccess(res.data.entity);
+          // hide form
+          me.hide();
+        } else {
+          if (res?.data?.code == _enum.APICode.Fail) {
+            ElMessage.error(res.data.message);
+          } else {
+            ElMessage.error("Có lỗi xảy ra!");
+          }
+        }
+      } catch (error) {
+        ElMessage.error("Có lỗi xảy ra!");
       }
     },
 

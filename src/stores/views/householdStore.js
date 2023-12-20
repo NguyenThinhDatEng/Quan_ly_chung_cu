@@ -8,6 +8,7 @@ const householdStore = createStore({
   state() {
     return {
       items: [],
+      api: api,
     };
   },
 

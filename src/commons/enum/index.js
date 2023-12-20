@@ -66,14 +66,24 @@ export default {
       Delete: "delete",
     },
   },
+
+  //#region Custom
+
+  APIStatus: {
+    Ok: 200,
+  },
+
+  APICode: {
+    Success: 1,
+    Fail: -1,
+  },
+
   // Giới tính
   Gender: {
     Other: 0,
     Male: 1,
     Female: 2,
   },
-
-  //#region Custom
 
   // Đơn vị dịch vụ
   ServiceUnit: {
