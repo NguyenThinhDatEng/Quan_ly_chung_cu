@@ -1,5 +1,7 @@
 <template>
-  <div class="revenue flex-column"></div>
+  <div class="revenue flex-column">
+    <canvas ref="chartCanvas"></canvas>
+  </div>
 </template>
 
 <script>
