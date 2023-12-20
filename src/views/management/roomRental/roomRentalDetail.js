@@ -3,6 +3,10 @@ import { getCurrentInstance, ref } from "vue";
 import _enum from "@/commons/enum";
 // store
 import householdStore from "@/stores/views/householdStore.js";
+import vehicleStore from "@/stores/views/vehicleStore";
+
+// components
+import { ElMessageBox, ElMessage } from "element-plus";
 
 export const useRoomRentalDetail = () => {
   const { proxy } = getCurrentInstance();
@@ -81,7 +85,7 @@ export const useRoomRentalDetail = () => {
     },
   ];
 
-  const tableMaxHeight = 160;
+  const tableMaxHeight = 40 * 5 + 6;
 
   const addNewVehicle = () => {
     const me = proxy;
@@ -92,7 +96,9 @@ export const useRoomRentalDetail = () => {
       detailForm: "VehicleDetail",
       options: {
         updateVehicleList: (newVehicle) => {
+          // Cập nhật dữ liệu bảng phương tiện
           me.model.vehicleList.unshift(newVehicle);
+          // Cập nhật dữ liệu danh sách bên ngoài
           me.store.dispatch("getAll");
         },
       },
@@ -103,6 +109,49 @@ export const useRoomRentalDetail = () => {
     });
   };
 
+  const handleOnDeleteGrid = ({ row }) => {
+    const me = proxy;
+
+    ElMessageBox.alert("Bạn có thực sự muốn xóa bản ghi này?", "Xác nhận", {
+      // if you want to disable its autofocus
+      // autofocus: false,
+      confirmButtonText: "Đồng ý",
+      showCancelButton: true,
+      cancelButtonText: "Hoãn",
+      draggable: true,
+      callback: async (action) => {
+        if (action == _enum.Action.Confirm) {
+          try {
+            // CALL API
+            const res = await vehicleStore.state.api.deleteAsync(row.id);
+            // Show result
+            if (
+              res?.status == _enum.APIStatus.Ok &&
+              res?.data?.code == _enum.APICode.Success
+            ) {
+              // update store
+              vehicleStore.commit("delete", res.data.entity);
+              // Cập nhật danh sách phương tiện
+              me.model.vehicleList = vehicleStore.state.items;
+              // show toast
+              ElMessage({
+                message: "Xóa thành công",
+                type: "success",
+              });
+            } else {
+              if (res?.data?.code == _enum.APICode.Fail) {
+                ElMessage.error(res.data.message);
+              }
+              ElMessage.error("Có lỗi xảy ra!");
+            }
+          } catch (error) {
+            ElMessage.error("Có lỗi xảy ra phía Client!");
+          }
+        }
+      },
+    });
+  };
+
   return {
     title,
     residentPropsData,
@@ -110,5 +159,6 @@ export const useRoomRentalDetail = () => {
     tableMaxHeight,
     addNewVehicle,
     store,
+    handleOnDeleteGrid,
   };
 };

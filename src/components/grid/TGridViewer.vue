@@ -67,6 +67,7 @@
       <template #default="scope">
         <slot name="btn-before" />
         <el-button
+          v-if="isShowViewFeature"
           type="primary"
           plain
           size="small"
@@ -127,6 +128,11 @@ export default {
     },
     // Ẩn hiện nút xóa
     isShowDeleteFeature: {
+      type: Boolean,
+      default: true,
+    },
+    // Ẩn hiện nút Xem/Sửa
+    isShowViewFeature: {
       type: Boolean,
       default: true,
     },

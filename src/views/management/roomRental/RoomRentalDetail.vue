@@ -63,8 +63,10 @@
           :table-data="model.vehicleList"
           :props-data="vehiclePropsData"
           :max-height="tableMaxHeight"
-          :isShowFeatureCol="false"
+          :isShowViewFeature="false"
+          :featureColWidth="100"
           :loading="false"
+          @handle-delete="handleOnDeleteGrid"
         ></t-grid-viewer>
       </div>
     </template>
