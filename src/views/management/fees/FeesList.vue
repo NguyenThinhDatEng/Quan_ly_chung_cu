@@ -3,7 +3,7 @@
     <div class="toolbar">
       <div class="left"></div>
       <div class="right">
-        <el-dropdown split-button type="primary" @click="handleClick">
+        <!-- <el-dropdown split-button type="primary" @click="autoGenerateFees">
           Sinh thu phí
           <template #dropdown>
             <el-dropdown-menu>
@@ -11,7 +11,10 @@
               <el-dropdown-item>Tháng sau</el-dropdown-item>
             </el-dropdown-menu>
           </template>
-        </el-dropdown>
+        </el-dropdown> -->
+        <el-button type="primary" class="add" @click="autoGenerateFees"
+          >Sinh thu phí</el-button
+        >
       </div>
     </div>
     <t-grid-viewer

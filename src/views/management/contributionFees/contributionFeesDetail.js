@@ -13,7 +13,7 @@ export const useContributionFeesDetail = () => {
 
   const title = ref("Khoản thu phí đóng góp");
   const defaultModel = {
-    year: new Date().getFullYear(),
+    createdTime: new Date(),
   };
 
   const store = contributionStore;
@@ -134,11 +134,13 @@ export const useContributionFeesDetail = () => {
 
     const resident = residentStore.state.items.find((item) => item.id == value);
     if (resident) {
+      // apartmentId
       me.model.apartmentId = resident.apartmentId;
       const apartment = apartmentStore.state.items.find(
-        (item) => item.id == value
+        (item) => item.id == resident.apartmentId
       );
       if (apartment) {
+        me.model.apartmentCode = apartment.apartmentCode;
         me.model.address = apartment.position;
       }
     }

@@ -1,3 +1,4 @@
+// enum
 import _enum from "@/commons/enum";
 // components
 import { ElMessage } from "element-plus";
@@ -167,7 +168,7 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        ElMessage.error("Có lỗi xảy ra!");
+        ElMessage.error("Có lỗi xảy ra phía Client!");
       }
     },
 
@@ -203,7 +204,7 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        ElMessage.error("Có lỗi xảy ra!");
+        ElMessage.error("Có lỗi xảy ra phía Client!");
       }
     },
 

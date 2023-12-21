@@ -1,8 +1,16 @@
-import { ref, onMounted, reactive, getCurrentInstance } from "vue";
+import { onMounted, reactive, getCurrentInstance } from "vue";
+// store
+import feeStore from "@/stores/views/feeStore";
+// components
+import { ElMessage } from "element-plus";
+// enum
+import _enum from "@/commons/enum";
 
 export const useFeesList = () => {
   const { proxy } = getCurrentInstance();
   const detailForm = "FeesDetail";
+
+  const store = feeStore;
 
   const propsData = reactive([
     {
@@ -65,7 +73,36 @@ export const useFeesList = () => {
     });
   };
 
+  const autoGenerateFees = async () => {
+    const me = proxy;
+    try {
+      const res = await me.store.state.api.postAsync();
+      // Show result
+      if (
+        res?.status == _enum.APIStatus.Ok &&
+        res?.data?.code == _enum.APICode.Success
+      ) {
+        // update store
+        me.store.commit("insert", res.data.entity);
+        // show toast
+        ElMessage({
+          message: "Sinh dữ liệu thành công",
+          type: "success",
+        });
+      } else {
+        if (res?.data?.code == _enum.APICode.Fail) {
+          ElMessage.error(res.data.message);
+        } else {
+          ElMessage.error("Có lỗi xảy ra!");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      ElMessage.error("Có lỗi xảy ra phía Client!");
+    }
+  };
+
   onMounted(() => {});
 
-  return { propsData, detailForm, pay };
+  return { propsData, detailForm, pay, store, autoGenerateFees };
 };

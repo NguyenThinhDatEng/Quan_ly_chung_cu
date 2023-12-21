@@ -1,4 +1,4 @@
-import { ref, onMounted, reactive, computed } from "vue";
+import { ref, onMounted, reactive, computed, getCurrentInstance } from "vue";
 // i18n
 import i18nFundType from "@/i18n/enum/i18nFundType";
 // store
@@ -7,13 +7,20 @@ import contributionStore from "@/stores/views/contributionStore.js";
 import _enum from "@/commons/enum";
 
 export const useContributionFeesList = () => {
+  const { proxy } = getCurrentInstance();
+
   const detailForm = "ContributionFeesDetail";
 
   // store
   const store = contributionStore;
 
   const tableDataCustom = computed(() => {
-    return me.tableData;
+    return proxy.tableData.filter((item) => {
+      if (item.createdTime && new Date(item.createdTime).getFullYear()) {
+        return new Date(item.createdTime).getFullYear() == year.value;
+      }
+      return false;
+    });
   });
 
   const propsData = reactive([

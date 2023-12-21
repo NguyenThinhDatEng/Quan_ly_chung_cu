@@ -40,33 +40,23 @@
           </el-select>
         </div>
         <div class="flex-column flex flex1">
-          <label for="year"> Năm </label>
-          <el-select v-model="model.year" popper-class="year" id="year">
-            <el-option
-              v-for="item in yearOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+          <label> Ngày đóng góp </label>
+          <el-date-picker
+            v-model="model.createdTime"
+            type="date"
+            placeholder="Chọn ngày đóng góp"
+            size="default"
+            format="DD/MM/YYYY"
+            :style="{ width: 'unset' }"
+            :disabled="viewing"
+          />
         </div>
       </div>
       <!-- Row 2 -->
       <div class="flex space-between mb-2">
         <div class="flex-column flex flex1 mr-2">
-          <label> Thuộc căn hộ </label>
-          <el-select
-            v-model="model.apartmentId"
-            placeholder="Mã căn hộ"
-            :disabled="true"
-          >
-            <el-option
-              v-for="item in apartmentItems"
-              :key="item?.label"
-              :label="item?.label || ''"
-              :value="item?.value || ''"
-            />
-          </el-select>
+          <label>Thuộc căn hộ</label>
+          <el-input v-model="model.apartmentCode" :disabled="true" />
         </div>
         <div class="flex-column flex flex1">
           <label>Địa chỉ</label>

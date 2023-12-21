@@ -22,7 +22,7 @@
       </div>
     </div>
     <t-grid-viewer
-      :table-data="tableData"
+      :table-data="tableDataCustom"
       :props-data="propsData"
       :max-height="tableMaxHeight"
       :loading="loading"
