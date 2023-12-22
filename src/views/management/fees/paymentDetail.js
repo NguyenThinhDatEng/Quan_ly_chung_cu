@@ -43,7 +43,7 @@ export const useVehicleDetail = () => {
   }
 
   onMounted(() => {
-    if (typeof me.store.dispatch == "function") {
+    if (store.state.items.length == 0) {
       store.dispatch("getAll");
     }
   });
