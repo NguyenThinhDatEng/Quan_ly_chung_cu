@@ -1,54 +1,20 @@
 import { computed, getCurrentInstance, ref, onMounted, reactive } from "vue";
 // common function
 import commonFunction from "@/commons/commonFunction";
-// enum
-import ServiceUnit from "@/commons/enum/ServiceUnit";
+// store
+import serviceFeeStore from "@/stores/views/serviceFeeStore";
+// Enum
+import _enum from "@/commons/enum";
 
 export const useFeesDetail = () => {
   const { proxy } = getCurrentInstance();
   const title = ref("Quản lý thu phí");
   const isShowFeesDetail = reactive({
-    apartmentFee: false,
     servicesFee: false,
   });
 
-  const serviceList = reactive([
-    {
-      serviceCode: "S0001",
-      serviceName: "Điện",
-      price: 3800,
-      unit: ServiceUnit.Number,
-    },
-    {
-      serviceCode: "S0002",
-      serviceName: "Nước",
-      price: 8509,
-      unit: ServiceUnit.CubicMeter,
-    },
-    {
-      serviceCode: "S0003",
-      serviceName: "Vệ sinh",
-      price: 100000,
-      unit: ServiceUnit.OnePersonOneMonth,
-    },
-  ]);
+  const serviceList = computed(() => proxy.model.serviceFeeList ?? []);
 
-  // Phí dịch vụ chung cư
-  const apartmentServiceFee = computed(() => {
-    const area = proxy.model.area || 0;
-    return {
-      amount: area * 10000,
-      display: commonFunction.formatMoney(area * 10000),
-    };
-  });
-  // Phí quản lý chung cư
-  const apartmentManagementFee = computed(() => {
-    const area = proxy.model.area || 0;
-    return {
-      amount: area * 7000,
-      display: commonFunction.formatMoney(area * 7000),
-    };
-  });
   // Phí chung cư
   const apartmentFee = computed(() => {
     const amount =
@@ -61,11 +27,15 @@ export const useFeesDetail = () => {
   // Phí dịch vụ
   const servicesFee = computed(() => {
     let amount = 0;
-    serviceList.forEach((service) => {
-      if (service.unit > 2) {
-        amount += (service.newIndex - service.oldIndex) * service.price || 0;
+    serviceList.value.forEach((service) => {
+      if (
+        service.measuringUnit == _enum.ServiceUnit.Number ||
+        service.measuringUnit == _enum.ServiceUnit.CubicMeter
+      ) {
+        amount +=
+          (service.newCount - service.oldCount) * service.pricePerUnit || 0;
       } else {
-        amount += service.price;
+        amount += service.totalFee;
       }
     });
     return {
@@ -75,7 +45,13 @@ export const useFeesDetail = () => {
   });
   // Phí gửi xe
   const vehicleFee = computed(() => {
-    const amount = 500000;
+    let amount = 0;
+    if (proxy.model.vehicleList?.length > 0) {
+      amount = proxy.model.vehicleList.reduce(
+        (acc, item) => acc + item.parkingFee,
+        0
+      );
+    }
     return {
       amount,
       display: commonFunction.formatMoney(amount),
@@ -83,10 +59,7 @@ export const useFeesDetail = () => {
   });
 
   const totalAmount = computed(() => {
-    const amount =
-      apartmentFee.value.amount +
-      servicesFee.value.amount +
-      vehicleFee.value.amount;
+    const amount = vehicleFee.value.amount + servicesFee.value.amount;
     return {
       amount,
       display: commonFunction.formatMoney(amount),
@@ -97,12 +70,45 @@ export const useFeesDetail = () => {
     isShowFeesDetail[key] = !isShowFeesDetail[key];
   };
 
-  onMounted(() => {});
+  const tableMaxHeight = 40 * 3 + 6;
+
+  const vehiclePropsData = [
+    {
+      prop: "name",
+      label: "Kiểu xe",
+      minWidth: 120,
+    },
+    {
+      prop: "vehicleType",
+      label: "Loại xe",
+      minWidth: 120,
+    },
+    {
+      prop: "plate",
+      label: "Biển số",
+      minWidth: 150,
+    },
+    {
+      prop: "ownerCode",
+      label: "Mã chủ sở hữu",
+      width: 130,
+    },
+    {
+      prop: "ownerName",
+      label: "Chủ sở hữu",
+      minWidth: 150,
+    },
+  ];
+
+  onMounted(() => {
+    // Lấy dữ liệu danh sách
+    if (serviceFeeStore.state.items.length == 0) {
+      serviceFeeStore.dispatch("getAll");
+    }
+  });
 
   return {
     title,
-    apartmentServiceFee,
-    apartmentManagementFee,
     apartmentFee,
     servicesFee,
     vehicleFee,
@@ -110,5 +116,7 @@ export const useFeesDetail = () => {
     serviceList,
     isShowFeesDetail,
     toggleFeesDetail,
+    tableMaxHeight,
+    vehiclePropsData,
   };
 };

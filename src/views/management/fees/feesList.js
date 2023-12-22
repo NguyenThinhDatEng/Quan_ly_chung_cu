@@ -5,6 +5,8 @@ import feeStore from "@/stores/views/feeStore";
 import { ElMessage } from "element-plus";
 // enum
 import _enum from "@/commons/enum";
+// i18n
+import i18nTag from "@/i18n/enum/i18nTag";
 
 export const useFeesList = () => {
   const { proxy } = getCurrentInstance();
@@ -17,24 +19,22 @@ export const useFeesList = () => {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
-      align: "center",
-      width: 120,
+      minWidth: 100,
     },
     {
-      prop: "residentCode",
-      label: "Mã chủ căn hộ",
+      prop: "ownerCode",
+      label: "Mã chủ hộ",
       sortable: true,
-      align: "center",
-      width: 150,
+      minWidth: 100,
     },
     {
-      prop: "residentName",
-      label: "Tên chủ căn hộ",
+      prop: "ownerName",
+      label: "Tên chủ hộ",
       sortable: true,
-      minWidth: 155,
+      minWidth: 110,
     },
     {
-      prop: "description",
+      prop: "note",
       label: "Ghi chú",
     },
     {
@@ -44,13 +44,26 @@ export const useFeesList = () => {
       align: "center",
     },
     {
-      prop: "toDate",
+      prop: "expiredDate",
       label: "Đến ngày",
       width: 120,
       align: "center",
+      columnType: _enum.Table.ColumnType.date,
     },
     {
-      prop: "amount",
+      prop: "electricityFee",
+      label: "Tiền điện",
+      width: 110,
+      align: "right",
+    },
+    {
+      prop: "waterFee",
+      label: "Tiền nước",
+      width: 110,
+      align: "right",
+    },
+    {
+      prop: "totalFee",
       label: "Tổng tiền",
       width: 120,
       align: "right",
@@ -58,8 +71,11 @@ export const useFeesList = () => {
     {
       prop: "status",
       label: "Trạng thái",
-      width: 150,
+      width: 120,
       align: "center",
+      enum: "PaymentStatus",
+      columnType: _enum.Table.ColumnType.enum,
+      tags: [i18nTag.Warning, i18nTag.Danger, i18nTag.Success],
     },
   ]);
 

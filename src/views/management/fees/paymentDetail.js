@@ -1,8 +1,13 @@
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 // Enum
 import Enum from "@/commons/enum";
+// store
+import paymentStore from "@/stores/views/paymentStore";
+
 export const useVehicleDetail = () => {
   const title = ref("Thông tin thanh toán");
+
+  const store = paymentStore;
 
   const propsData = [
     {
@@ -15,16 +20,9 @@ export const useVehicleDetail = () => {
     },
   ];
 
-  const tableData = ref([
-    {
-      date: "20/11/2000",
-      amount: 155000,
-    },
-    {
-      date: "20/11/2000",
-      amount: 155000,
-    },
-  ]);
+  const tableDataCustom = computed(() => {
+    return paymentStore.state.items;
+  });
 
   const tableMaxHeight = 160;
 
@@ -44,11 +42,17 @@ export const useVehicleDetail = () => {
     return [day, month, year].join("/");
   }
 
+  onMounted(() => {
+    if (typeof me.store.dispatch == "function") {
+      store.dispatch("getAll");
+    }
+  });
+
   return {
     title,
     Enum,
     propsData,
-    tableData,
+    tableDataCustom,
     tableMaxHeight,
     defaultModel,
   };

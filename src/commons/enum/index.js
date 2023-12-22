@@ -91,6 +91,7 @@ export default {
     OneRoomOneMonth: 2, // 1 phòng/tháng
     Number: 3, // số (Ex: số điện)
     CubicMeter: 4, // khối (Ex: Khối nước)
+    SquareMeter: 5, //  mét vuông
   },
 
   // Trạng thái phòng
@@ -103,6 +104,13 @@ export default {
   ResidentStatus: {
     Active: 0, // Hoạt động
     InActive: 1, // Tạm vắng
+  },
+
+  // Trạng thái thu phí
+  PaymentStatus: {
+    OnGoing: 0, // Còn hạn
+    Expired: 1, // Quá hạn
+    Paid: 2, // Hoàn thành
   },
 
   //#endregion

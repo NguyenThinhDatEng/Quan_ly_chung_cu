@@ -15,7 +15,7 @@
           <el-input
             v-model="model.serviceFeeTypeCode"
             placeholder="S01"
-            :disabled="viewing || editMode == _enum.Mode.Update"
+            :disabled="editMode != _enum.Mode.Add"
           />
         </div>
         <div class="flex-column flex flex1">
@@ -23,7 +23,7 @@
           <el-input
             v-model="model.name"
             placeholder="Tên loại dịch vụ"
-            :disabled="viewing"
+            :disabled="viewing || model.isSystem"
           />
         </div>
       </div>

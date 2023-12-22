@@ -1,10 +1,10 @@
 import { createStore } from "vuex";
 // api
-import feeAPI from "@/apis/managementAPI/feeAPI";
+import paymentAPI from "@/apis/managementAPI/FeeAPI/payment.js";
 
-const api = feeAPI;
+const api = paymentAPI;
 
-const feeStore = createStore({
+const paymentStore = createStore({
   state() {
     return {
       idField: "id",
@@ -21,7 +21,7 @@ const feeStore = createStore({
     },
 
     insert(state, data) {
-      state.items = data;
+      state.items.unshift(data);
     },
 
     update(state, data) {
@@ -56,4 +56,4 @@ const feeStore = createStore({
   },
 });
 
-export default feeStore;
+export default paymentStore;

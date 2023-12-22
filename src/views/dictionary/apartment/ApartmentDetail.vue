@@ -16,7 +16,7 @@
           <el-input
             id="apartmentCode"
             v-model="model.apartmentCode"
-            placeholder="MCH000"
+            placeholder="A00"
             :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>

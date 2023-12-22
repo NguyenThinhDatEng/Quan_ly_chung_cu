@@ -41,6 +41,9 @@ export const useResidentsDetail = () => {
 
     if (checkExistOwner(value)) {
       ownerDisable.value = true;
+      if (me.editMode == _enum.Mode.Add) {
+        me.model.isOwner = false;
+      }
     } else {
       me.model.isOwner = true;
     }

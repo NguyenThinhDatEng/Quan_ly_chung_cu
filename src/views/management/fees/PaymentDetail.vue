@@ -20,7 +20,7 @@
           />
         </div>
         <div class="flex-column">
-          <label> Tên chủ căn hộ </label>
+          <label> Tên chủ hộ </label>
           <el-input
             v-model="model.residentName"
             class="input-info"
@@ -58,7 +58,7 @@
           >Các lần thanh toán trước</span
         >
         <t-grid-viewer
-          :table-data="tableData"
+          :table-data="tableDataCustom"
           :props-data="propsData"
           :max-height="tableMaxHeight"
           :is-show-feature-col="false"
