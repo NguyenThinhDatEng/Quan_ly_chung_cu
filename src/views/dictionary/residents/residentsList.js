@@ -72,7 +72,6 @@ export const useResidentsList = () => {
         },
       ],
       filterTag: filterTag,
-      filterMultiple: false,
     },
     {
       prop: "birthDate",
