@@ -22,7 +22,10 @@ const apartmentStore = createStore({
     },
 
     insert(state, data) {
-      state.items.unshift(data);
+      state.items.push(data);
+      state.items = state.items.sort(
+        (a, b) => a[state.codeField] < b[state.codeField]
+      );
     },
 
     update(state, data) {

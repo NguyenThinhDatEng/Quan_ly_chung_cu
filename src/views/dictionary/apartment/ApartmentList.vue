@@ -2,7 +2,7 @@
   <div class="apartment-list flex-column">
     <div class="toolbar">
       <div class="left">
-        <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Địa chỉ">
+        <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Vị trí">
           <template #prefix>
             <el-icon><Search /></el-icon>
           </template>

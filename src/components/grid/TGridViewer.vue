@@ -36,6 +36,9 @@
       :align="col.align"
       :sortable="col.sortable"
       :min-width="col.minWidth"
+      :filters="col.filters"
+      :filter-multiple="col.filterMultiple"
+      :filter-method="col.filterTag"
     >
       <template #default="scope">
         <el-icon v-if="col.columnType == Enum.Table.ColumnType.boolean"
@@ -88,7 +91,7 @@
 
 <script>
 // library
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, ref, onMounted } from "vue";
 import moment from "moment";
 // component
 import { Timer, Check } from "@element-plus/icons-vue";
@@ -273,6 +276,8 @@ export default {
       }
       return classes;
     };
+
+    onMounted(() => {});
 
     return {
       handleCurrentChange,

@@ -48,14 +48,14 @@ export default {
       return this.store.state?.idField ?? "";
     },
   },
+
+  beforeCreate() {},
+
   async created() {
     const me = this;
-    me.loading = true;
-
     me.initConfig();
-
+    me.loading = true;
     await me.getTableData();
-
     me.loading = false;
   },
   mounted() {

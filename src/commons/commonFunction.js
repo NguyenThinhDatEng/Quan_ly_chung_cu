@@ -147,4 +147,21 @@ export default {
 
     return comboData;
   },
+
+  updateDom() {
+    const filterFooterButtons = document.querySelector(
+      ".el-table-filter__bottom"
+    );
+    if (filterFooterButtons?.children) {
+      filterFooterButtons.children[0].textContent = "Lọc";
+      filterFooterButtons.children[1].textContent = "Bỏ lọc";
+    }
+
+    const elTableFilterListItem = document.querySelector(
+      ".el-table-filter__list-item"
+    );
+    if (elTableFilterListItem) {
+      elTableFilterListItem.textContent = "Tất cả";
+    }
+  },
 };
