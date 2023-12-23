@@ -9,6 +9,8 @@ export const usServiceList = () => {
 
   const detailForm = "ServiceDetail";
 
+  const searchFields = [store.state.codeField, store.state.nameField];
+
   const propsData = reactive([
     {
       prop: "serviceFeeTypeCode",
@@ -37,5 +39,5 @@ export const usServiceList = () => {
     },
   ]);
 
-  return { propsData, detailForm, store };
+  return { propsData, detailForm, store, searchFields };
 };

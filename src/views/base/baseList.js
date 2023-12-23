@@ -7,7 +7,13 @@ export default {
   name: "BaseList",
   props: {},
   data() {
-    return { detailForm: "", store: {}, loading: false };
+    return {
+      detailForm: "",
+      store: {},
+      loading: false,
+      search: "",
+      searchFields: [],
+    };
   },
   computed: {
     /**
@@ -22,6 +28,20 @@ export default {
 
     tableData() {
       return this.store.state?.items ?? [];
+    },
+
+    tableSearchData() {
+      if (this.searchFields.length > 0) {
+        return this.tableData.filter((item) =>
+          this.searchFields.some(
+            (field) =>
+              item[field] &&
+              item[field].toLowerCase().includes(this.search.toLowerCase())
+          )
+        );
+      } else {
+        return this.tableData;
+      }
     },
 
     idField() {

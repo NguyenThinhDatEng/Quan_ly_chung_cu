@@ -13,25 +13,26 @@ export const useFeesList = () => {
   const detailForm = "FeesDetail";
 
   const store = feeStore;
+  const searchFields = ["apartmentCode", "ownerCode", "ownerName"];
 
   const propsData = reactive([
     {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
-      minWidth: 100,
+      minWidth: 120,
     },
     {
       prop: "ownerCode",
       label: "Mã chủ hộ",
       sortable: true,
-      minWidth: 100,
+      minWidth: 120,
     },
     {
       prop: "ownerName",
       label: "Tên chủ hộ",
       sortable: true,
-      minWidth: 110,
+      minWidth: 125,
     },
     {
       prop: "note",
@@ -65,6 +66,12 @@ export const useFeesList = () => {
     {
       prop: "totalFee",
       label: "Tổng tiền",
+      width: 120,
+      align: "right",
+    },
+    {
+      prop: "receivedAmount",
+      label: "Đã thanh toán",
       width: 120,
       align: "right",
     },
@@ -120,5 +127,5 @@ export const useFeesList = () => {
 
   onMounted(() => {});
 
-  return { propsData, detailForm, pay, store, autoGenerateFees };
+  return { propsData, detailForm, pay, store, autoGenerateFees, searchFields };
 };

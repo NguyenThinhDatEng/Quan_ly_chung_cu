@@ -1,4 +1,4 @@
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 // store
 import apartmentStore from "@/stores/views/apartmentStore.js";
 // Enum
@@ -8,6 +8,7 @@ import i18nTag from "@/i18n/enum/i18nTag";
 
 export const usApartmentList = () => {
   const store = apartmentStore;
+  const searchFields = ref([store.state.codeField, "position"]);
 
   const detailForm = "ApartmentDetail";
 
@@ -55,5 +56,5 @@ export const usApartmentList = () => {
 
   onMounted(() => {});
 
-  return { propsData, detailForm, store };
+  return { propsData, detailForm, store, searchFields };
 };

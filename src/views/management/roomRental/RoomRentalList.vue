@@ -1,7 +1,16 @@
 <template>
   <div class="room-rental-list flex-column">
+    <div class="toolbar mb-2">
+      <div class="left">
+        <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Tên">
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
+      </div>
+    </div>
     <t-grid-viewer
-      :table-data="tableData"
+      :table-data="tableSearchData"
       :props-data="propsData"
       :max-height="tableMaxHeight"
       :loading="loading"
@@ -16,11 +25,13 @@
 <script>
 import { useRoomRentalList } from "./roomRentalList.js";
 import BaseList from "@/views/base/baseList.js";
+// components
+import { Search } from "@element-plus/icons-vue";
 
 export default {
   extends: BaseList,
   name: "RoomRentalList",
-  components: {},
+  components: { Search },
   setup() {
     const roomRentalList = useRoomRentalList();
     return roomRentalList;

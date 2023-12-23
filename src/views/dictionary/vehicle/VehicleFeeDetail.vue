@@ -1,7 +1,7 @@
 vehicleType<template>
   <t-dynamic-popup
     :title="title"
-    :width="500"
+    :width="450"
     name="VehicleFeeDetail"
     class="vehicle-fee-detail"
     @before-open="beforeOpen"
@@ -14,7 +14,7 @@ vehicleType<template>
           <label> Mã phương tiện </label>
           <el-input
             v-model="model.vehicleTypeCode"
-            placeholder="V0001"
+            placeholder="V01"
             :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>
@@ -24,7 +24,7 @@ vehicleType<template>
           <label> Loại phương tiện </label>
           <el-input
             v-model="model.name"
-            placeholder="Xe ..."
+            placeholder="Ô tô, Xe máy, ..."
             :disabled="viewing"
           />
         </div>

@@ -1,7 +1,13 @@
 <template>
   <div class="fees-list flex-column">
-    <div class="toolbar">
-      <div class="left"></div>
+    <div class="toolbar mb-2">
+      <div class="left">
+        <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Tên">
+          <template #prefix>
+            <el-icon><Search /></el-icon>
+          </template>
+        </el-input>
+      </div>
       <div class="right">
         <!-- <el-dropdown split-button type="primary" @click="autoGenerateFees">
           Sinh thu phí
@@ -36,11 +42,13 @@
 <script>
 import { useFeesList } from "./feesList";
 import BaseList from "@/views/base/baseList.js";
+// components
+import { Search } from "@element-plus/icons-vue";
 
 export default {
   extends: BaseList,
   name: "FeesList",
-  components: {},
+  components: { Search },
   setup() {
     const feesList = useFeesList();
     return feesList;

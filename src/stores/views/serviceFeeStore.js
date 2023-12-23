@@ -8,7 +8,8 @@ const serviceFeeStore = createStore({
   state() {
     return {
       idField: "id",
-      codeField: "serviceTypeCode",
+      codeField: "serviceFeeTypeCode",
+      nameField: "name",
       items: [],
       api: api,
     };

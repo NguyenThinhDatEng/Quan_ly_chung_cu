@@ -1,4 +1,4 @@
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 // store
 import vehicleFeeStore from "@/stores/views/vehicleFeeStore";
 
@@ -6,6 +6,8 @@ export const usVehicleList = () => {
   const detailForm = "VehicleFeeDetail";
 
   const store = vehicleFeeStore;
+
+  const searchFields = ref([store.state.codeField, store.state.nameField]);
 
   const propsData = reactive([
     {
@@ -30,5 +32,5 @@ export const usVehicleList = () => {
 
   onMounted(() => {});
 
-  return { propsData, detailForm, store };
+  return { propsData, detailForm, store, searchFields };
 };

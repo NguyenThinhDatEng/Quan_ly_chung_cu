@@ -6,6 +6,7 @@ export const useRoomRentalList = () => {
   const detailForm = "RoomRentalDetail";
 
   const store = householdStore;
+  const searchFields = ["apartmentCode", "ownerCode", "ownerName"];
 
   const propsData = reactive([
     {
@@ -44,5 +45,5 @@ export const useRoomRentalList = () => {
     },
   ]);
 
-  return { detailForm, propsData, store };
+  return { detailForm, propsData, store, searchFields };
 };

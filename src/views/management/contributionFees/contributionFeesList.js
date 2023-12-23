@@ -13,6 +13,7 @@ export const useContributionFeesList = () => {
 
   // store
   const store = contributionStore;
+  const searchFields = ref(["apartmentCode", "residentName"]);
 
   const tableDataCustom = computed(() => {
     return proxy.tableData.filter((item) => {
@@ -79,5 +80,13 @@ export const useContributionFeesList = () => {
     }
   });
 
-  return { propsData, detailForm, year, options, store, tableDataCustom };
+  return {
+    propsData,
+    detailForm,
+    year,
+    options,
+    store,
+    tableDataCustom,
+    searchFields,
+  };
 };

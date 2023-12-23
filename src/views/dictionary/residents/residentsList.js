@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 // store
 import residentStore from "@/stores/views/residentStore.js";
 // enum
@@ -10,6 +10,8 @@ export const useResidentsList = () => {
   const detailForm = "ResidentsDetail";
 
   const store = residentStore;
+
+  const searchFields = ref([store.state.codeField, store.state.nameField]);
 
   const propsData = reactive([
     {
@@ -71,5 +73,5 @@ export const useResidentsList = () => {
     },
   ]);
 
-  return { detailForm, propsData, store };
+  return { detailForm, propsData, store, searchFields };
 };
