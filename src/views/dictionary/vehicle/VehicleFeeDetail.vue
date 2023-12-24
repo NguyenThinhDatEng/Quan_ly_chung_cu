@@ -31,13 +31,18 @@ vehicleType<template>
       </div>
       <div class="flex space-between mb-2">
         <div class="flex-column flex flex1">
-          <label>Mức giá gửi xe/Tháng</label>
-          <el-input-number
-            v-model="model.parkingFee"
-            placeholder="0"
-            :min="0"
-            :controls="false"
-            :disabled="viewing"
+          <label>Mức giá gửi xe / tháng</label>
+          <t-currency-input
+            v-model="model.price"
+            placeholder="0₫"
+            :options="{
+              currency: 'VND',
+              locale: 'de-DE',
+              valueRange: {
+                min: 0,
+              },
+              hideGroupingSeparatorOnFocus: false,
+            }"
           />
         </div>
       </div>

@@ -24,7 +24,7 @@ export const usVehicleList = () => {
     },
     {
       prop: "parkingFee",
-      label: "Mức giá gửi/Tháng",
+      label: "Mức giá gửi xe / tháng",
       width: 300,
       align: "right",
     },

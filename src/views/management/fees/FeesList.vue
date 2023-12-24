@@ -1,5 +1,5 @@
 <template>
-  <div class="fees-list flex-column">
+  <div class="fees-list flex-column" v-loading="loading">
     <div class="toolbar mb-2">
       <div class="left">
         <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Tên">
@@ -30,8 +30,8 @@
       :featureColWidth="270"
       @handle-edit="handleOnEditGrid"
     >
-      <template #btn-before>
-        <el-button type="success" plain size="small" @click="pay"
+      <template #btn-before="{ row }">
+        <el-button type="success" plain size="small" @click="pay(row)"
           >Thanh toán</el-button
         >
       </template>

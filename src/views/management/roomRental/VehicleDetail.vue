@@ -73,7 +73,7 @@ vehicleType<template>
         </div>
         <div class="flex-column flex1">
           <label> Biển số </label>
-          <el-input v-model="model.plate" />
+          <el-input v-model="model.plate" placeholder="99F - 999.99" />
         </div>
       </div>
     </template>

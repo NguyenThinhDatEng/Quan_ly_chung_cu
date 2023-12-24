@@ -1,10 +1,13 @@
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, getCurrentInstance } from "vue";
 // Enum
 import Enum from "@/commons/enum";
 // store
 import paymentStore from "@/stores/views/paymentStore";
+import residentStore from "@/stores/views/residentStore.js";
 
 export const useVehicleDetail = () => {
+  const { proxy } = getCurrentInstance();
+
   const title = ref("Thông tin thanh toán");
 
   const store = paymentStore;
@@ -19,10 +22,6 @@ export const useVehicleDetail = () => {
       label: "Số tiền",
     },
   ];
-
-  const tableDataCustom = computed(() => {
-    return paymentStore.state.items;
-  });
 
   const tableMaxHeight = 160;
 
@@ -43,8 +42,16 @@ export const useVehicleDetail = () => {
   }
 
   onMounted(() => {
+    const me = proxy;
+
     if (store.state.items.length == 0) {
       store.dispatch("getAll");
+    }
+
+    // update model
+    const detailData = me._formParam.detailData;
+    if (detailData) {
+      me.model = { ...me.model, ...detailData };
     }
   });
 
@@ -52,8 +59,8 @@ export const useVehicleDetail = () => {
     title,
     Enum,
     propsData,
-    tableDataCustom,
     tableMaxHeight,
     defaultModel,
+    store,
   };
 };

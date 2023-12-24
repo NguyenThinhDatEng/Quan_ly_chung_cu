@@ -33,7 +33,7 @@
       <div class="flex space-between mb-2">
         <div class="flex-column flex mr-2 flex1">
           <label for="area">Diện tích</label>
-          <el-input
+          <!-- <el-input
             id="area"
             v-model="model.area"
             placeholder="100"
@@ -42,17 +42,35 @@
             <template #suffix>
               <span>{{ "m\u00B2" }}</span>
             </template>
-          </el-input>
+          </el-input> -->
+          <t-currency-input
+            v-model="model.area"
+            placeholder="0,00"
+            :options="{
+              currency: 'EUR',
+              locale: 'de-DE',
+              precision: 2,
+              valueRange: {
+                min: 0,
+              },
+              currencyDisplay: 'hidden',
+            }"
+          />
         </div>
         <div class="flex-column flex flex1 price">
           <label for="price"> Giá </label>
-          <el-input-number
+          <t-currency-input
             v-model="model.price"
-            placeholder="0"
-            :min="0"
-            :controls="false"
-            :disabled="viewing"
-          ></el-input-number>
+            placeholder="0₫"
+            :options="{
+              currency: 'VND',
+              locale: 'de-DE',
+              valueRange: {
+                min: 0,
+              },
+              hideGroupingSeparatorOnFocus: false,
+            }"
+          />
         </div>
       </div>
       <div class="flex-column flex flex1">
@@ -87,7 +105,9 @@
 import { useApartmentDetail } from "./apartmentDetail";
 // base
 import BaseDetail from "@/views/base/baseDetail.js";
+import TCurrencyInput from "../../../components/input/TCurrencyInput.vue";
 export default {
+  components: { TCurrencyInput },
   extends: BaseDetail,
   name: "ApartmentDetail",
   setup() {

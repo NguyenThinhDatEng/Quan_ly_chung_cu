@@ -11,34 +11,34 @@
     <template #content>
       <!-- Chủ hộ -->
       <div class="flex space-between mb-2">
-        <div class="flex-column">
-          <label> Mã chủ hộ </label>
+        <div class="flex-column flex mr-2 flex1">
+          <label for="apartmentCode"> Mã căn hộ </label>
           <el-input
-            v-model="model.residentCode"
-            class="input-info"
+            id="apartmentCode"
+            v-model="model.apartmentCode"
             :disabled="true"
           />
         </div>
-        <div class="flex-column">
-          <label> Tên chủ hộ </label>
-          <el-input
-            v-model="model.residentName"
-            class="input-info"
-            :disabled="true"
-          />
+        <div class="flex-column flex1">
+          <label for="ownerName"> Chủ hộ </label>
+          <el-input id="ownerName" v-model="model.ownerName" :disabled="true" />
         </div>
       </div>
       <!-- Thông tin -->
       <div class="flex space-between mb-2">
-        <div class="flex-column flex">
+        <div class="flex-column flex flex1 mr-2">
           <label>Số tiền</label>
-          <el-input-number
-            v-model="model.price"
-            placeholder="0"
-            :min="0"
-            :style="{ width: '220px' }"
-            :controls="false"
-            :disabled="viewing"
+          <t-currency-input
+            v-model="model.amount"
+            placeholder="0₫"
+            :options="{
+              currency: 'VND',
+              locale: 'de-DE',
+              valueRange: {
+                min: 0,
+              },
+              hideGroupingSeparatorOnFocus: false,
+            }"
           />
         </div>
         <div class="flex-column">
@@ -58,7 +58,7 @@
           >Các lần thanh toán trước</span
         >
         <t-grid-viewer
-          :table-data="tableDataCustom"
+          :table-data="model.feePaymentList"
           :props-data="propsData"
           :max-height="tableMaxHeight"
           :is-show-feature-col="false"
@@ -76,12 +76,6 @@
           type="primary"
           @click="commandClick(_enum.Mode.Add)"
           >Lưu</el-button
-        >
-        <el-button
-          v-else
-          type="primary"
-          @click="commandClick(_enum.Mode.Update)"
-          >Sửa</el-button
         >
       </div>
     </template>

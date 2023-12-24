@@ -47,13 +47,18 @@
           </el-select>
         </div>
         <div class="flex-column flex flex1">
-          <label>Đơn giá / đơn vị</label>
-          <el-input-number
-            v-model="model.pricePerUnit"
-            placeholder="0"
-            :min="0"
-            :controls="false"
-            :disabled="viewing"
+          <label>Đơn giá</label>
+          <t-currency-input
+            v-model="model.price"
+            placeholder="0₫"
+            :options="{
+              currency: 'VND',
+              locale: 'de-DE',
+              valueRange: {
+                min: 0,
+              },
+              hideGroupingSeparatorOnFocus: false,
+            }"
           />
         </div>
       </div>

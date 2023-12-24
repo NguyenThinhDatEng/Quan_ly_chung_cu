@@ -68,7 +68,7 @@
       :width="featureColWidth"
     >
       <template #default="scope">
-        <slot name="btn-before" />
+        <slot name="btn-before" :row="scope.row" />
         <el-button
           v-if="isShowViewFeature"
           type="primary"

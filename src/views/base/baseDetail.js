@@ -215,6 +215,12 @@ export default {
       }
     },
 
-    submitSuccess(data) {},
+    submitSuccess(data) {
+      const me = this;
+      const callBack = me._formParam.options?.afterSubmit;
+      if (callBack && typeof callBack == "function") {
+        callBack(data);
+      }
+    },
   },
 };

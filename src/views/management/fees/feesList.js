@@ -32,21 +32,15 @@ export const useFeesList = () => {
       prop: "ownerName",
       label: "Tên chủ hộ",
       sortable: true,
-      minWidth: 125,
+      minWidth: 135,
     },
     {
       prop: "note",
       label: "Ghi chú",
     },
     {
-      prop: "fromDate",
-      label: "Từ ngày",
-      width: 120,
-      align: "center",
-    },
-    {
       prop: "expiredDate",
-      label: "Đến ngày",
+      label: "Hạn chót",
       width: 120,
       align: "center",
       columnType: _enum.Table.ColumnType.date,
@@ -86,18 +80,37 @@ export const useFeesList = () => {
     },
   ]);
 
-  const pay = () => {
+  const pay = (row) => {
     const me = proxy;
 
-    const param = {};
-    me.$vfm.show({ component: "PaymentDetail" }, param).then(() => {
+    const detailForm = "PaymentDetail";
+    const param = {
+      detailData: {
+        apartmentCode: row.apartmentCode,
+        ownerName: row.ownerName,
+        feePaymentList: row.feePaymentList,
+        id: row.id,
+      },
+      mode: _enum.Mode.Add,
+      detailForm,
+      options: {
+        afterSubmit: () => {
+          if (typeof me.store.dispatch == "function") {
+            me.store?.dispatch("getAll");
+          }
+        },
+      },
+    };
+
+    me.$vfm.show({ component: detailForm }, param).then(() => {
       // do something on modal opened
-      console.log("PaymentDetail");
+      console.log(detailForm);
     });
   };
 
   const autoGenerateFees = async () => {
     const me = proxy;
+    me.loading = true;
     try {
       const res = await me.store.state.api.postAsync();
       // Show result
@@ -122,6 +135,8 @@ export const useFeesList = () => {
     } catch (error) {
       console.log(error);
       ElMessage.error("Có lỗi xảy ra phía Client!");
+    } finally {
+      me.loading = false;
     }
   };
 

@@ -39,3 +39,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ### Back-end
 
 [cors](https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0)
+
+## Libraries
+
+[Vue Currency Input](https://dm4t2.github.io/vue-currency-input/guide.html)
