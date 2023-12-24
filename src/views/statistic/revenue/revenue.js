@@ -1,5 +1,9 @@
-import { getCurrentInstance, onMounted } from "vue";
+import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 import Chart from "chart.js/auto";
+// store
+import feeStore from "@/stores/views/feeStore";
+// enum
+import _enum from "@/commons/enum";
 
 export const useRevenue = () => {
   const { proxy } = getCurrentInstance();
@@ -9,21 +13,17 @@ export const useRevenue = () => {
     pie: "pie",
   };
 
-  const data = {
-    labels: ["Red", "Blue", "Yellow"],
+  const data = reactive({
+    labels: ["Hết hạn", "Còn hạn", "Hoàn thành"],
     datasets: [
       {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        label: "Số hộ",
+        data: [],
+        backgroundColor: ["#f56c6c", "#e6a23c", "#67c23a"],
         hoverOffset: 4,
       },
     ],
-  };
+  });
 
   const renderChart = () => {
     const chartCanvas = proxy.$refs.chartCanvas;
@@ -35,9 +35,30 @@ export const useRevenue = () => {
     });
   };
 
-  onMounted(() => {
-    renderChart();
+  const loading = ref(false);
+
+  onMounted(async () => {
+    const me = proxy;
+    if (typeof feeStore?.dispatch == "function") {
+      me.loading = true;
+      await feeStore.dispatch("getAll");
+      const noOfExpired = feeStore.state.items.filter(
+        (x) => x.status == _enum.PaymentStatus.Expired
+      ).length;
+
+      const noOfOnGoing = feeStore.state.items.filter(
+        (x) => x.status == _enum.PaymentStatus.OnGoing
+      ).length;
+
+      const noOfPaid = feeStore.state.items.filter(
+        (x) => x.status == _enum.PaymentStatus.Paid
+      ).length;
+
+      data.datasets[0].data = [noOfExpired, noOfOnGoing, noOfPaid];
+      renderChart();
+      me.loading = false;
+    }
   });
 
-  return { renderChart };
+  return { renderChart, data, loading };
 };

@@ -162,8 +162,8 @@ export default {
         iconName: "Histogram",
         elMenuItemGroups: [
           {
-            elMenuItemName: "Doanh thu",
-            path: "/thong-ke-doanh-thu",
+            elMenuItemName: "Tình trạng",
+            path: "/thong-ke",
             iconName: "TrendCharts",
           },
         ],

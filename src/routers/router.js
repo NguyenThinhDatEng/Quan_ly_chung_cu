@@ -58,7 +58,7 @@ const routes = [
       },
       // Thống kê
       {
-        path: "thong-ke-doanh-thu",
+        path: "thong-ke",
         name: "RevenueView",
         component: RevenueView,
       },

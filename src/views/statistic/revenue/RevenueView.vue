@@ -1,15 +1,19 @@
 <template>
-  <div class="revenue flex-column">
+  <div class="revenue flex-column" v-loading="loading">
     <canvas ref="chartCanvas"></canvas>
+    <span
+      v-show="data.datasets[0].data.length > 0"
+      class="mt-2"
+      :style="{ fontWeight: 700 }"
+      >Tình trạng thu phí tháng</span
+    >
   </div>
 </template>
 
 <script>
 import { useRevenue } from "./revenue";
-import BaseList from "@/views/base/baseList.js";
 
 export default {
-  extends: BaseList,
   name: "RevenueList",
   components: {},
   setup() {
