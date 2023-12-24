@@ -70,8 +70,8 @@ export default {
     async getTableData() {
       const me = this;
       // Lấy dữ liệu danh sách
-      if (typeof me.store.dispatch == "function") {
-        await me.store?.dispatch("getAll");
+      if (typeof me.store?.dispatch == "function") {
+        await me.store.dispatch("getAll");
       }
     },
 
