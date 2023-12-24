@@ -41,7 +41,7 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="btn-login mt-2 mb-2">
+        <button type="submit" class="btn-login mt-2 mb-2 pointer">
           {{ title.submitBtn }}
         </button>
       </form>

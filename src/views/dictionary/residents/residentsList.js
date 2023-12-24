@@ -16,7 +16,12 @@ export const useResidentsList = () => {
 
   const store = residentStore;
 
-  const searchFields = ref([store.state.codeField, store.state.nameField]);
+  const searchFields = ref([
+    store.state.codeField,
+    store.state.nameField,
+    "phoneNumber",
+    "apartmentCode",
+  ]);
 
   const filterTag = (value, row, column) => {
     return row[column.property] === value;
@@ -32,7 +37,13 @@ export const useResidentsList = () => {
       prop: "name",
       label: "Họ và tên",
       sortable: true,
-      minWidth: 150,
+      minWidth: 110,
+    },
+    {
+      prop: "apartmentCode",
+      label: "Mã căn hộ",
+      sortable: true,
+      width: 120,
     },
     {
       prop: "phoneNumber",
@@ -45,6 +56,18 @@ export const useResidentsList = () => {
       width: 90,
       align: "center",
       columnType: _enum.Table.ColumnType.boolean,
+      filters: [
+        {
+          text: "Chủ hộ",
+          value: true,
+        },
+        {
+          text: "Thành viên",
+          value: false,
+        },
+      ],
+      filterTag: filterTag,
+      filterMultiple: false,
     },
     {
       prop: "cccd",
@@ -87,7 +110,7 @@ export const useResidentsList = () => {
     {
       prop: "status",
       label: "Tình trạng",
-      minWidth: 80,
+      minWidth: 100,
       enum: "ResidentStatus",
       align: "center",
       columnType: _enum.Table.ColumnType.enum,

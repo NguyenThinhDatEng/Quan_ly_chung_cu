@@ -23,16 +23,25 @@ export const useLogin = () => {
       if (res?.status == _enum.APIStatus.Ok) {
         const response = res.data;
         if (response?.token || response?.code != -1) {
-          // Lưu token vào session
-          sessionStorage.setItem("userToken", res.data?.token ?? "register");
-          // Lưu thông tin người dùng vào session
-          sessionStorage.setItem("userInfo", JSON.stringify(res.data?.entity));
+          let message = "";
+          if (isRegisterForm.value) {
+            message = "Đăng ký";
+            isRegisterForm.value = false;
+            me.model.usernameOrEmail = model.username;
+          } else {
+            message = "Đăng nhập";
+            // Lưu token vào session
+            sessionStorage.setItem("userToken", res.data?.token ?? "register");
+            // Lưu thông tin người dùng vào session
+            sessionStorage.setItem(
+              "userInfo",
+              JSON.stringify(res.data?.entity)
+            );
+            // Chuyển về trang tổng quan
+            me.$router.push({ name: "Overview", replace: true });
+          }
 
-          const message = isRegisterForm.value ? "Đăng ký" : "Đăng nhập";
           ElMessage({ message: message + " thành công", type: "success" });
-
-          // Chuyển về trang tổng quan
-          me.$router.push({ name: "Overview", replace: true });
         } else {
           if (response?.message) {
             ElMessage({ message: response.message, type: "warning" });
@@ -41,7 +50,7 @@ export const useLogin = () => {
       }
     } catch (error) {
       console.log(error);
-      ElMessage.error("Có lỗi xảy ra!");
+      ElMessage.error("Có lỗi xảy ra phía Client!");
     } finally {
       loading.value = false;
     }

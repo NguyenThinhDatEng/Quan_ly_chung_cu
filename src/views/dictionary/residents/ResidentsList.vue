@@ -2,7 +2,10 @@
   <div class="residents-list flex-column">
     <div class="toolbar">
       <div class="left">
-        <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Tên">
+        <el-input
+          v-model="search"
+          placeholder="Tìm kiếm theo Mã, Tên, Số điện thoại"
+        >
           <template #prefix>
             <el-icon><Search /></el-icon>
           </template>

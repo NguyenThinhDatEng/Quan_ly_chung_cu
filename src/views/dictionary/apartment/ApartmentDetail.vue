@@ -38,7 +38,11 @@
             v-model="model.area"
             placeholder="100"
             :disabled="viewing"
-          />
+          >
+            <template #suffix>
+              <span>{{ "m\u00B2" }}</span>
+            </template>
+          </el-input>
         </div>
         <div class="flex-column flex flex1 price">
           <label for="price"> Giá </label>
@@ -48,11 +52,11 @@
             :min="0"
             :controls="false"
             :disabled="viewing"
-          />
+          ></el-input-number>
         </div>
       </div>
       <div class="flex-column flex flex1">
-        <label> Số phòng </label>
+        <label> Số phòng ngủ </label>
         <el-input-number
           v-model="model.roomCount"
           :min="1"

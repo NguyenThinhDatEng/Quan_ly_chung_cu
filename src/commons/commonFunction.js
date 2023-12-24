@@ -157,11 +157,13 @@ export default {
       filterFooterButtons.children[1].textContent = "Bỏ lọc";
     }
 
-    const elTableFilterListItem = document.querySelector(
-      ".el-table-filter__list-item"
+    const elTableFilterListItem = document.getElementsByClassName(
+      "el-table-filter__list-item"
     );
-    if (elTableFilterListItem) {
-      elTableFilterListItem.textContent = "Tất cả";
+    for (let i = 0; i < elTableFilterListItem.length; i++) {
+      if (elTableFilterListItem[i].textContent == "All") {
+        elTableFilterListItem[i].textContent = "Tất cả";
+      }
     }
   },
 };
