@@ -1,9 +1,10 @@
-import { ref, onMounted, computed, getCurrentInstance } from "vue";
+import { ref, onMounted, getCurrentInstance } from "vue";
 // Enum
 import Enum from "@/commons/enum";
 // store
 import paymentStore from "@/stores/views/paymentStore";
-import residentStore from "@/stores/views/residentStore.js";
+// enum
+import _enum from "@/commons/enum";
 
 export const useVehicleDetail = () => {
   const { proxy } = getCurrentInstance();
@@ -14,8 +15,10 @@ export const useVehicleDetail = () => {
 
   const propsData = [
     {
-      prop: "date",
+      prop: "createdTime",
       label: "Ngày thanh toán",
+      align: "center",
+      columnType: _enum.Table.ColumnType.date,
     },
     {
       prop: "amount",
@@ -26,20 +29,8 @@ export const useVehicleDetail = () => {
   const tableMaxHeight = 160;
 
   const defaultModel = {
-    date: formatDate(new Date()),
+    createdTime: new Date(),
   };
-
-  function formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [day, month, year].join("/");
-  }
 
   onMounted(() => {
     const me = proxy;

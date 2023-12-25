@@ -4,6 +4,7 @@
     :width="500"
     name="PaymentDetail"
     class="payment-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >
@@ -44,10 +45,9 @@
         <div class="flex-column">
           <label> Ngày thanh toán </label>
           <el-date-picker
-            v-model="model.date"
+            v-model="model.createdTime"
             type="date"
             format="DD/MM/YYYY"
-            value-format="DD/MM/YYYY"
           />
         </div>
       </div>
