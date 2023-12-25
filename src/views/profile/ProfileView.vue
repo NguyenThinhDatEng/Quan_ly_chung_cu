@@ -63,6 +63,7 @@
                       v-model="model.bankName"
                       :disabled="viewing"
                       class="control-input"
+                      maxlength="255"
                     />
                   </div>
                   <div class="flex control-detail flex1 mr-2">
@@ -79,6 +80,8 @@
                       v-model="model.bankAccountNumber"
                       :disabled="viewing"
                       class="control-input"
+                      show-word-limit
+                      maxlength="15"
                     />
                   </div>
                 </div>
@@ -87,8 +90,8 @@
                     <label for="zalo"> Zalo: </label>
                     <el-input
                       id="zalo"
-                      :title="model.zalo"
-                      v-model="model.zalo"
+                      :title="model.zaloLink"
+                      v-model="model.zaloLink"
                       maxlength="10"
                       show-word-limit
                       :disabled="viewing"

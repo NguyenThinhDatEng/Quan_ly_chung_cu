@@ -168,7 +168,15 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        ElMessage.error("Có lỗi xảy ra phía Client!");
+        if (error.response?.status == _enum.APIStatus.BadRequest) {
+          // show toast
+          ElMessage({
+            message: "Thông tin không hợp lệ. Vui lòng kiểm tra lại",
+            type: "warning",
+          });
+        } else {
+          ElMessage.error("Có lỗi xảy ra phía Client!");
+        }
       }
     },
 
@@ -204,7 +212,15 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        ElMessage.error("Có lỗi xảy ra phía Client!");
+        if (error.response?.status == _enum.APIStatus.BadRequest) {
+          // show toast
+          ElMessage({
+            message: "Thông tin không hợp lệ. Vui lòng kiểm tra lại",
+            type: "warning",
+          });
+        } else {
+          ElMessage.error("Có lỗi xảy ra phía Client!");
+        }
       }
     },
 

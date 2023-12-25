@@ -71,7 +71,15 @@ export const useProfile = () => {
       }
     } catch (error) {
       console.log(error);
-      ElMessage.error("Có lỗi xảy ra!");
+      if (error.response?.status == _enum.APIStatus.BadRequest) {
+        // show toast
+        ElMessage({
+          message: "Thông tin không hợp lệ. Vui lòng kiểm tra lại",
+          type: "warning",
+        });
+      } else {
+        ElMessage.error("Có lỗi xảy ra!");
+      }
     } finally {
       loading.value = false;
     }
@@ -93,7 +101,7 @@ export const useProfile = () => {
   };
 
   const blur = () => {
-    proxy.model.zalo = proxy.model.phoneNumber;
+    proxy.model.zaloLink = proxy.model.phoneNumber;
   };
 
   const edit = () => {

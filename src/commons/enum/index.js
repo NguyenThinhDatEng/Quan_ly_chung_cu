@@ -71,6 +71,7 @@ export default {
 
   APIStatus: {
     Ok: 200,
+    BadRequest: 400,
   },
 
   APICode: {
