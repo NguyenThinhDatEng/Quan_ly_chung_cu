@@ -15,7 +15,7 @@
           <label> Mã cư dân </label>
           <el-input
             v-model="model.residentCode"
-            placeholder="C0001"
+            placeholder="R001"
             :disabled="viewing || editMode == _enum.Mode.Update"
           />
         </div>
