@@ -134,7 +134,7 @@
     <template #footer="{ close }">
       <div class="flex footer">
         <div class="left flex">
-          <el-button @click="close">Cancel</el-button>
+          <el-button @click="close">Hủy</el-button>
         </div>
         <div class="right">
           <el-button

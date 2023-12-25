@@ -31,7 +31,11 @@ const ServiceDetail = defineAsyncComponent(() =>
   import("@/views/dictionary/service/ServiceDetail.vue")
 );
 //#endregion
-
+//#region
+const ChangePassword = defineAsyncComponent(() =>
+  import("@/views/profile/ChangePassword.vue")
+);
+//#endregion
 export function register(app) {
   //#region Management
   app.component("ContributionFeesDetail", ContributionFeesDetail);
@@ -47,4 +51,6 @@ export function register(app) {
   app.component("VehicleFeeDetail", VehicleFeeDetail);
   app.component("ServiceDetail", ServiceDetail);
   //#endregion
+
+  app.component("ChangePassword", ChangePassword);
 }

@@ -59,6 +59,15 @@
           text-align: left;
         }
 
+        .change-password-view {
+          align-items: center;
+          width: 100%;
+
+          .control-detail {
+            width: 50%;
+          }
+        }
+
         .control-row {
           display: flex;
           justify-content: space-evenly;

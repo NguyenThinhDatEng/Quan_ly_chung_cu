@@ -50,7 +50,7 @@ vehicleType<template>
     <!-- Chân popup -->
     <template #footer="{ close }">
       <div class="flex footer">
-        <el-button @click="close">Cancel</el-button>
+        <el-button @click="close">Hủy</el-button>
         <el-button
           v-if="!viewing"
           type="primary"

@@ -20,9 +20,22 @@ export const useProfile = () => {
   const oldModel = ref({});
 
   const viewing = ref(true);
+
   const loading = ref(false);
 
-  const changePassword = () => {};
+  const changePassword = () => {
+    const me = proxy;
+
+    const detailForm = "ChangePassword";
+    const param = {
+      detailForm,
+    };
+
+    me.$vfm.show({ component: detailForm }, param).then(() => {
+      // do something on modal opened
+      console.log(detailForm);
+    });
+  };
 
   const submit = async () => {
     const me = proxy;
@@ -71,6 +84,8 @@ export const useProfile = () => {
     Object.keys(me.model).forEach((field) => {
       me.model[field] = oldModel.value[field];
     });
+
+    viewing.value = true;
   };
 
   const back = () => {

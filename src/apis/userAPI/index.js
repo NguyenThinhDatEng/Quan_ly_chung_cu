@@ -43,6 +43,15 @@ class UserAPI extends BaseAPI {
       console.log(error);
     }
   }
+
+  changePassword(payload) {
+    try {
+      const res = this.postAsync(payload, "ChangePassword");
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new UserAPI();
