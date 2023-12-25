@@ -88,11 +88,11 @@ export default {
 
   // Đơn vị dịch vụ
   ServiceUnit: {
-    OnePersonOneMonth: 1, // 1 người/tháng
-    OneRoomOneMonth: 2, // 1 phòng/tháng
+    OnePersonOneMonth: 0, // 1 người/tháng
+    OneRoomOneMonth: 1, // 1 phòng/tháng
+    SquareMeter: 2, //  mét vuông
     Number: 3, // số (Ex: số điện)
     CubicMeter: 4, // khối (Ex: Khối nước)
-    SquareMeter: 5, //  mét vuông
   },
 
   // Trạng thái phòng
