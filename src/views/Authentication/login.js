@@ -4,9 +4,6 @@ import _enum from "../../commons/enum";
 // Component
 import { ElMessage } from "element-plus";
 
-// resources
-// import commonFn from "@/commons/commonFunction";
-
 export const useLogin = () => {
   const { proxy } = getCurrentInstance();
   const submitForm = async () => {

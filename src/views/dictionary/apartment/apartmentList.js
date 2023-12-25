@@ -13,7 +13,7 @@ import _enum from "@/commons/enum";
 // i18n
 import i18nTag from "@/i18n/enum/i18nTag";
 import i18nEnum from "@/i18n/enum/index.js";
-// resource
+// import resources
 import commonFunction from "@/commons/commonFunction";
 
 export const usApartmentList = () => {
@@ -38,7 +38,6 @@ export const usApartmentList = () => {
       prop: "apartmentCode",
       label: "Mã căn hộ",
       sortable: true,
-      width: 150,
     },
     {
       prop: "position",
@@ -49,20 +48,17 @@ export const usApartmentList = () => {
       prop: "area",
       label: "Diện tích",
       sortable: true,
-      width: 120,
       align: "right",
     },
     {
       prop: "price",
       label: "Giá",
-      width: 150,
       align: "right",
       sortable: true,
     },
     {
       prop: "roomCount",
-      label: "Số phòng",
-      width: 120,
+      label: "Số phòng ngủ",
       align: "right",
       filters: [
         {
@@ -75,7 +71,6 @@ export const usApartmentList = () => {
     {
       prop: "status",
       label: "Trạng thái",
-      width: 120,
       align: "center",
       enum: "ApartmentStatus",
       columnType: _enum.Table.ColumnType.enum,
