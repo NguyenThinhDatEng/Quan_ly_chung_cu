@@ -73,6 +73,7 @@ export const usApartmentList = () => {
       label: "Trạng thái",
       align: "center",
       enum: "ApartmentStatus",
+      width: 150,
       columnType: _enum.Table.ColumnType.enum,
       tags: [i18nTag.Success, i18nTag.Warning],
       filters: [
