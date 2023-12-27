@@ -61,11 +61,11 @@ export const useContributionFeesList = () => {
       // Viết thường chữ cái đầu tiên của key
       let prop = key.charAt(0).toLocaleLowerCase() + key.slice(1);
 
-      let width = 160;
+      let width = 190;
 
       switch (value) {
         case i18nFundType.Charity:
-          width = 180;
+          width = 210;
           break;
         case i18nFundType.ResidentialGroup:
           width = 150;
