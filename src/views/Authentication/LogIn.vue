@@ -34,6 +34,21 @@
           />
         </div>
 
+        <div v-if="isRegisterForm" class="form-group flex">
+          <label for="fullName">Họ và tên:</label>
+          <input type="text" id="fullName" v-model="model.name" required />
+        </div>
+
+        <div v-if="isRegisterForm" class="form-group flex">
+          <label for="phoneNumber">Số điện thoại:</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            v-model="model.phoneNumber"
+            required
+          />
+        </div>
+
         <div class="form-group">
           <a href="#" class="forgot-password-link" @click.stop="toggleForm">{{
             title.sub
@@ -95,7 +110,8 @@ export default {
   align-items: center;
 
   label {
-    min-width: 100px;
+    min-width: 120px;
+    text-align: left;
   }
 }
 

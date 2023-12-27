@@ -1,12 +1,23 @@
 <template>
-  <div class="revenue flex-column" v-loading="loading">
-    <canvas ref="chartCanvas"></canvas>
-    <span
-      v-show="data.datasets[0].data.length > 0"
-      class="mt-2"
-      :style="{ fontWeight: 700 }"
-      >Tình trạng thu phí tháng</span
-    >
+  <div class="statistic-container flex">
+    <div class="revenue flex-column" v-loading="loading.fee">
+      <canvas ref="chartCanvas"></canvas>
+      <span
+        v-show="data?.datasets[0].data.length > 0"
+        class="mt-2"
+        :style="{ fontWeight: 700 }"
+        >Tình trạng thu phí tháng</span
+      >
+    </div>
+    <div class="revenue flex-column" v-loading="loading.vehicle">
+      <canvas ref="vehicleChart"></canvas>
+      <span
+        v-show="vehicleData?.datasets[0].data.length > 0"
+        class="mt-2"
+        :style="{ fontWeight: 700 }"
+        >Số lượng xe đã đăng ký</span
+      >
+    </div>
   </div>
 </template>
 
@@ -24,9 +35,14 @@ export default {
 </script>
 
 <style lang="scss">
-.revenue {
-  max-height: 50%;
+.statistic-container {
+  justify-content: space-evenly;
   align-items: center;
-  @import "./Revenue.scss";
+  height: 100%;
+
+  .revenue {
+    align-items: center;
+    @import "./Revenue.scss";
+  }
 }
 </style>

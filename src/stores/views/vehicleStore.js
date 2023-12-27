@@ -27,9 +27,24 @@ const vehicleFeeStore = createStore({
         );
       }
     },
+
+    getAll(state, data) {
+      state.items = data;
+    },
   },
 
-  actions: {},
+  actions: {
+    async getAll(context) {
+      try {
+        const res = await api.getAsync();
+        if (res.data) {
+          context.commit("getAll", res.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 });
 
 export default vehicleFeeStore;
