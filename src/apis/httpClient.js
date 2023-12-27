@@ -8,7 +8,7 @@ const httpClient = axios.create({
   timeout: 30000, // Nếu kết nối có vấn đề -> tránh treo kết nối mãi mãi
   headers: {
     "Content-Type": ApplicationJson,
-    Authorization: "Bearer " + sessionStorage.getItem("userToken"),
+    "Authorization": "Bearer " + sessionStorage.getItem("userToken"),
   },
 });
 
