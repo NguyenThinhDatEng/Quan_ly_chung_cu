@@ -3,11 +3,15 @@ import { computed, getCurrentInstance, ref, onMounted, reactive } from "vue";
 import commonFunction from "@/commons/commonFunction";
 // store
 import serviceFeeStore from "@/stores/views/serviceFeeStore";
+import feeStore from "@/stores/views/feeStore";
 // Enum
 import _enum from "@/commons/enum";
 
 export const useFeesDetail = () => {
   const { proxy } = getCurrentInstance();
+
+  const store = feeStore;
+
   const title = ref("Quản lý thu phí");
   const isShowFeesDetail = reactive({
     servicesFee: false,
@@ -118,5 +122,6 @@ export const useFeesDetail = () => {
     toggleFeesDetail,
     tableMaxHeight,
     vehiclePropsData,
+    store,
   };
 };
