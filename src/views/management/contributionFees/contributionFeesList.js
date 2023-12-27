@@ -76,7 +76,13 @@ export const useContributionFeesList = () => {
           break;
       }
 
-      propsData.push({ prop, label: value, align: "right", width });
+      propsData.push({
+        prop,
+        label: value,
+        align: "right",
+        width,
+        sortable: true,
+      });
     }
   });
 
