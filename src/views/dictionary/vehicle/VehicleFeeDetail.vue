@@ -33,7 +33,7 @@ vehicleType<template>
         <div class="flex-column flex flex1">
           <label>Mức giá gửi xe / tháng</label>
           <t-currency-input
-            v-model="model.price"
+            v-model="model.parkingFee"
             placeholder="0₫"
             :options="{
               currency: 'VND',
