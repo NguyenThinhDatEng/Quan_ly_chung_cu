@@ -38,7 +38,7 @@ export const useChangePassword = () => {
       }
     } catch (error) {
       console.log(error);
-      ElMessage.error("Có lỗi xảy ra phía Client!");
+      ElMessage.error("Có lỗi xảy ra!");
     } finally {
       loading.value = false;
     }

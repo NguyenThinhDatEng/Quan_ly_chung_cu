@@ -134,7 +134,7 @@ export const useFeesList = () => {
       }
     } catch (error) {
       console.log(error);
-      ElMessage.error("Có lỗi xảy ra phía Client!");
+      ElMessage.error("Có lỗi xảy ra!");
     } finally {
       me.loading = false;
     }

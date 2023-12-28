@@ -175,7 +175,7 @@ export default {
             type: "warning",
           });
         } else {
-          ElMessage.error("Có lỗi xảy ra phía Client!");
+          ElMessage.error("Có lỗi xảy ra!");
         }
       }
     },
@@ -219,7 +219,7 @@ export default {
             type: "warning",
           });
         } else {
-          ElMessage.error("Có lỗi xảy ra phía Client!");
+          ElMessage.error("Có lỗi xảy ra!");
         }
       }
     },
