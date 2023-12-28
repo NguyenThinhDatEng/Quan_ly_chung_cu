@@ -1,11 +1,18 @@
 <template>
-  <div class="el-input">
-    <div :class="['el-input__wrapper', { 'is-focus': isFocus }]">
+  <div class="el-input" :class="[{ 'is-disabled': disabled }]">
+    <div
+      :class="[
+        'el-input__wrapper',
+        { 'is-focus': isFocus },
+        { 'is-disabled': disabled },
+      ]"
+    >
       <input
         ref="inputRef"
         type="text"
         class="el-input__inner"
         :placeholder="placeholder"
+        :disabled="disabled"
         @focus="focus"
         @blur="blur"
       />
@@ -38,6 +45,10 @@ export default {
     placeholder: {
       type: String,
       default: "",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {

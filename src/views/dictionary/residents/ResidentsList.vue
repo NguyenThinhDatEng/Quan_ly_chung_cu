@@ -1,6 +1,6 @@
 <template>
   <div class="residents-list flex-column">
-    <div class="toolbar">
+    <div class="toolbar mb-2">
       <div class="left">
         <el-input
           v-model="search"

@@ -1,6 +1,6 @@
 <template>
   <div class="service-list flex-column">
-    <div class="toolbar">
+    <div class="toolbar mb-2">
       <div class="left">
         <el-input v-model="search" placeholder="Tìm kiếm theo Mã, Loại dịch vụ">
           <template #prefix>

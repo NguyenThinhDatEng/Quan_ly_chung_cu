@@ -19,11 +19,16 @@ const serviceFeeStore = createStore({
 
   mutations: {
     getAll(state, data) {
-      state.items = data;
+      state.items = data.sort(
+        (a, b) => a[state.codeField] < b[state.codeField]
+      );
     },
 
     insert(state, data) {
-      state.items.unshift(data);
+      state.items.push(data);
+      state.items = state.items.sort(
+        (a, b) => a[state.codeField] < b[state.codeField]
+      );
     },
 
     update(state, data) {

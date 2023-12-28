@@ -4,12 +4,13 @@
     :width="600"
     name="ResidentsDetail"
     class="residents-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >
     <!-- Nội dung popup -->
     <template #content>
-      <div class="flex space-between mb-2" v-loading="loading">
+      <div class="flex space-between mb-2">
         <div class="flex-column flex mr-2 flex1">
           <label> Mã cư dân </label>
           <el-input

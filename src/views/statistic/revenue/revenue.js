@@ -62,40 +62,41 @@ export const useRevenue = () => {
       feeStore.state?.items?.length == 0
     ) {
       await feeStore.dispatch("getAll");
-      const noOfExpired = feeStore.state.items.filter(
-        (x) => x.status == _enum.PaymentStatus.Expired
-      ).length;
-
-      const noOfOnGoing = feeStore.state.items.filter(
-        (x) => x.status == _enum.PaymentStatus.OnGoing
-      ).length;
-
-      const noOfPaid = feeStore.state.items.filter(
-        (x) => x.status == _enum.PaymentStatus.Paid
-      ).length;
-
-      data.datasets[0].data = [noOfExpired, noOfOnGoing, noOfPaid];
-      renderChart("chartCanvas", data);
     }
+
     loading.fee = false;
+    const noOfExpired = feeStore.state.items.filter(
+      (x) => x.status == _enum.PaymentStatus.Expired
+    ).length;
+
+    const noOfOnGoing = feeStore.state.items.filter(
+      (x) => x.status == _enum.PaymentStatus.OnGoing
+    ).length;
+
+    const noOfPaid = feeStore.state.items.filter(
+      (x) => x.status == _enum.PaymentStatus.Paid
+    ).length;
+
+    data.datasets[0].data = [noOfExpired, noOfOnGoing, noOfPaid];
+    renderChart("chartCanvas", data);
 
     if (
       typeof vehicleStore?.dispatch == "function" &&
       vehicleStore.state?.items?.length == 0
     ) {
       await vehicleStore.dispatch("getAll");
-      vehicleData.labels = vehicleStore.state.items
-        .map((x) => x.vehicleType)
-        .filter((x, index, self) => self.indexOf(x) == index);
-      vehicleData.labels.forEach((x) => {
-        let noOfVehicle = vehicleStore.state.items.filter(
-          (y) => y.vehicleType == x
-        ).length;
-        vehicleData.datasets[0].data.push(noOfVehicle);
-      });
-      renderChart("vehicleChart", vehicleData);
     }
+    vehicleData.labels = vehicleStore.state.items
+      .map((x) => x.vehicleType)
+      .filter((x, index, self) => self.indexOf(x) == index);
+    vehicleData.labels.forEach((x) => {
+      let noOfVehicle = vehicleStore.state.items.filter(
+        (y) => y.vehicleType == x
+      ).length;
+      vehicleData.datasets[0].data.push(noOfVehicle);
+    });
     loading.vehicle = false;
+    renderChart("vehicleChart", vehicleData);
   });
 
   return { renderChart, data, loading, vehicleData };

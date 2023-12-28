@@ -4,6 +4,7 @@
     :width="500"
     name="ServiceDetail"
     class="service-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >
@@ -59,6 +60,7 @@
               },
               hideGroupingSeparatorOnFocus: false,
             }"
+            :disabled="viewing"
           />
         </div>
       </div>
