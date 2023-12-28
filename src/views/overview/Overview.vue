@@ -3,7 +3,7 @@
     <div class="overview-info flex-column" v-loading="loading">
       <div class="info">
         Số phòng còn trống:
-        <b>{{ noOfApartment.notEmpty }}/{{ noOfApartment.all }}</b>
+        <b>{{ noOfApartment.isEmpty }}/{{ noOfApartment.all }}</b>
       </div>
       <div class="info">
         Số lượng dân cư: <b>{{ noOfResidents }}</b>

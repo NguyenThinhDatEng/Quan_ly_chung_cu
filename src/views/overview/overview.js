@@ -22,7 +22,6 @@ export const useOverView = () => {
     );
     return {
       isEmpty: noOfIsEmpty,
-      notEmpty: items.length - noOfIsEmpty,
       all: items.length,
     };
   });
