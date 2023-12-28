@@ -29,6 +29,7 @@
       :max-height="tableMaxHeight"
       :featureColWidth="270"
       @handle-edit="handleOnEditGrid"
+      @handle-delete="handleOnDeleteGrid"
     >
       <template #btn-before="{ row }">
         <el-button type="success" plain size="small" @click="pay(row)"
