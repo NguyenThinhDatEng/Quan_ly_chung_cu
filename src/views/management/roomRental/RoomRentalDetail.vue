@@ -4,6 +4,7 @@
     name="RoomRental"
     class="room-rental-detail"
     width="60%"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >

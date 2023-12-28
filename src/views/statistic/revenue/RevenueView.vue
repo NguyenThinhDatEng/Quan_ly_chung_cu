@@ -1,20 +1,20 @@
 <template>
-  <div class="statistic-container flex">
-    <div class="revenue flex-column" v-loading="loading.fee">
+  <div class="statistic-container flex" v-loading="loading">
+    <div
+      v-show="feeStore?.state?.items?.length > 0"
+      class="revenue flex-column"
+    >
       <canvas ref="chartCanvas"></canvas>
-      <span
-        v-show="data?.datasets[0].data.length > 0"
-        class="mt-2"
-        :style="{ fontWeight: 700 }"
+      <span class="mt-2" :style="{ fontWeight: 700 }"
         >Tình trạng thu phí tháng</span
       >
     </div>
-    <div class="revenue flex-column" v-loading="loading.vehicle">
+    <div
+      v-show="vehicleStore?.state?.items?.length > 0"
+      class="revenue flex-column"
+    >
       <canvas ref="vehicleChart"></canvas>
-      <span
-        v-show="vehicleData?.datasets[0].data.length > 0"
-        class="mt-2"
-        :style="{ fontWeight: 700 }"
+      <span class="mt-2" :style="{ fontWeight: 700 }"
         >Số lượng xe đã đăng ký</span
       >
     </div>

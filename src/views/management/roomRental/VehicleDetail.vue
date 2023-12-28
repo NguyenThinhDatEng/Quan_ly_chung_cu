@@ -1,9 +1,10 @@
-vehicleType<template>
+<template>
   <t-dynamic-popup
     :title="title"
     :width="600"
     name="VehicleDetail"
     class="vehicle-detail"
+    v-loading="loading"
     @before-open="beforeOpen"
     @opened="opened"
   >

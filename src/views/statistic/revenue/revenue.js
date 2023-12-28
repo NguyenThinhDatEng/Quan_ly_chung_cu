@@ -47,24 +47,20 @@ export const useRevenue = () => {
     });
   };
 
-  const loading = reactive({
-    fee: false,
-    vehicle: false,
-  });
+  const loading = ref(false);
 
   onMounted(async () => {
-    const me = proxy;
-    loading.fee = true;
-    loading.vehicle = true;
-
-    if (
-      typeof feeStore.dispatch == "function" &&
-      feeStore.state?.items?.length == 0
-    ) {
-      await feeStore.dispatch("getAll");
+    loading.value = true;
+    try {
+      if (
+        typeof feeStore.dispatch == "function" &&
+        feeStore.state?.items?.length == 0
+      ) {
+        await feeStore.dispatch("getAll");
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    loading.fee = false;
     const noOfExpired = feeStore.state.items.filter(
       (x) => x.status == _enum.PaymentStatus.Expired
     ).length;
@@ -95,9 +91,10 @@ export const useRevenue = () => {
       ).length;
       vehicleData.datasets[0].data.push(noOfVehicle);
     });
-    loading.vehicle = false;
     renderChart("vehicleChart", vehicleData);
+
+    loading.value = false;
   });
 
-  return { renderChart, data, loading, vehicleData };
+  return { renderChart, feeStore, loading, vehicleStore };
 };
