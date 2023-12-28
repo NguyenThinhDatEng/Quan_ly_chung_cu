@@ -17,11 +17,23 @@ const feeStore = createStore({
 
   mutations: {
     getAll(state, data) {
-      state.items = data;
+      state.items = data.sort((a, b) => {
+        const aTmp = a.apartmentCode;
+        const bTmp = b.apartmentCode;
+        if (aTmp > bTmp) return 1;
+        else if (aTmp < bTmp) return -1;
+        else return 0;
+      });
     },
 
     insert(state, data) {
-      state.items = data;
+      state.items = data.sort((a, b) => {
+        const aTmp = a.apartmentCode;
+        const bTmp = b.apartmentCode;
+        if (aTmp > bTmp) return 1;
+        else if (aTmp < bTmp) return -1;
+        else return 0;
+      });
     },
 
     update(state, data) {

@@ -307,7 +307,7 @@ export default {
     height: 100%;
 
     .el-aside {
-      width: 18%;
+      width: 15%;
     }
 
     .el-main {
