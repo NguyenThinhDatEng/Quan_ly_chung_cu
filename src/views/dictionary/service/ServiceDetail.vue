@@ -49,7 +49,7 @@
         <div class="flex-column flex flex1">
           <label>Đơn giá</label>
           <t-currency-input
-            v-model="model.price"
+            v-model="model.pricePerUnit"
             placeholder="0₫"
             :options="{
               currency: 'VND',
