@@ -39,6 +39,7 @@ export const useOverView = () => {
   onMounted(async () => {
     await getRelatedData(apartmentStore);
     await getRelatedData(residentStore);
+    await getRelatedData(vehicleStore);
     loading.value = false;
   });
 
