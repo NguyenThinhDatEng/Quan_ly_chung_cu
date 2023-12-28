@@ -4,8 +4,12 @@ import commonFunction from "@/commons/commonFunction";
 // store
 import serviceFeeStore from "@/stores/views/serviceFeeStore";
 import feeStore from "@/stores/views/feeStore";
+// api
+import serviceFeeApi from "../../../apis/managementAPI/FeeAPI/serviceFee";
 // Enum
 import _enum from "@/commons/enum";
+// components
+import { ElMessage } from "element-plus";
 
 export const useFeesDetail = () => {
   const { proxy } = getCurrentInstance();
@@ -104,6 +108,38 @@ export const useFeesDetail = () => {
     },
   ];
 
+  const updateFeeInfo = () => {
+    const payload = serviceList.value.filter(
+      (x) =>
+        x.measuringUnit == _enum.ServiceUnit.Number ||
+        x.measuringUnit == _enum.ServiceUnit.CubicMeter
+    );
+    try {
+      const res = serviceFeeApi.putAsync(payload);
+      if (
+        res?.status == _enum.APIStatus.Ok &&
+        res?.data?.code == _enum.APICode.Success
+      ) {
+        // show toast
+        ElMessage({
+          message: "Cập nhật thành công",
+          type: "success",
+        });
+        // hide form
+        me.hide();
+      } else {
+        if (res?.data?.code == _enum.APICode.Fail) {
+          ElMessage.error(res.data.message);
+        } else {
+          ElMessage.error("Có lỗi xảy ra!");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      ElMessage.error("Có lỗi xảy ra!");
+    }
+  };
+
   onMounted(() => {
     // Lấy dữ liệu danh sách
     if (serviceFeeStore.state.items.length == 0) {
@@ -123,5 +159,6 @@ export const useFeesDetail = () => {
     tableMaxHeight,
     vehiclePropsData,
     store,
+    updateFeeInfo,
   };
 };

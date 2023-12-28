@@ -150,7 +150,7 @@
                   "
                 >
                   {{
-                    (service.newCount - service.oldCount) * service.price || 0
+                    (service.newCount - service.oldCount) * service.pricePerUnit || 0
                   }}
                 </template>
                 <template v-else>
@@ -183,10 +183,7 @@
     <template #footer="{ close }">
       <div class="flex footer">
         <el-button @click="close">Hủy</el-button>
-        <el-button
-          v-if="!viewing"
-          type="primary"
-          @click="commandClick(_enum.Mode.Add)"
+        <el-button v-if="!viewing" type="primary" @click="updateFeeInfo"
           >Lưu</el-button
         >
         <el-button
