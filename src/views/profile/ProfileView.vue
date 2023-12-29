@@ -4,8 +4,9 @@
       <div class="left-container flex-column">
         <div class="avatar-info flex-column">
           <div class="info-top">
-            <img src="../../assets/logo.png" alt="" class="avatar mb-1" />
-            <span class="mb-2 user-name">Nguyễn Thịnh</span>
+            <!-- <img src="../../assets/logo.png" alt="" class="avatar mb-1" /> -->
+            <div class="position">Ban quản trị chung cư</div>
+            <span class="mb-2 user-name">{{ userInfo.name ?? "" }}</span>
           </div>
           <div class="info-bottom flex-column">
             <el-button type="primary" plain class="btn mb-2" @click="edit"
@@ -23,7 +24,7 @@
       </div>
       <div class="right-container flex-column">
         <img
-          src="../../assets/imgs/free-hd-desktop-wallpapers.jpg"
+          src="@/assets/imgs/apartment.jpg"
           alt=""
           class="background-image mb-2"
         />
@@ -33,7 +34,7 @@
               <div class="info_title mb-4">Thông tin cơ bản</div>
               <div class="controls flex-column">
                 <div class="control-row mb-3">
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1 mr-4">
                     <label for="fullName"> Họ và tên: </label>
                     <el-input
                       id="fullName"
@@ -42,7 +43,7 @@
                       class="control-input"
                     />
                   </div>
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1">
                     <label for="phoneNumber"> Số điện thoại: </label>
                     <el-input
                       id="phoneNumber"
@@ -56,7 +57,7 @@
                   </div>
                 </div>
                 <div class="control-row mb-3">
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1 mr-4">
                     <label for="bankName"> Tên ngân hàng: </label>
                     <el-input
                       id="bankName"
@@ -66,7 +67,7 @@
                       maxlength="255"
                     />
                   </div>
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1">
                     <el-tooltip
                       class="box-item"
                       effect="dark"
@@ -86,7 +87,7 @@
                   </div>
                 </div>
                 <div class="control-row">
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1 mr-4">
                     <label for="zalo"> Zalo: </label>
                     <el-input
                       id="zalo"
@@ -98,7 +99,7 @@
                       class="control-input"
                     />
                   </div>
-                  <div class="flex control-detail flex1 mr-2">
+                  <div class="flex control-detail flex1">
                     <label> Facebook: </label>
                     <el-input
                       :title="model.facebookLink"

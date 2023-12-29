@@ -1,12 +1,12 @@
 .container {
   height: 100vh;
   .left-container {
-    flex: 1;
+    flex: 1.5;
     align-items: center;
+    border: 1px solid #dcdfe6;
+    padding: 1% 0;
 
     .avatar-info {
-      height: 40%;
-      width: 80%;
       align-items: center;
       justify-content: space-between;
 
@@ -21,9 +21,15 @@
           border: solid 1px #afafaf;
         }
 
+        .position {
+          font-size: 30px;
+          margin-bottom: 8px;
+        }
+
         .user-name {
-          font-weight: 80%;
-          font-size: 20px;
+          font-weight: 700;
+          font-size: 24px;
+          font-family: "Times New Roman", Times, serif;
         }
       }
 
@@ -43,6 +49,8 @@
   }
   .right-container {
     flex: 4;
+    padding: 2% 2%;
+
     .background-image {
       height: 40%;
     }

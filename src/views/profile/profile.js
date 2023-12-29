@@ -1,4 +1,4 @@
-import { getCurrentInstance, onMounted, reactive, ref } from "vue";
+import { getCurrentInstance, onMounted, reactive, ref, computed } from "vue";
 // api
 import UserAPI from "@/apis/userAPI";
 // Enum
@@ -108,6 +108,15 @@ export const useProfile = () => {
     viewing.value = false;
   };
 
+  const userInfo = computed(() => {
+    const sessionItem = sessionStorage.getItem("userInfo");
+    if (sessionItem && typeof sessionItem == "string") {
+      return JSON.parse(sessionItem);
+    }
+
+    return {};
+  });
+
   onMounted(() => {
     const me = proxy;
 
@@ -134,5 +143,6 @@ export const useProfile = () => {
     blur,
     loading,
     edit,
+    userInfo,
   };
 };
