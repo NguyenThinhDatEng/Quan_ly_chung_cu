@@ -40,8 +40,11 @@ export const useFeesDetail = () => {
         service.measuringUnit == _enum.ServiceUnit.Number ||
         service.measuringUnit == _enum.ServiceUnit.CubicMeter
       ) {
-        amount +=
-          (service.newCount - service.oldCount) * service.pricePerUnit || 0;
+        const difference =
+          service.newCount - service.oldCount > 0
+            ? service.newCount - service.oldCount
+            : 0;
+        amount += difference * service.pricePerUnit ?? 0;
       } else {
         amount += service.totalFee;
       }
@@ -109,11 +112,16 @@ export const useFeesDetail = () => {
   ];
 
   const updateFeeInfo = () => {
-    const payload = serviceList.value.filter(
+    let payload = serviceList.value.filter(
       (x) =>
         x.measuringUnit == _enum.ServiceUnit.Number ||
         x.measuringUnit == _enum.ServiceUnit.CubicMeter
     );
+    payload.forEach((x) => {
+      const difference =
+        x.newCount - x.oldCount > 0 ? x.newCount - x.oldCount : 0;
+      x.totalFee = difference * x.pricePerUnit ?? 0;
+    });
     try {
       const res = serviceFeeApi.putAsync(payload);
       if (

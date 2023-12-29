@@ -67,7 +67,7 @@
           />
         </div>
       </div>
-      <!-- <div class="flex mb-2 space-between">
+      <div class="flex mb-2 space-between">
         <div class="flex-column flex1">
           <label> Ghi chú </label>
           <el-input
@@ -77,7 +77,7 @@
             show-word-limit
           />
         </div>
-      </div> -->
+      </div>
       <!-- Row 4 -->
       <div class="flex space-between total-amount mb-2">
         <span> Tổng tiền </span>
@@ -150,7 +150,9 @@
                   "
                 >
                   {{
-                    (service.newCount - service.oldCount) * service.pricePerUnit || 0
+                    (service.newCount - service.oldCount > 0
+                      ? service.newCount - service.oldCount
+                      : 0) * service.pricePerUnit ?? 0
                   }}
                 </template>
                 <template v-else>
