@@ -34,10 +34,10 @@ export const useFeesList = () => {
       sortable: true,
       minWidth: 135,
     },
-    {
-      prop: "note",
-      label: "Ghi chú",
-    },
+    // {
+    //   prop: "note",
+    //   label: "Ghi chú",
+    // },
     {
       prop: "expiredDate",
       label: "Hạn chót",

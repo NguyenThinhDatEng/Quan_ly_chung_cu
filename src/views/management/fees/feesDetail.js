@@ -111,7 +111,9 @@ export const useFeesDetail = () => {
     },
   ];
 
-  const updateFeeInfo = () => {
+  const updateFeeInfo = async () => {
+    const me = proxy;
+
     let payload = serviceList.value.filter(
       (x) =>
         x.measuringUnit == _enum.ServiceUnit.Number ||
@@ -123,7 +125,7 @@ export const useFeesDetail = () => {
       x.totalFee = difference * x.pricePerUnit ?? 0;
     });
     try {
-      const res = serviceFeeApi.putAsync(payload);
+      const res = await serviceFeeApi.putAsync(payload);
       if (
         res?.status == _enum.APIStatus.Ok &&
         res?.data?.code == _enum.APICode.Success

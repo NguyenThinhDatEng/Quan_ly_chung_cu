@@ -13,7 +13,7 @@ export const useProfile = () => {
     phoneNumber: "",
     bankName: "",
     bankAccountNumber: "",
-    zalo: "",
+    zaloLink: "",
     facebookLink: "",
   });
 
