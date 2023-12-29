@@ -104,7 +104,10 @@
             {{ servicesFee.display }}
           </div>
         </div>
-        <div v-if="isShowFeesDetail.servicesFee" class="flex-column">
+        <div
+          v-if="isShowFeesDetail.servicesFee"
+          class="flex-column service-fee-detail-container"
+        >
           <div
             v-for="service in serviceList"
             :key="service.serviceCode"
