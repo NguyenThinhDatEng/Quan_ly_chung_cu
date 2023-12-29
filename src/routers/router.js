@@ -15,6 +15,8 @@ import FeesList from "@/views/management/fees/FeesList.vue";
 import RoomRentalList from "@/views/management/roomRental/RoomRentalList.vue";
 // Thống kê
 import RevenueView from "@/views/statistic/revenue/RevenueView.vue";
+import VehicleStatistic from "@/views/statistic/vehicle/VehicleStatistic.vue";
+import StatusStatistic from "@/views/statistic/status/StatusStatistic.vue";
 // Dictionary
 import ApartmentList from "@/views/dictionary/apartment/ApartmentList.vue";
 import ResidentsList from "@/views/dictionary/residents/ResidentsList.vue";
@@ -58,9 +60,19 @@ const routes = [
       },
       // Thống kê
       {
-        path: "thong-ke",
+        path: "doanh-thu",
         name: "RevenueView",
         component: RevenueView,
+      },
+      {
+        path: "phuong-tien",
+        name: "VehicleStatistic",
+        component: VehicleStatistic,
+      },
+      {
+        path: "tinh-trang",
+        name: "StatusStatistic",
+        component: StatusStatistic,
       },
       // Danh mục
       {

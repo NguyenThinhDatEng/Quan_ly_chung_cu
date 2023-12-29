@@ -95,6 +95,7 @@ import {
   TrendCharts,
   Bicycle,
   Help,
+  DataLine,
 } from "@element-plus/icons-vue";
 
 export default {
@@ -117,6 +118,7 @@ export default {
     TrendCharts,
     Bicycle,
     Help,
+    DataLine,
   },
   props: {
     hideSidebar: {
@@ -145,7 +147,7 @@ export default {
             iconName: "List",
           },
           {
-            elMenuItemName: "Quản lý Thu phí",
+            elMenuItemName: "Quản lý thu phí",
             path: "/quan-ly-thu-phi",
             iconName: "Money",
           },
@@ -162,9 +164,19 @@ export default {
         iconName: "Histogram",
         elMenuItemGroups: [
           {
+            elMenuItemName: "Doanh thu",
+            path: "/doanh-thu",
+            iconName: "DataLine",
+          },
+          {
             elMenuItemName: "Tình trạng",
-            path: "/thong-ke",
+            path: "/tinh-trang",
             iconName: "TrendCharts",
+          },
+          {
+            elMenuItemName: "Phương tiện",
+            path: "/phuong-tien",
+            iconName: "Bicycle",
           },
         ],
       },

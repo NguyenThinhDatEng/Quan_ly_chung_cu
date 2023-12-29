@@ -2,7 +2,6 @@ import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 import Chart from "chart.js/auto";
 // store
 import feeStore from "@/stores/views/feeStore";
-import vehicleStore from "@/stores/views/vehicleStore";
 // enum
 import _enum from "@/commons/enum";
 
@@ -12,37 +11,41 @@ export const useRevenue = () => {
   const chartType = {
     bar: "bar",
     pie: "pie",
+    line: "line",
   };
 
-  const data = reactive({
-    labels: ["Hết hạn", "Còn hạn", "Hoàn thành"],
+  const feeDataByMonth = reactive({
+    labels: [
+      "Tháng 1",
+      "Tháng 2",
+      "Tháng 3",
+      "Tháng 4",
+      "Tháng 5",
+      "Tháng 6",
+      "Tháng 7",
+      "Tháng 8",
+      "Tháng 9",
+      "Tháng 10",
+      "Tháng 11",
+      "Tháng 12",
+    ],
     datasets: [
       {
-        label: "Số hộ",
+        label: "Doanh thu",
         data: [],
-        backgroundColor: ["#f56c6c", "#e6a23c", "#67c23a"],
-        hoverOffset: 4,
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1,
       },
     ],
   });
 
-  const vehicleData = reactive({
-    labels: [],
-    datasets: [
-      {
-        label: "Số lượng",
-        data: [],
-        hoverOffset: 4,
-      },
-    ],
-  });
-
-  const renderChart = (refName, data) => {
+  const renderChart = (refName, data, charType) => {
     const chartCanvas = proxy.$refs[refName];
     const ctx = chartCanvas.getContext("2d");
 
     new Chart(ctx, {
-      type: chartType.pie,
+      type: charType,
       data: data,
     });
   };
@@ -61,40 +64,20 @@ export const useRevenue = () => {
     } catch (error) {
       console.log(error);
     }
-    const noOfExpired = feeStore.state.items.filter(
-      (x) => x.status == _enum.PaymentStatus.Expired
-    ).length;
 
-    const noOfOnGoing = feeStore.state.items.filter(
-      (x) => x.status == _enum.PaymentStatus.OnGoing
-    ).length;
-
-    const noOfPaid = feeStore.state.items.filter(
-      (x) => x.status == _enum.PaymentStatus.Paid
-    ).length;
-
-    data.datasets[0].data = [noOfExpired, noOfOnGoing, noOfPaid];
-    renderChart("chartCanvas", data);
-
-    if (
-      typeof vehicleStore?.dispatch == "function" &&
-      vehicleStore.state?.items?.length == 0
-    ) {
-      await vehicleStore.dispatch("getAll");
+    if (feeStore.state.items.length > 0) {
+      for (let i = 0; i < 12; i++) {
+        const feeSum = feeStore.state.items
+          .filter((x) => new Date(x.expiredDate).getMonth() == i)
+          .reduce((acc, curr) => {
+            return acc + curr.receivedAmount ?? 0;
+          }, 0);
+        feeDataByMonth.datasets[0].data.push(feeSum);
+      }
     }
-    vehicleData.labels = vehicleStore.state.items
-      .map((x) => x.vehicleType)
-      .filter((x, index, self) => self.indexOf(x) == index);
-    vehicleData.labels.forEach((x) => {
-      let noOfVehicle = vehicleStore.state.items.filter(
-        (y) => y.vehicleType == x
-      ).length;
-      vehicleData.datasets[0].data.push(noOfVehicle);
-    });
-    renderChart("vehicleChart", vehicleData);
-
+    renderChart("feeStatisticByMonth", feeDataByMonth, chartType.line);
     loading.value = false;
   });
 
-  return { renderChart, feeStore, loading, vehicleStore };
+  return { renderChart, feeStore, loading };
 };
