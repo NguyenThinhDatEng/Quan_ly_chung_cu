@@ -4,6 +4,7 @@
     :width="800"
     name="FeesDetail"
     class="fees-detail"
+    v-loading='loading'
     @before-open="beforeOpen"
     @opened="opened"
   >
