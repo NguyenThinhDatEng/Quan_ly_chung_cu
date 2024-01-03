@@ -2,9 +2,7 @@
   <div class="statistic-container flex-column" v-loading="loading">
     <div v-if="store?.state?.items?.length > 0" class="revenue flex-column">
       <canvas ref="chartCanvas" class="pieChart mb-2"></canvas>
-      <span :style="{ fontWeight: 700 }"
-        >Tình trạng thu phí tháng</span
-      >
+      <span :style="{ fontWeight: 700 }">Tình trạng thu phí tháng</span>
     </div>
     <div v-else>
       <el-empty
@@ -93,4 +91,8 @@ export default {
 </script>
 
 <style lang="scss">
+.pieChart {
+  width: 350px;
+  height: 350px;
+}
 </style>

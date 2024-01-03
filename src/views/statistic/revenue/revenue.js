@@ -1,4 +1,4 @@
-import { getCurrentInstance, onMounted, reactive, ref } from "vue";
+import { computed, getCurrentInstance, onMounted, reactive, ref } from "vue";
 import Chart from "chart.js/auto";
 // store
 import feeStore from "@/stores/views/feeStore";
@@ -42,13 +42,23 @@ export const useRevenue = () => {
 
   const renderChart = (refName, data, charType) => {
     const chartCanvas = proxy.$refs[refName];
-    const ctx = chartCanvas.getContext("2d");
+    const ctx = chartCanvas[0].getContext("2d");
 
     new Chart(ctx, {
       type: charType,
       data: data,
     });
   };
+
+  const yearOfCharts = computed(() => {
+    if (feeStore.state.items?.length > 0) {
+      const years = feeStore.state.items
+        .map((x) => x.year)
+        .filter((x, index, self) => self.indexOf(x) == index);
+      return [...years];
+    }
+    return [];
+  });
 
   const loading = ref(false);
 
@@ -63,21 +73,33 @@ export const useRevenue = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      loading.value = false;
     }
 
     if (feeStore.state.items.length > 0) {
-      for (let i = 0; i < 12; i++) {
-        const feeSum = feeStore.state.items
-          .filter((x) => new Date(x.expiredDate).getMonth() == i)
-          .reduce((acc, curr) => {
-            return acc + curr.receivedAmount ?? 0;
-          }, 0);
-        feeDataByMonth.datasets[0].data.push(feeSum);
-      }
+      yearOfCharts.value.forEach((year) => {
+        // reset dữ liệu năm cũ
+        feeDataByMonth.datasets[0].data = [];
+        // Cập nhật dữ liệu năm mới
+        for (let i = 0; i < 12; i++) {
+          const feeSum = feeStore.state.items
+            .filter(
+              (x) => x.year == year && new Date(x.expiredDate).getMonth() == i
+            )
+            .reduce((acc, curr) => {
+              return acc + curr.receivedAmount ?? 0;
+            }, 0);
+          feeDataByMonth.datasets[0].data.push(feeSum);
+        }
+        renderChart(
+          "feeStatisticByMonthOf" + year,
+          feeDataByMonth,
+          chartType.line
+        );
+      });
     }
-    renderChart("feeStatisticByMonth", feeDataByMonth, chartType.line);
-    loading.value = false;
   });
 
-  return { renderChart, feeStore, loading };
+  return { renderChart, feeStore, loading, yearOfCharts };
 };

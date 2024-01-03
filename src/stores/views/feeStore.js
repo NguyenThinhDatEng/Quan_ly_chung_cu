@@ -17,19 +17,21 @@ const feeStore = createStore({
 
   mutations: {
     getAll(state, data) {
-      state.items = data.sort((a, b) => {
-        const aTmp = a.apartmentCode;
-        const bTmp = b.apartmentCode;
-        if (aTmp > bTmp) return 1;
-        else if (aTmp < bTmp) return -1;
-        else return 0;
-      });
+      state.items = data
+        .sort((a, b) => {
+          const aTmp = a.expiredDate;
+          const bTmp = b.expiredDate;
+          if (aTmp > bTmp) return 1;
+          else if (aTmp < bTmp) return -1;
+          else return 0;
+        })
+        .map((x) => ({ ...x, year: new Date(x.expiredDate).getFullYear() }));
     },
 
     insert(state, data) {
       state.items = data.sort((a, b) => {
-        const aTmp = a.apartmentCode;
-        const bTmp = b.apartmentCode;
+        const aTmp = a.expiredDate;
+        const bTmp = b.expiredDate;
         if (aTmp > bTmp) return 1;
         else if (aTmp < bTmp) return -1;
         else return 0;

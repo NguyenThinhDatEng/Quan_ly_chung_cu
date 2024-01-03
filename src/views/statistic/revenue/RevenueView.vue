@@ -1,13 +1,18 @@
 <template>
-  <div class="statistic-container flex-column" v-loading="loading">
-    <div class="fee-statistic-by-month">
+  <div class="statistic-container flex" v-loading="loading">
+    <div
+      v-for="year in yearOfCharts"
+      :key="year"
+      class="fee-statistic-by-month"
+    >
       <div
         v-show="feeStore?.state?.items?.length > 0"
         class="revenue flex-column"
       >
-        <canvas ref="feeStatisticByMonth"></canvas>
+        <!-- <canvas :ref="'feeStatisticByMonthOf' + year"></canvas> -->
+        <canvas :ref="'feeStatisticByMonthOf' + year"></canvas>
         <span class="mt-2" :style="{ fontWeight: 700 }"
-          >Thống kê doanh thu qua từng tháng</span
+          >Thống kê doanh thu qua từng tháng năm {{ year }}</span
         >
       </div>
     </div>
@@ -28,13 +33,5 @@ export default {
 </script>
 
 <style lang="scss">
-.statistic-container {
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100%;
-
-  .fee-statistic-by-month {
-    width: 80%;
-  }
-}
+@import "./Revenue.scss";
 </style>
