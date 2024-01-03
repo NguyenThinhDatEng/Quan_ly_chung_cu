@@ -45,11 +45,10 @@
         <div class="flex-column">
           <label> Từ ngày </label>
           <el-date-picker
-            v-model="model.fromDate"
+            v-model="fromDate"
             type="date"
             :default-time="new Date()"
             format="DD/MM/YYYY"
-            value-format="DD/MM/YYYY"
             class="date-picker-custom"
             :disabled="true"
           />
@@ -57,11 +56,10 @@
         <div class="flex-column">
           <label> Đến ngày </label>
           <el-date-picker
-            v-model="model.toDate"
+            v-model="model.expiredDate"
             type="date"
             :default-time="new Date()"
             format="DD/MM/YYYY"
-            value-format="DD/MM/YYYY"
             class="date-picker-custom"
             :disabled="true"
           />
@@ -106,7 +104,7 @@
         </div>
         <div
           v-if="isShowFeesDetail.servicesFee"
-          class="flex-column service-fee-detail-container"
+          class="flex-column service-fee-detail-container mb-1"
         >
           <div
             v-for="service in serviceList"
@@ -117,7 +115,6 @@
               <span class="mr-1" :style="{ minWidth: '132px' }">{{
                 service.name
               }}</span>
-              <!-- v-if="service.measuringUnit > 2" -->
               <div
                 v-show="
                   service.measuringUnit == _enum.ServiceUnit.Number ||
@@ -145,7 +142,7 @@
                 />
               </div>
               <!-- Show money -->
-              <div class="service-fee-right flex">
+              <div class="service-fee-right flex mr-1">
                 <template
                   v-if="
                     service.measuringUnit == _enum.ServiceUnit.Number ||

@@ -148,6 +148,15 @@ export const useFeesDetail = () => {
     }
   };
 
+  const fromDate = computed(() => {
+    if (proxy.model.expiredDate) {
+      const toDate = new Date(proxy.model.expiredDate);
+      return new Date(`${toDate.getFullYear()}-${toDate.getMonth() + 1}-01`);
+    } else {
+      return new Date();
+    }
+  });
+
   onMounted(() => {
     // Lấy dữ liệu danh sách
     if (serviceFeeStore.state.items.length == 0) {
@@ -168,5 +177,6 @@ export const useFeesDetail = () => {
     vehiclePropsData,
     store,
     updateFeeInfo,
+    fromDate,
   };
 };
