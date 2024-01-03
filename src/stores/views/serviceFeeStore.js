@@ -10,6 +10,7 @@ const serviceFeeStore = createStore({
       idField: "id",
       codeField: "serviceFeeTypeCode",
       nameField: "name",
+      systemField: "isSystem",
       items: [],
       api: api,
     };

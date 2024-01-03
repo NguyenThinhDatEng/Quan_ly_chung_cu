@@ -24,7 +24,7 @@
           <el-input
             v-model="model.name"
             placeholder="Tên loại dịch vụ"
-            :disabled="viewing || model.isSystem"
+            :disabled="viewing || model[store.state.systemField]"
           />
         </div>
       </div>
@@ -36,7 +36,7 @@
             placeholder="Chọn đơn vị"
             class="select"
             clearable
-            :disabled="viewing"
+            :disabled="viewing || model[store.state.systemField]"
           >
             <el-option
               v-for="item in options"

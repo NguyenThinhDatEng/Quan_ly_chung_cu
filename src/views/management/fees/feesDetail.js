@@ -21,7 +21,17 @@ export const useFeesDetail = () => {
     servicesFee: false,
   });
 
-  const serviceList = computed(() => proxy.model.serviceFeeList ?? []);
+  const serviceList = computed(() => {
+    const list = proxy.model.serviceFeeList;
+    if (list) {
+      list.forEach((x) => {
+        x.newCount = x.newCount > 0 ? x.newCount : null;
+        x.oldCount = x.oldCount > 0 ? x.oldCount : null;
+      });
+      return list;
+    }
+    return [];
+  });
 
   // Phí chung cư
   const apartmentFee = computed(() => {

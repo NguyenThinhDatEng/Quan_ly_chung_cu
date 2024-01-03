@@ -139,8 +139,8 @@
                   "
                 >
                   {{
-                    (service.newCount - service.oldCount > 0
-                      ? service.newCount - service.oldCount
+                    (service.newCount ?? 0 - service.oldCount ?? 0 > 0
+                      ? service.newCount ?? 0 - service.oldCount ?? 0
                       : 0) * service.pricePerUnit ?? 0
                   }}
                 </template>
