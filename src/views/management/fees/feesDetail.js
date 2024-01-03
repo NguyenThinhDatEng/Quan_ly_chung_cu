@@ -145,6 +145,8 @@ export const useFeesDetail = () => {
           message: "Cập nhật thành công",
           type: "success",
         });
+        // Cập nhật lại màn danh sách
+        await me.store?.dispatch("getAll");
         // hide form
         me.hide();
       } else {
