@@ -34,8 +34,10 @@ export const useLogin = () => {
               "userInfo",
               JSON.stringify(res.data?.entity)
             );
-            // Chuyển về trang tổng quan
-            me.$router.push({ name: "Overview", replace: true });
+            setTimeout(() => {
+              // Chuyển về trang tổng quan
+              me.$router.push({ name: "Overview", replace: true });
+            }, 0);
           }
 
           ElMessage({ message: message + " thành công", type: "success" });
