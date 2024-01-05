@@ -37,7 +37,7 @@ export const useLogin = () => {
             setTimeout(() => {
               // Chuyển về trang tổng quan
               me.$router.push({ name: "Overview", replace: true });
-            }, 0);
+            }, 100);
           }
 
           ElMessage({ message: message + " thành công", type: "success" });

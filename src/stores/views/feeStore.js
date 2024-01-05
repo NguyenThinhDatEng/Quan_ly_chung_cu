@@ -21,8 +21,8 @@ const feeStore = createStore({
         .sort((a, b) => {
           const aTmp = a.expiredDate;
           const bTmp = b.expiredDate;
-          if (aTmp > bTmp) return 1;
-          else if (aTmp < bTmp) return -1;
+          if (aTmp > bTmp) return -1;
+          else if (aTmp < bTmp) return 1;
           else return 0;
         })
         .map((x) => ({ ...x, year: new Date(x.expiredDate).getFullYear() }));
@@ -32,10 +32,10 @@ const feeStore = createStore({
       state.items = data.sort((a, b) => {
         const aTmp = a.expiredDate;
         const bTmp = b.expiredDate;
-        if (aTmp > bTmp) return 1;
-        else if (aTmp < bTmp) return -1;
+        if (aTmp > bTmp) return -1;
+        else if (aTmp < bTmp) return 1;
         else return 0;
-      });
+      }).map((x) => ({ ...x, year: new Date(x.expiredDate).getFullYear() }));;
     },
 
     update(state, data) {
