@@ -3,6 +3,7 @@ import httpClient from "../httpClient";
 export default class BaseAPI {
   endPoint = "";
   httpClient = httpClient;
+  debugger;
 
   constructor(endPoint) {
     this.endPoint = endPoint;
